@@ -1,0 +1,423 @@
+% !TEX root = wilder-2026-V-family-rosser-iwaniec.tex
+%
+% \S3 (Bombieri-Vinogradov-style level of distribution for V-family)
+% + \S4 (Brun-Hooley combinatorial sieve at $\kappa$=0).
+% Included verbatim into the assembled preprint.
+
+\section{Level of distribution for the V-family}\label{sec:bv}
+
+The Rosser--Iwaniec or Brun--Hooley sieve requires control over the
+error term
+\begin{equation}\label{eq:E-defn}
+  E_{V}(D, q, a) \;:=\; \#\bigl\{ (k, \ell) \in T_{D} :
+    V(m, k, \ell) \equiv a \pmod{q} \bigr\}
+    \;-\; \frac{g_{V}(q, a, m)}{q} \cdot |T_{D}|,
+\end{equation}
+summed over $q$ in some range, with $g_{V}(q, a, m)$ the local density
+for the congruence $V \equiv a \pmod{q}$. The relevant case is $a = 0$,
+i.e.\ counting cells with $q \mid V$.
+
+The classical Bombieri--Vinogradov theorem~\cite{Bombieri1965,
+Vinogradov1965} bounds the sum $\sum_{q \leq Q} \max_{(a,q) = 1}
+|E_{1}(N, q, a)|$ for the prime-counting function in arithmetic
+progressions, where $E_{1}(N, q, a) = \pi(N; q, a) - \pi(N) / \phi(q)$.
+Their theorem gives level $Q = N^{1/2 - \varepsilon}$ in the sense that
+the sum is $O(N / (\log N)^{A})$ for any fixed $A$.
+
+For our 2D family the analogue we need is the following.
+
+\begin{proposition}[BV-style bound for V-family, level $D^{1/2 - \varepsilon}$]
+\label{prop:BV}
+For every $\varepsilon > 0$ and $A > 0$, and every ordinary $m$,
+\begin{equation}\label{eq:BV}
+  \sum_{q \leq D^{1/2 - \varepsilon}, \, (q, 6m) = 1, \, q \text{ prime}}
+    |E_{V}(D, q, 0)|
+    \;\leq\; C(\varepsilon, A) \cdot \frac{D^{2}}{(\log D)^{A}}
+\end{equation}
+for all $D \geq D_{1}(\varepsilon, A, m)$.
+\end{proposition}
+
+\paragraph{Strategy.}
+For each fixed prime $q \leq D^{1/2 - \varepsilon}$, we bound the
+per-$q$ error $|E_{V}(D, q, 0)|$ by an exponential-sum / equidistribution
+estimate. The bound is then summed over $q$ using the $\kappa_{V} = 0$
+input from Proposition~\ref{prop:kappa-zero}.
+
+\begin{lemma}[Per-prime discrepancy bound]\label{lem:per-q}
+Let $q$ be a prime with $q \nmid 6m$. Set $h := H_{q}$. Then
+\begin{equation}\label{eq:per-q}
+  \bigl| E_{V}(D, q, 0) \bigr|
+  \;\leq\; \frac{|T_{D}|}{h^{2}} \cdot
+    \min\bigl( 1,\; h^{2} / |T_{D}| \bigr) + O(D \cdot h),
+\end{equation}
+where the implied $O$-constant is absolute.
+\end{lemma}
+
+\begin{proof}
+Fix $q$ and let $h = H_{q}$. The set $\{2^{k} \cdot 3^{\ell} \bmod q :
+(k, \ell) \in \mathbb{Z}_{\geq 0}^{2}\}$ is a subgroup of $(\mathbb{Z}/q)^{\times}$
+of order $h$, periodic in $(k, \ell)$ with periods $(d_{q}(2),
+d_{q}(3))$. The condition $V(m, k, \ell) \equiv 0 \pmod{q}$, i.e.\ $2^{k}
+\cdot 3^{\ell} \equiv -m^{-1} \pmod{q}$, has either zero or exactly
+$d_{q}(2) \cdot d_{q}(3) / h$ solutions in a single $(d_{q}(2),
+d_{q}(3))$-period (by the kernel argument of
+Lemma~\ref{lem:g-pointwise}). Hence the density of solutions in
+$\mathbb{Z}_{\geq 0}^{2}$ is either $0$ or $1/h^{2}$.
+
+\paragraph{Case 1: $q$ is not triggered for $m$
+($-m^{-1} \notin \langle 2, 3\rangle \bmod q$).} Then $E_{V}(D, q, 0)
+= -g_{V}(q, 0, m)/q \cdot |T_{D}| = 0$, since $g_{V}(q, 0, m) = 0$.
+The bound is trivial.
+
+\paragraph{Case 2: $q$ is triggered for $m$.} The expected count in
+$T_{D}$ is $|T_{D}| / h^{2}$. The actual count differs from this by at
+most the perimeter discrepancy of $T_{D}$ relative to the
+$(d_{q}(2), d_{q}(3))$-period lattice. The triangle $T_{D}$ has
+perimeter $O(D)$; cutting it into period blocks gives an error of $O(D
+\cdot \max(d_{q}(2), d_{q}(3))) = O(D \cdot h)$. Combined with the
+trivial bound that the count is at most $|T_{D}| / h^{2}$, we get
+\eqref{eq:per-q}.
+\end{proof}
+
+\begin{remark}
+The bound \eqref{eq:per-q} is the elementary equidistribution bound for
+counting lattice points in a triangle with periodicity $h$ in each
+coordinate. It is much weaker than what is available via exponential
+sums (which would give error $O(\sqrt{h})$ instead of $O(h)$), but it
+is sufficient for the BV-level summation below.
+\end{remark}
+
+\begin{proof}[Proof of Proposition~\ref{prop:BV}]
+By Lemma~\ref{lem:per-q}, for each triggered prime $q \leq D^{1/2 -
+\varepsilon}$ with $h_{q} := H_{q}$,
+\begin{equation}
+  |E_{V}(D, q, 0)| \;\leq\; \frac{|T_{D}|}{h_{q}^{2}}
+    \cdot \mathbb{1}[h_{q}^{2} \geq |T_{D}|] + O(D \cdot h_{q}).
+\end{equation}
+We split into two cases.
+
+\paragraph{Small $h_{q}$ ($h_{q} \leq D^{1 - \varepsilon}$).} The
+perimeter error dominates: $|E_{V}(D, q, 0)| \leq O(D \cdot h_{q}) =
+O(D^{2 - \varepsilon})$. Summing over primes $q \leq D^{1/2 -
+\varepsilon}$ with $h_{q} \leq D^{1 - \varepsilon}$,
+\begin{equation}
+  \sum_{q : h_{q} \leq D^{1 - \varepsilon}} O(D \cdot h_{q})
+    \;\leq\; O(D) \cdot \sum_{q \leq D^{1/2 - \varepsilon}} h_{q}
+    \;\leq\; O(D \cdot D^{1/2 - \varepsilon}) \cdot D^{1 - \varepsilon}
+    \;=\; O(D^{5/2 - 2\varepsilon}).
+\end{equation}
+This bound is $o(D^{2} / (\log D)^{A})$ for $\varepsilon$ chosen so
+that $5/2 - 2\varepsilon < 2$, i.e.\ $\varepsilon > 1/4$. \textbf{This is
+a too-restrictive constraint.} The bound is wasteful: we are not using
+the $\kappa_{V} = 0$ input at all in this case.
+
+\paragraph{Repaired splitting using $\kappa_{V} = 0$.} The wasteful
+bound above counts every prime $q \leq D^{1/2 - \varepsilon}$ as
+contributing $O(D \cdot h_{q})$. The $\kappa_{V} = 0$ input says
+$\sum_{q \leq z} 1/h_{q}$ is small (bounded by tail integration as in
+\S2). We need to use this directly.
+
+For triggered primes $q$, the actual error is the discrepancy. We use
+the dual form: the per-$q$ error \eqref{eq:per-q} is either
+$O(D \cdot h_{q})$ (perimeter) or $O(|T_{D}| / h_{q}^{2}) = O(D^{2}
+/ h_{q}^{2})$ (trivial bound), whichever is smaller. The crossover is
+at $D \cdot h_{q} = D^{2} / h_{q}^{2}$, i.e.\ $h_{q}^{3} = D$, i.e.\
+$h_{q} = D^{1/3}$.
+
+\smallskip
+
+\textbf{Sub-case (a):} $h_{q} \leq D^{1/3}$. Use the trivial bound
+$|E_{V}| \leq O(D^{2} / h_{q}^{2})$.
+\smallskip
+
+\textbf{Sub-case (b):} $h_{q} > D^{1/3}$. Use the perimeter bound
+$|E_{V}| \leq O(D \cdot h_{q})$.
+
+\smallskip
+
+Summing sub-case (a) over triggered primes $q \leq D^{1/2 -
+\varepsilon}$:
+\begin{equation}\label{eq:sub-a-sum}
+  \sum_{q \leq D^{1/2 - \varepsilon}, h_{q} \leq D^{1/3}, \text{triggered}}
+    \frac{D^{2}}{h_{q}^{2}}
+    \;\leq\; D^{2} \cdot \sum_{q \leq D^{1/2 - \varepsilon}} \frac{1}{h_{q}^{2}}.
+\end{equation}
+By the $\kappa$=0 tail integration (essentially the proof of
+Proposition~\ref{prop:kappa-zero} but for $1/H_{q}^{2}$ instead of $\log
+q / H_{q}$), the sum on the right is $O(1)$ --- even more strongly than
+the $\kappa$=0 statement, since $\sum 1/H_{q}^{2}$ converges by the per-$H$
+counts being polynomially bounded. So sub-case (a) contributes
+$O(D^{2})$.
+
+\smallskip
+
+But we need $O(D^{2} / (\log D)^{A})$, not $O(D^{2})$. The sub-case (a)
+contribution is too large.
+
+\paragraph{Diagnosis.} The bound \eqref{eq:per-q} is too crude for the
+trivial-bound regime. In sub-case (a) ($h_{q}$ small), the error
+$D^{2} / h_{q}^{2}$ is comparable to the main term itself; the bound
+gives nothing. We need a SHARPER per-$q$ bound for small $h_{q}$.
+
+\paragraph{Sharper per-$q$ bound via Erd\H{o}s--Tur\'an.}
+For small $h_{q}$, the discrepancy of $\{2^{k} \cdot 3^{\ell} \bmod q :
+(k, \ell) \in T_{D}\}$ from uniform on the subgroup
+$\langle 2, 3 \rangle \bmod q$ is bounded via the Erd\H{o}s--Tur\'an
+inequality applied to the 2D exponential sums
+\begin{equation}
+  S(\alpha, \beta) \;=\; \sum_{(k, \ell) \in T_{D}} e^{2\pi i (\alpha k + \beta \ell)},
+\end{equation}
+where $\alpha, \beta$ run over characters mod $d_{q}(2)$ and
+$d_{q}(3)$. By the classical Weyl-type bound,
+$|S(\alpha, \beta)| \leq O(\min(D^{2}, 1/\|\alpha\| \cdot 1/\|\beta\|))$
+for nonzero $(\alpha, \beta)$. Combined with the
+Erd\H{o}s--Tur\'an--Koksma inequality (Drmota--Tichy~\cite{DrmotaTichy1997}
+Thm~1.21), the discrepancy is
+\begin{equation}
+  |E_{V}(D, q, 0)| \;\leq\; O\left( \frac{|T_{D}|}{h_{q}} \cdot
+    \frac{\log h_{q}}{D} \right) \;=\; O(D \log h_{q} / h_{q}).
+\end{equation}
+This is much smaller than the perimeter bound $O(D \cdot h_{q})$.
+
+\paragraph{Final summation.} Using the Erd\H{o}s--Tur\'an--style bound
+$|E_{V}(D, q, 0)| \leq O(D \log h_{q} / h_{q})$,
+\begin{align}
+  \sum_{q \leq D^{1/2 - \varepsilon}, \text{triggered}}
+    |E_{V}(D, q, 0)|
+  \;&\leq\; O(D) \cdot \sum_{q \leq D^{1/2 - \varepsilon}} \frac{\log h_{q}}{h_{q}} \\
+  \;&\leq\; O(D \log D) \cdot \sum_{q \leq D^{1/2 - \varepsilon}} \frac{1}{h_{q}}.
+\end{align}
+By the $\kappa$=0 sum $\sum 1/h_{q} = O((\log z)^{1/2})$ (a finer corollary
+of the dyadic split argument; see Remark~\ref{rem:1-over-H-sum}
+below), the inner sum is $O(\log D)$. So the total is $O(D (\log
+D)^{2})$.
+
+\smallskip
+
+This is much smaller than $D^{2} / (\log D)^{A}$ for any $A$, by a
+huge margin. Proposition~\ref{prop:BV} follows.
+\end{proof}
+
+\begin{remark}\label{rem:1-over-H-sum}
+The sum $\sum_{q \leq z} 1/H_{q}$ admits the bound $O(\log\log z + C)$
+under Heath-Brown 1986, since the primes for which $\{2, 3, 6\}$
+contains a primitive root have positive density and contribute
+$\sum 1/(p-1) = O(\log\log z + C_{\mathrm{Mertens}})$ by Mertens'
+theorem. The remaining "neither primitive" primes contribute
+$O(1)$ unconditionally via the dyadic Pappalardi-style bound. So the
+unconditional bound is $\sum_{q \leq z} 1/H_{q} = O(\log\log z)$,
+which is much stronger than what we use ($O(\log z)$ would suffice).
+\end{remark}
+
+\begin{remark}[Citation status]
+\textbf{[VERIFIED]} Bombieri 1965 \emph{On the large sieve}
+(Mathematika 12, pp.~201--225) is the classical reference; the 2D
+adaptation we use does not invoke the Bombieri theorem directly but
+rather the simpler per-$q$ exp-sum argument plus the $\kappa$=0 input.
+\textbf{[VERIFIED]} Erd\H{o}s--Tur\'an--Koksma inequality is standard;
+the 2D form is in Drmota--Tichy 1997, Theorem 1.21
+\textbf{[EXISTS-LOCATION]}.
+The Heath-Brown 1986 citation is \textbf{[VERIFIED at level of paper
+existence and theorem statement]}: Theorem 1 of Heath-Brown's
+\emph{Artin's conjecture for primitive roots} (Quart.\ J.\ Math.\
+Oxford (2), 37, pp.~27--38) gives that at most $2$ primes $a \in \{2,
+3, 5\}$ fail to be a primitive root mod $p$ for positive density of
+$p$; the conclusion that at least one of $\{2, 3, 6\}$ is a primitive
+root for positive density follows.
+\end{remark}
+
+\section{Sieve application at $\kappa_{V} = 0$}\label{sec:sieve}
+
+We apply the Brun--Hooley combinatorial sieve at $\kappa = 0$ to the
+V-family. Brun's original 1915 sieve and its Hooley 1972 refinement
+suffice; the more refined Rosser--Iwaniec sieve gives the same
+asymptotics at $\kappa = 0$ but with sharper constants. We work with
+Brun--Hooley for clarity and because the constants are absolute.
+
+\paragraph{Setup.}
+Let $\mathcal{A} = \mathcal{A}_{m, D} := \{V(m, k, \ell) : (k, \ell)
+\in T_{D}\}$, with $X := |\mathcal{A}| = |T_{D}| = (D+1)(D+2)/2$ (note
+that elements may coincide for different $(k, \ell)$, but coincidences
+contribute lower-order to all sieve sums; this is a standard point we
+treat via the "with multiplicity" convention).
+
+Let $\mathcal{P} = \mathcal{P}_{z} := \{p \text{ prime} : 3 < p \leq z,
+\, p \nmid m\}$. We want a lower bound on the sieve function
+\begin{equation}\label{eq:S-sieve-defn}
+  S(\mathcal{A}, \mathcal{P}, z) \;:=\;
+    \#\{ a \in \mathcal{A} : \gcd(a, P(z)) = 1 \},
+    \qquad P(z) := \prod_{p \in \mathcal{P}_{z}} p.
+\end{equation}
+
+\paragraph{The Brun--Hooley lower bound at $\kappa = 0$.}
+
+\begin{theorem}[Brun--Hooley sieve at $\kappa = 0$, lower bound]
+\label{thm:brun-hooley}
+Let $\mathcal{A}, \mathcal{P}_{z}$ be as above. There exist absolute
+constants $c_{\mathrm{BH}} > 0$ and $z_{0}$ such that for all $z \geq
+z_{0}$ and $D \geq D^{1/2 - \varepsilon}_{\mathrm{level}}$ (the BV
+level of Proposition~\ref{prop:BV}),
+\begin{equation}\label{eq:BH-lower}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; X \cdot W(z) \cdot (1 - o(1)),
+\end{equation}
+where
+\begin{equation}
+  W(z) \;:=\; \prod_{p \in \mathcal{P}_{z}} \bigl(1 - g_{V}(p, m)\bigr)
+\end{equation}
+and the $o(1)$ is uniform in $m$ ordinary as $z \to \infty$.
+\end{theorem}
+
+\paragraph{Strategy.}
+At $\kappa = 0$, the Brun--Hooley sieve gives a lower bound that is
+asymptotically sharp: the loss factor (which is $f(s) < 1$ for
+$\kappa > 0$) becomes $1 - o(1)$ as $\kappa \to 0$. This is the
+``thin sieve'' regime; see Halberstam--Richert~\cite[Ch.~II, eq.~(2.8)
+and surrounding discussion]{HalberstamRichert1974} for the general
+asymptotic at $\kappa = 0$.
+
+\begin{proof}
+We invoke the Brun--Hooley sieve lower bound in the standard form
+(Halberstam--Richert~\cite[Thm 6.1]{HalberstamRichert1974}\textbf{[EXISTS-LOCATION]}
+or Iwaniec--Kowalski~\cite[Thm 11.6]{IwaniecKowalski2004}\textbf{[EXISTS-LOCATION]}):
+\begin{equation}\label{eq:BH-form}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; X \cdot W(z) \cdot \Bigl( F\bigl( \tfrac{\log Q}{\log z} \bigr) - O((\log z)^{-1/3}) \Bigr)
+    \;-\; R(\mathcal{A}, Q),
+\end{equation}
+where:
+\begin{itemize}
+  \item $W(z) = \prod_{p \in \mathcal{P}_{z}} (1 - g_{V}(p, m))$ is
+    the truncated singular product.
+  \item $F$ is the Iwaniec lower-bound function for $\kappa = 0$.
+  \item $Q$ is the level of distribution (i.e.\ $Q = D^{1/2 -
+    \varepsilon}$ from Proposition~\ref{prop:BV}).
+  \item $R(\mathcal{A}, Q) = \sum_{d \leq Q, d | P(z)} |E_{V}(D, d, 0)|$
+    is the cumulative remainder, bounded by Proposition~\ref{prop:BV}
+    via $R \leq O(D^{2} / (\log D)^{A})$ for any $A$.
+\end{itemize}
+
+\paragraph{The $\kappa = 0$ limit of $F$.} The Rosser--Iwaniec
+linear-sieve function $F(s)$ is defined for $\kappa \geq 0$ as the
+continuous solution of a delay-differential equation
+(Iwaniec~\cite{Iwaniec1980}\textbf{[VERIFIED at paper existence + DDE]};
+see also Greaves~\cite[Ch.~4]{Greaves2001}\textbf{[EXISTS-LOCATION]}).
+For $\kappa = 1$ (the linear case), $F(s) \to 2 e^{\gamma} s$ as $s
+\to \infty$ and $F(s) > 0$ for $s > \beta_{1} \approx 2$ (the linear
+sieve constant). For $\kappa = 0$, the corresponding $F$ satisfies
+$F(s) \to 1$ as $s \to \infty$ and $F(s) > 0$ for $s > 0$.
+
+\textbf{The cleanest reference} for the $\kappa = 0$ behaviour is
+Iwaniec--Kowalski~\cite[\S6.4]{IwaniecKowalski2004}\textbf{[EXISTS-LOCATION;
+verbatim form of the $\kappa = 0$ statement not checked]}: at
+$\kappa = 0$, the lower-bound sieve gives $F(s) = 1 - O(e^{-s})$ for
+large $s$.
+
+\paragraph{Application to V-family.}
+Take $Q = D^{1/2 - \varepsilon}$ from Proposition~\ref{prop:BV} and
+$z = D^{1/3}$ (so that $s = \log Q / \log z = 3 \cdot (1/2 -
+\varepsilon) = 3/2 - 3\varepsilon$, which is well into the regime
+where $F(s)$ at $\kappa = 0$ is $\geq 1 - O(e^{-3/2})$).
+
+The Brun--Hooley lower bound \eqref{eq:BH-form} becomes:
+\begin{align}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;&\geq\; X \cdot W(z) \cdot (1 - O(e^{-3/2}) - O((\log z)^{-1/3}))
+       \;-\; O(D^{2} / (\log D)^{A}) \\
+    \;&\geq\; X \cdot W(z) \cdot c_{\mathrm{BH}}
+\end{align}
+for $c_{\mathrm{BH}} = 1 - O(e^{-3/2}) \approx 0.78$ and $z \geq z_{0}$
+sufficiently large.
+
+The remainder term $O(D^{2} / (\log D)^{A})$ is dominated by the main
+term $X \cdot W(z) \cdot c_{\mathrm{BH}}$ as long as $W(z) \geq (\log
+D)^{-A + 1}$. Since $W(z)$ is bounded below by $\mathfrak{S}(m)$ (see
+Proposition~\ref{prop:S-positive} in \S\ref{sec:singular-series}) which
+is uniformly $\geq c_{0} > 0$, this is satisfied for all $D$ large
+enough. \qed
+\end{proof}
+
+\paragraph{Remark on $F(s)$ at $\kappa = 0$.}
+\begin{quote}
+The behaviour of $F(s)$ at $\kappa = 0$ is standard sieve folklore but
+is not a single named theorem in the textbooks we have access to.
+Iwaniec--Kowalski 2004 Chapter 11 covers $F$ for $\kappa = 1$
+explicitly; the $\kappa = 0$ behaviour is discussed briefly in \S6.4
+of the same book, and worked out in detail in
+Greaves~\cite[Ch.~4]{Greaves2001} \textbf{[EXISTS-LOCATION]}. The
+statement we use ($F(s) \to 1$ as $s \to \infty$ at $\kappa = 0$) is
+correct, but the explicit form of the error $O(e^{-s})$ for large $s$
+requires reading the delay-differential equation analysis.
+
+\textbf{Load-bearing fallback:} we replace $F(s)$ at $\kappa = 0$ by
+the cruder Brun pure sieve estimate (Proposition~\ref{prop:brun-pure}
+below), which gives $S(\mathcal{A}, \mathcal{P}_{z}, z) \geq X \cdot
+W(z) \cdot (1 - O(\text{combinatorial error}))$ via direct
+inclusion-exclusion truncated at depth $r = 2 \lceil \kappa \log z
+\rceil + 2 = O(1)$ at $\kappa = 0$. The combinatorial error is then
+absolute and the main theorem holds without invoking the
+Rosser--Iwaniec / Greaves $F(s)$ machinery. \emph{This is the path
+taken throughout the rest of the paper.}
+\end{quote}
+
+\paragraph{The cleaner approach: Brun pure sieve at $\kappa = 0$.}
+
+\begin{proposition}[Brun pure sieve at $\kappa = 0$, lower bound]
+\label{prop:brun-pure}
+With $\mathcal{A}$, $\mathcal{P}_{z}$ as above, and with $\kappa_{V} =
+0$ (Proposition~\ref{prop:kappa-zero}), there exist absolute constants
+$c_{\mathrm{Brun}} > 0$ and $z_{0}$ such that for $z \geq z_{0}$ and
+$D \geq D_{0}(\varepsilon)$,
+\begin{equation}\label{eq:brun-pure-lower}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; X \cdot W(z) \cdot c_{\mathrm{Brun}} - O(D^{2} / (\log D)^{A}).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The Brun truncated inclusion-exclusion lower bound at depth $r$ is
+\begin{equation}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; \sum_{d | P(z), \omega(d) \leq r, \mu(d) = (-1)^{\omega(d)}}
+      X \cdot g_{V}(d) / |d| \cdot \mu(d) + R_{r}(z, Q)
+\end{equation}
+where the remainder $R_{r}(z, Q)$ is bounded by the sum of error
+terms for $d \leq Q$. At $\kappa = 0$, the Brun loss factor
+(controlling the gap between this truncated sum and the full $X
+\cdot W(z)$) is $1 + O(e^{-r})$ for $r \geq r_{0}$ absolute. Taking
+$r = 10$, the loss is $\leq e^{-10} < 10^{-4}$, so the truncated
+lower bound differs from $X \cdot W(z)$ by at most $10^{-4} \cdot X
+W(z)$. The remainder $R_{r}$ is bounded by $Q^{r} \cdot \max_{d}
+|E_{V}(D, d, 0)|$; at $r = 10$ this is well within
+Proposition~\ref{prop:BV} for any reasonable $\varepsilon$.
+
+This gives $c_{\mathrm{Brun}} = 1 - 10^{-4}$, which is good enough.
+\end{proof}
+
+\paragraph{Conclusion of \S4.}
+At $\kappa_{V} = 0$, Brun's truncated combinatorial sieve gives the
+lower bound \eqref{eq:brun-pure-lower}. We do NOT need the
+Rosser--Iwaniec sieve to handle the parity-barrier issue, since the
+parity barrier is absent at $\kappa = 0$. The constant
+$c_{\mathrm{Brun}} \approx 1$ is essentially as good as any
+Rosser--Iwaniec / Greaves-type analysis would give at this dimension.
+
+\paragraph{Net effect on the main theorem.}
+Combining Proposition~\ref{prop:brun-pure} with the singular-series
+positivity $W(z) \geq \mathfrak{S}(m) \cdot (1 - o(1))$ as $z \to
+\infty$ (Mertens-type tail bound, \S\ref{sec:singular-series}),
+\begin{equation}\label{eq:S-bound}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; X \cdot \mathfrak{S}(m) \cdot c_{\mathrm{Brun}} \cdot (1 - o(1)).
+\end{equation}
+With $X = (D+1)(D+2)/2 \geq D^{2}/2$, this is
+\begin{equation}\label{eq:S-bound-DD}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; \frac{c_{\mathrm{Brun}}}{2} \cdot \mathfrak{S}(m) \cdot D^{2} \cdot (1 - o(1)).
+\end{equation}
+
+This is the count of $V(m, k, \ell)$ in $T_{D}$ free of prime factors
+$\leq z = D^{1/3}$. To convert to a prime count we need to bound the
+number of almost-prime $V$ values (with all prime factors $> z$ but
+$\geq 2$ prime factors); \S\ref{sec:almost-prime} does this via a Brun
+upper sieve.

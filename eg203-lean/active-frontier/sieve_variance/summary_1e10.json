@@ -1,0 +1,15 @@
+{
+  "tool": "forge_sieve_variance.py",
+  "x_grid": [
+    10000000000
+  ],
+  "q_policy": "sqrt_x_over_logA",
+  "family": "V",
+  "q_cap": 512,
+  "gpu_requested": false,
+  "gpu_available": true,
+  "records": 1,
+  "elapsed_seconds": 0.117,
+  "jsonl_sha256": "0429970991175c5494f66e2fd445e8ec51091a694636e63487fe8e254d967b08",
+  "best_budget_ratio": "5.326736e+02"
+}

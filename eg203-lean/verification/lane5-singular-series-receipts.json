@@ -1,0 +1,291 @@
+{
+ "lane": "LANE5-singular-series-and-constants",
+ "QMAX": 100000,
+ "index_distribution": {
+  "n_primes": 9590,
+  "index_1_count": 6733,
+  "index_1_fraction": 0.7020855057351407,
+  "index_2_count": 1982,
+  "rank2_artin_reference_density": 0.6979,
+  "min_H": 4,
+  "min_H_at_q": 5
+ },
+ "sanity_H_eq_lcm_subgroup_bruteforce_q_le_2000": {
+  "checked": 301,
+  "mismatches": []
+ },
+ "sanity_gV_groundtruth_bruteforce": {
+  "pairs_checked": 386,
+  "mismatches": []
+ },
+ "worst_case_floor_W_Q": {
+  "definition": "W_Q = prod_{3<q<=Q} (1 - q/((q-1)*H_q)); for every ordinary m, S_Q(m) >= W_Q; attained by m = primorial(Q)-1",
+  "W_1000_exact_num_digits": 603,
+  "W_1000_exact": "76546774615905347457604167859143272392980442394936...",
+  "W_1000_float": 0.14212082003746093,
+  "W_floats": {
+   "1000": 0.14212082003746096,
+   "10000": 0.09328228118355042,
+   "100000": 0.06511808712934794
+  },
+  "W_ratio_1e5_over_1e3": 0.4581882310570947
+ },
+ "W_1000_exact_fraction": {
+  "numerator": "765467746159053474576041678591432723929804423949363059232163910958096642831104036764534680055276303065159291801911713139746906998849675929452366569961552749107540005065885718805548052022348952449881517203428954986467174595486622406043510353764696056464541694617127851935654624967633776889576738422197787188666800777135186781739580079073366378415207121910496320062878792251496607706172577770998527429040618827212430869971960168630229599459130059435174245405734267926660666851769072858276277941493145697087954122036303051678221453210459354462071193215124766062297738403371288297690382873490305181455544073",
+  "denominator": "5386035247737014238479128606863361222364662138021910128455271947841127417095931767307675207847681483780297816523289790048107845506194941355662590829990182626157642709454163552980061428917368438577062692389689858643824467640944347068227146659002037357443647515753135814324555842870800276931788549841419771429845726756857600306710940397185798546095320757176120073430826258357889020127988966440925589546326929052479369485683152754991356498666918123350384835504488466125671801704046870591358258810896669344972039945520752954386551232464630579200000000000000000000000000000000000000000000000000000000000000000",
+  "float": 0.14212082003746093
+ },
+ "S5_sum_checks": {
+  "papers_convergent_sum_1_over_H(p-1)_at_1e5": 0.12852516569089992,
+  "tail_sum_1_over_H_p_gt_7_at": {
+   "1000": 1.2953053618635881,
+   "10000": 1.71598932684569,
+   "100000": 2.0753758665580477
+  },
+  "tail_sum_growth_1e3_to_1e5": 0.7800705046944596,
+  "loglog_diff_1e3_to_1e5": 0.5108256237659905,
+  "verdict": "sum_{p>7} 1/H_p grows ~ loglog z (unbounded); S5's claim 'sum_{p>P0} 1/H_p <= C/log P0' is FALSE"
+ },
+ "distribution_500_ordinary_m_le_1500": {
+  "1000": {
+   "S_min": 0.16262366017107255,
+   "S_argmin_m": 389,
+   "S_max": 0.40267066117928996,
+   "S_argmax_m": 455,
+   "S_median": 0.19828271205600498,
+   "S_q25": 0.18223109108697583,
+   "S_q75": 0.23750102657841063,
+   "S_BH_min": 0.6695202902552119,
+   "S_BH_argmin_m": 389,
+   "S_BH_median": 0.8163283177163501,
+   "S_median_times_logQ": 1.3696884509357634
+  },
+  "10000": {
+   "S_min": 0.12287796785065346,
+   "S_argmin_m": 1433,
+   "S_max": 0.3034686997836833,
+   "S_argmax_m": 455,
+   "S_median": 0.1487538276948175,
+   "S_q25": 0.13723986641998115,
+   "S_q75": 0.17900512170650704,
+   "S_BH_min": 0.6727359696625522,
+   "S_BH_argmin_m": 1433,
+   "S_BH_median": 0.8144019002407104,
+   "S_median_times_logQ": 1.3700733847035664
+  },
+  "100000": {
+   "S_min": 0.09862162393594893,
+   "S_argmin_m": 1433,
+   "S_max": 0.24370217663070495,
+   "S_argmax_m": 455,
+   "S_median": 0.11940908981416481,
+   "S_q25": 0.1098164104854656,
+   "S_q75": 0.1434572083599799,
+   "S_BH_min": 0.6742955313111011,
+   "S_BH_argmin_m": 1433,
+   "S_BH_median": 0.8164235432982712,
+   "S_median_times_logQ": 1.3747479508704152
+  }
+ },
+ "decay_check_S_times_logQ_const": {
+  "statement": "if S_Q(m) ~ C(m)/log Q (Mertens-type decay to 0), then ratio (S_1e5*log1e5)/(S_1e3*log1e3) ~ 1",
+  "median_ratio": 1.0052430301047204,
+  "q25": 1.0003199930535918,
+  "q75": 1.009853767794295,
+  "naive_ratio_if_no_decay_would_be": 1.6666666666666667,
+  "deficit_sum_growth_median": 0.5055582028320673,
+  "loglog_diff": 0.5108256237659905
+ },
+ "big_random_m_12digit": {
+  "n": 60,
+  "S_1e5_min": 0.09857098095624071,
+  "S_1e5_median": 0.11959060971895151,
+  "S_1e5_max": 0.20533136847681324
+ },
+ "paper_record_m_6257518159": {
+  "1000": {
+   "S": 0.1691480443038496,
+   "S_BH": 0.696381126825476,
+   "trig": 146
+  },
+  "10000": {
+   "S": 0.12778596621426028,
+   "S_BH": 0.6996064257418404,
+   "trig": 1035
+  },
+  "100000": {
+   "S": 0.10249114522799173,
+   "S_BH": 0.7007522130346975,
+   "trig": 7928
+  }
+ },
+ "primorial_adversaries": {
+  "primorial(100)-1": {
+   "1000": {
+    "S": 0.16325770208198656,
+    "S_BH": 0.672130635661179,
+    "trig": 142
+   },
+   "10000": {
+    "S": 0.12342152202033253,
+    "S_BH": 0.6757118362706949,
+    "trig": 1021
+   },
+   "100000": {
+    "S": 0.09888786942784503,
+    "S_BH": 0.6761159043515436,
+    "trig": 7899
+   },
+   "digits_of_m": 37
+  },
+  "primorial(1000)-1": {
+   "1000": {
+    "S": 0.14212082003746096,
+    "S_BH": 0.5851102636768429,
+    "trig": 166
+   },
+   "10000": {
+    "S": 0.10604378458280025,
+    "S_BH": 0.5805716801461313,
+    "trig": 1067
+   },
+   "100000": {
+    "S": 0.08505020834447137,
+    "S_BH": 0.581505081086481,
+    "trig": 7961
+   },
+   "digits_of_m": 416
+  },
+  "primorial(5000)-1": {
+   "1000": {
+    "S": 0.14212082003746096,
+    "S_BH": 0.5851102636768429,
+    "trig": 166
+   },
+   "10000": {
+    "S": 0.0979811719434364,
+    "S_BH": 0.5364302475782669,
+    "trig": 1134
+   },
+   "100000": {
+    "S": 0.07852181937248737,
+    "S_BH": 0.5368691956205477,
+    "trig": 8031
+   },
+   "digits_of_m": 2134
+  },
+  "primorial(100000)-1": {
+   "1000": {
+    "S": 0.14212082003746096,
+    "S_BH": 0.5851102636768429,
+    "trig": 166
+   },
+   "10000": {
+    "S": 0.09328228118355042,
+    "S_BH": 0.5107046200554196,
+    "trig": 1227
+   },
+   "100000": {
+    "S": 0.06511808712934794,
+    "S_BH": 0.4452252295841596,
+    "trig": 9590
+   },
+   "digits_of_m": 43293
+  }
+ },
+ "W_attainment": {
+  "log_diff_primorial_vs_W": 2.6645352591003757e-15,
+  "n_triggered_of_9592": 9590,
+  "verdict": "primorial(1e5)-1 triggers ALL primes <= 1e5; truncated S equals the floor W_Q exactly"
+ },
+ "exact_min_S_1000_over_m_le_1500": {
+  "argmin_m": 389,
+  "min_float": 0.16262366017107252,
+  "min_exact_numerator": "177955942989725926089711653959548873151228339770031647207036081036204316472012415091302570912587188072456699545290207674461186837488709823921198138026379095500242475330796426471688145893438733797157025736463420366268022793584947181114060081819172210815261701051520724916854811755414921027792048974440774003960747241435925825737836336400928938822243697643225680870918360649365175638457429218804402793728718156545038903212461914282423517488629138847568338864885959686421928024108104265327740172251200891537045352464987099657056902337",
+  "min_exact_denominator": "1094280763343566050321659322532171890135899652169705439240352122980065720269961850053092601482072421068115284135363405550537870583966855693171088906078777163648179461018188964544848538528342441376499126242669176949667842030704758587685150985794869612247422334458931176412835898527150243238233017039763713408449666401281710366371949490637511106974606302696062099494832154694794409750538636316360411354663453170875185215874769710824505883259361103695413588914727234963714867200000000000000000000000000000000000000000000000000000000000",
+  "kernel_statement": "for every ordinary m <= 1500, S_1000(m) >= 0.162624 (exact rational stored), attained at m=389"
+ },
+ "float_vs_exact_crosscheck_m35": 1.1102230246251565e-16,
+ "constants_audit": {
+  "sylow_99225": {
+   "claim": "(2520/8)*(5040/16) = 99225 uncovered cells on (2520,5040); density 1/128",
+   "2520/8": 315,
+   "5040/16": 315,
+   "product": 99225,
+   "99225_times_128_eq_2520*5040": true,
+   "density_exact": "99225/12700800 = 1/128 EXACTLY",
+   "verdict": "VERIFIED (arithmetic)"
+  },
+  "c_pre_inconsistency": {
+   "exec_summary_main_tex": "c_pre = 1/128, c0 ~ 1.1e-4",
+   "S5_S7_L5_and_public_page": "c_pre = 1/256 = (1/128)*(1/2 tail), c0 ~ 6.6e-4",
+   "1/256": 0.00390625,
+   "paper_says_approx": 0.00391,
+   "match": true
+  },
+  "c0_arithmetic": {
+   "S5_formula": "c0 = (1/256)*exp(-2*0.89) = (1/256)*e^-1.78",
+   "value": 0.0006587427627679512,
+   "claimed": 0.00066,
+   "verdict": "arithmetic VERIFIED: 6.5876e-4 ~ 6.6e-4",
+   "exec_1.1e-4_reconstruction": {
+    "double_mertens_slip": 0.00011108915903978322,
+    "note": "exec's 1.1e-4 equals (1/256)*e^{-2*1.78}, i.e. the Mertens correction applied twice (or C_Mertens=1.78 used in place of 0.89); not derivable any other way from in-paper constants",
+    "1/128_with_correct_mertens": 0.0013174855255359023
+   }
+  },
+  "C_Mertens_0.89_provenance": {
+   "paper_text": "'C_Mertens ~ 0.89 (Mertens product head to P0 <= 7)' -- no formula given",
+   "candidates": {
+    "e^gamma/2": 0.8905362089937339,
+    "sum_{p<=7} 1/p": 1.176190476190476,
+    "sum_{5<=p<=7} 1/(p-1)": 0.41666666666666663,
+    "-sum_{p<=7} log(1-1/p)": 1.4759065198095778,
+    "-sum_{5<=p<=7} log(1-1/p)": 0.3772942311414681,
+    "mertens_constant_M": 0.2614972128
+   },
+   "verdict": "UNDERIVED in paper; only e^gamma/2 = 0.8905 numerically matches 0.89"
+  },
+  "worst_case_head_p_le_7": {
+   "exact": "(1-5/16)*(1-7/36) = (11/16)*(29/36) = 319/576",
+   "float": 0.5538194444444444,
+   "vs_1_over_128": 70.88888888888889,
+   "note": "the TRUE worst-case Euler head over p in {5,7} is 0.5538, a factor 70.9 LARGER than 1/128; the 1/128 is a (2520,5040)-cell-covering density over ALL eligible q (incl. q>7), not the p<=7 Euler head -- the S5 head/tail split mis-attributes it"
+  },
+  "S6_c_formula": {
+   "2log6": 3.58351893845611,
+   "1/(2log6)": 0.2790553132756236,
+   "c = (1/(2log6))*0.9": 0.25114978194806126,
+   "c_with_cBrun_0.999": 0.2508986321661132,
+   "claimed": 0.25,
+   "S8_witness_check_c=0.25 <= cBrun/(2log6)*0.9": true,
+   "margin": 0.0008986321661131891,
+   "verdict": "arithmetic VERIFIED (margin 0.36%); soundness depends on kappa=0 (BROKEN per E1) and on unverified HR Thm 6.1 constants (L2)"
+  },
+  "S6_asymp_identity": {
+   "claim": "|T_D|*S/log(m*6^D) ~ (D^2/2)*S/(D log6) = S*D/(2 log6)",
+   "check": "algebra: |T_D| = (D+1)(D+2)/2 ~ D^2/2; log(m*6^D) = D log6 + log m ~ D log6  -- VERIFIED as asymptotic algebra (for fixed m)"
+  },
+  "S6_num_factors_typo": {
+   "eq:num-factors_middle": "(D log6 + log m)/(D^{1/3} log D * 1/(D^{2/3})) -- denominator equals log D / D^{1/3}, NOT (log D)/3",
+   "correct_value": "log z = (1/3) log D for z = D^{1/3}; final bound floor(3(D log6+log m)/log D) is correct",
+   "verdict": "typo in middle expression (already flagged E7); conclusion arithmetic correct"
+  },
+  "S7_D0": {
+   "e^200_log10": 86.85889638065036,
+   "claim_e200_approx_1e87": "10^86.859 ~ 1e87: VERIFIED",
+   "max(e^200,1e50)": "e^200 (since 86.86 > 50): VERIFIED",
+   "improvement_claim": "10^(2520-87) = 10^2433: VERIFIED as arithmetic",
+   "z0_constraint": "z = D^{1/3} >= 100 <=> D >= 1e6: VERIFIED",
+   "brun_depth_loss": {
+    "claim": "C^10/10! <= 1e-3",
+    "requires_C_le": 2.2697410030457075,
+    "note": "C unstated in paper; holds iff C <= 2.2699"
+   },
+   "D1_e200_provenance": "UNDERIVED: 'Sufficient: D1 >= e^200 for A=10 and S(m) >= 1e-3' has no in-paper derivation; with the paper's own remainder O(D^{5/4}/(log D)^A) vs main term S*D^2, ANY D >= 13 suffices -- e^200 is not implied by any formula in the paper",
+   "D2_1e50_provenance": "UNDERIVED: 'by a rough estimate from the rate of convergence' -- no formula",
+   "S7_assumes_S_ge_1e-3_but_delivers_6.6e-4": "INTERNAL INCONSISTENCY: the BV bullet assumes S(m) >= 1e-3 while S5's own c0 = 6.6e-4 < 1e-3"
+  }
+ },
+ "runtime_seconds": 17.7
+}

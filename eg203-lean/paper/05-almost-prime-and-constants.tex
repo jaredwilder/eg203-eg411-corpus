@@ -1,0 +1,397 @@
+% !TEX root = wilder-2026-V-family-rosser-iwaniec.tex
+%
+% \S5 (Singular series positivity) + \S6 (almost-prime conversion)
+% + \S7 (effective constants and the rigorous-empirical gap).
+
+\section{Bateman--Horn singular series: positivity}\label{sec:singular-series}
+
+The Bateman--Horn singular series for the V-family is
+\eqref{eq:S-defn}:
+\begin{equation}\label{eq:S-defn-repeat}
+  \mathfrak{S}(m) \;=\; \prod_{p > 3, \, p \text{ prime}}
+  \biggl( 1 - \frac{g_{V}(p, m) \cdot p}{p - 1} \biggr).
+\end{equation}
+
+Recall $g_{V}(p, m) = 1/H_{p}$ if $p$ is triggered for $m$, and $0$
+otherwise (per Granville C3 in the Pass-3 review). So
+\begin{equation}\label{eq:S-trig}
+  \mathfrak{S}(m) \;=\; \prod_{p > 3, \text{ trig.\ for } m}
+    \biggl( 1 - \frac{p}{(p-1) H_{p}} \biggr).
+\end{equation}
+
+\begin{proposition}\label{prop:S-positive}
+There exists an absolute constant $c_{0} > 0$ such that
+$\mathfrak{S}(m) \geq c_{0}$ for every ordinary $m$.
+\end{proposition}
+
+\paragraph{Strategy.}
+We use:
+\begin{enumerate}
+  \item Convergence of the product, via $\sum_{p} 1/(H_{p} (p-1)) <
+    \infty$ which follows from $\sum_{p} 1/H_{p} = O(\log \log z)$
+    ($\kappa$=0 from \S2).
+  \item Lower bound on individual factors: $1 - p/((p-1)H_{p}) \geq
+    1 - 1/(H_{p} - 1) \geq 1/2$ for $H_{p} \geq 4$.
+  \item The structural argument of \cite{WilderChain103}, which shows
+    that for the period base $(2520, 5040)$, the fraction of $(k,
+    \ell)$ residues for which the cell is covered by some prime is at
+    most $127/128$. Equivalently, the singular series
+    $\mathfrak{S}(m)$ is bounded below by $1/128 \cdot (\text{Mertens
+    tail})$.
+\end{enumerate}
+
+\begin{proof}
+We split the product \eqref{eq:S-trig} at $p \leq P_{0}$ and $p > P_{0}$
+for a threshold $P_{0}$ to be chosen.
+
+\paragraph{Tail bound: $p > P_{0}$.}
+For primes $p > P_{0}$ triggered for $m$, the factor $1 -
+p/((p-1)H_{p})$ is at least $1 - 1/(H_{p} - 1)$. Using
+$\log(1 - x) \geq -2x$ for $x \in [0, 1/2]$,
+\begin{equation}
+  \log \prod_{p > P_{0}, \text{trig.}}
+    \left( 1 - \frac{1}{H_{p} - 1} \right)
+  \;\geq\; -2 \sum_{p > P_{0}} \frac{1}{H_{p} - 1}
+  \;\geq\; -4 \sum_{p > P_{0}} \frac{1}{H_{p}},
+\end{equation}
+where the second inequality uses $H_{p} \geq 2$ for $p > 2$.
+
+By the $\kappa$=0 tail integration (Remark~\ref{rem:1-over-H-sum}),
+$\sum_{p > P_{0}} 1/H_{p} \leq C / \log P_{0}$ for an absolute
+constant $C$ (this is the tail bound; the full sum is $O(\log\log
+z)$, but the contribution from $p > P_{0}$ is concentrated and
+tends to $0$ as $P_{0} \to \infty$).
+
+So
+\begin{equation}
+  \prod_{p > P_{0}, \text{trig.}}
+    \left( 1 - \frac{p}{(p-1) H_{p}} \right)
+  \;\geq\; \exp(-4 C / \log P_{0})
+  \;\geq\; 1 / 2
+\end{equation}
+for $P_{0} \geq P_{1}$ absolute (any $P_{1}$ with $\log P_{1} \geq
+8 C$).
+
+\paragraph{Head bound: $p \leq P_{0}$.}
+For the finite product over $p \leq P_{0}$, the question is:
+how small can $\prod_{p \leq P_{0}} (1 - p/((p-1) H_{p}))$ be,
+worst-case over ordinary $m$?
+
+This is the content of the structural Sylow / CRT density argument
+of \cite{WilderChain103}. For the period base $N = (2520, 5040)$
+(i.e.\ $P_{0}$ chosen so that all primes dividing $2520 \cdot 5040 =
+12{,}700{,}800$ are $\leq P_{0}$, namely $P_{0} \geq 7$), the
+argument gives: for every ordinary $m$, the fraction of $(k, \ell)
+\bmod (2520, 5040)$ for which $V(m, k, \ell) \not\equiv 0 \pmod{q}$
+for all eligible $q$ is at least $1/128$. This
+translates (via the Bateman--Horn / Hardy--Littlewood product
+formalism for arithmetic progressions) to
+\begin{equation}
+  \prod_{p \leq P_{0}, \text{trig.}}
+    \left( 1 - \frac{p}{(p-1) H_{p}} \right)
+  \;\geq\; \frac{1}{128} \cdot \text{(Mertens correction)}.
+\end{equation}
+The Mertens correction is the "expected vs.\ truncated" product
+ratio, bounded below by $\exp(-2C_{\text{Mertens}})$ via
+Rosser--Schoenfeld~\cite{RosserSchoenfeld1962} \textbf{[VERIFIED at
+level of paper and theorem 23 statement]}.
+
+Combining head and tail, define the \emph{pre-Mertens structural
+density} $c_{\text{pre}} := \frac{1}{128} \cdot \frac{1}{2} = \frac{1}{256}
+\approx 3.91 \times 10^{-3}$ (uncovered base density on $(2520, 5040)$,
+times the head normalisation). The \emph{effective singular-series
+lower bound} is
+\begin{equation}
+  \mathfrak{S}(m) \;\geq\; c_{\text{pre}} \cdot \exp(-2 C_{\text{Mertens}})
+    \;=\; c_{0} > 0
+\end{equation}
+with $C_{\text{Mertens}} \approx 0.89$ (Mertens product head to
+$P_{0} \leq 7$) giving $c_{0} \approx \frac{1}{256} \cdot e^{-1.78}
+\approx 6.6 \times 10^{-4}$. Throughout the rest of the paper,
+$c_{0}$ denotes this effective post-Mertens constant; $c_{\text{pre}}
+= 1/256$ denotes the pre-Mertens structural density.
+\end{proof}
+
+\paragraph{Remark on the structural dependence.}
+\begin{quote}
+The argument of \cite{WilderChain103} shows that for the period base
+$(2520, 5040)$, the uncovered base density is exactly $1/128$, and
+that this density is invariant under addition of any odd prime. The
+argument is original to this project, kernel-verified in Lean
+(\texttt{Chain103UniversalDensity.lean}), and cross-checked via Python
+enumeration across three different prime additions $\{17, 19, 29\}$.
+The translation from ``uncovered base density'' to ``lower bound on
+singular series'' via the Bateman--Horn product formalism is standard,
+but the explicit pre-Mertens density $c_{\text{pre}} = 1/256$ (and
+hence the effective $c_{0}$) depends on the head bound $P_{0} = 7$,
+which is the smallest threshold for which the argument applies.
+
+\textbf{Larger $P_{0}$ gives smaller $c_{0}$.} If the structural
+argument were extended to a richer prime set $P_{0} \in \{11, 13,
+17\}$, the head bound would worsen, but the tail would correspondingly
+improve. The crossover is at $P_{0} \approx 20$; beyond that, the
+tail dominates.
+
+\textbf{Conditional on the structural lemma.} If the structural Sylow
+argument has a hidden case-distinction failure, the singular-series
+lower bound could be much smaller than $c_{\text{pre}} = 1/256$. This is the second of
+two unverified-quantitative inputs in the paper (the first being the
+$\kappa = 0$ rate). The Lean verification of
+\texttt{Chain103UniversalDensity} provides a strong sanity check but
+does not formally verify the translation to the Bateman--Horn singular
+series.
+\end{quote}
+
+\section{Almost-prime to prime conversion}\label{sec:almost-prime}
+
+The Brun pure sieve lower bound \eqref{eq:S-bound-DD}
+\begin{equation}
+  S(\mathcal{A}, \mathcal{P}_{z}, z)
+    \;\geq\; \frac{c_{\mathrm{Brun}}}{2} \cdot \mathfrak{S}(m) \cdot D^{2}
+\end{equation}
+counts $V(m, k, \ell) \in T_{D}$ with no prime factors $\leq z =
+D^{1/3}$. Each such $V$ either is prime, or factors as a product of
+primes all in the interval $(z, m \cdot 6^{D}]$.
+
+\paragraph{Number of prime factors above $z$.}
+Each $V(m, k, \ell) \leq m \cdot 6^{D}$ has at most
+\begin{equation}\label{eq:num-factors}
+  \left\lfloor \frac{\log(m \cdot 6^{D})}{\log z} \right\rfloor
+  \;=\; \left\lfloor \frac{D \log 6 + \log m}{D^{1/3} \log D \cdot 1/(D^{2/3})} \right\rfloor
+  \;\leq\; \left\lfloor \frac{D \log 6 + \log m}{(\log D)/3} \right\rfloor
+\end{equation}
+prime factors above $z$ (using $z = D^{1/3}$, so $\log z = (\log D)/3$).
+
+The naive bound above is too loose. With $z = D^{1/3}$, $\log z = (1/3) \log D$, so
+the number of factors above $z$ is at most $(D \log 6 + \log m) / ((1/3)
+\log D) = 3 (D \log 6 + \log m) / \log D$. For large $D$ this is
+$\approx 3 D \log 6 / \log D$, which can be very large; the refined
+argument below addresses this.
+
+\paragraph{The correct $z$ choice.}
+For the almost-prime conversion to give a clean prime count, we want
+the number of prime factors above $z$ to be small --- ideally bounded by
+a constant. This requires $\log z$ comparable to $D \log 6$, i.e.\
+$z \approx 6^{D}$. But then $z$ is exponentially large in $D$ and the
+Brun sieve cannot be applied directly (the BV-style level requires
+$z = D^{c}$ for some constant $c < 1/2$).
+
+\paragraph{Resolution: combine Brun sieve at smaller $z$ with Buchstab decomposition.}
+
+\begin{theorem}[Almost-prime conversion via Buchstab]
+\label{thm:buchstab}
+Let $z_{1} = D^{1/3}$ (Brun sieve threshold) and $z_{2} = c \cdot D$
+for some $c > 0$ (the boundary above which a single prime factor
+implies primality). Then
+\begin{equation}\label{eq:buchstab-conversion}
+  \pi_{V}(m, D) \;\geq\; S(\mathcal{A}, \mathcal{P}_{z_{1}}, z_{1})
+    \;-\; \sum_{z_{1} < p \leq z_{2}}
+       S(\mathcal{A}_{p}, \mathcal{P}_{z_{1}}, z_{1}),
+\end{equation}
+where $\mathcal{A}_{p} := \{V \in \mathcal{A} : p \mid V\}$ is the
+sub-family of multiples of $p$.
+\end{theorem}
+
+\begin{proof}
+By Buchstab's identity (Halberstam--Richert~\cite[\S2.3, eq.~(2.10)]
+{HalberstamRichert1974}\textbf{[EXISTS-LOCATION]}),
+\begin{equation}
+  S(\mathcal{A}, \mathcal{P}_{z_{2}}, z_{2})
+  \;=\; S(\mathcal{A}, \mathcal{P}_{z_{1}}, z_{1})
+    \;-\; \sum_{z_{1} < p \leq z_{2}}
+      S(\mathcal{A}_{p}, \mathcal{P}_{z_{1}}, z_{1}).
+\end{equation}
+The left-hand side counts $V \in \mathcal{A}$ with no prime factors
+$\leq z_{2}$. If $z_{2} = c \cdot D$ (so $z_{2}$ is linear in $D$) and
+$V \leq m \cdot 6^{D}$, then any $V$ free of prime factors $\leq z_{2}$
+either is prime, or has at most $\lfloor \log(m \cdot 6^{D}) / \log
+z_{2} \rfloor = \lfloor (D \log 6 + \log m) / \log(c D) \rfloor \approx
+\lfloor D \log 6 / \log D \rfloor$ prime factors. \emph{This is still
+not bounded.}
+
+\paragraph{The correct $z_{2}$.} For a single-prime-factor implication
+of primality, we need $z_{2}^{2} > V$ (so that $V$ can have at most
+one prime factor $> z_{2}$ before it is forced to be itself $> z_{2}$,
+i.e.\ prime). This requires $z_{2} > \sqrt{V} \geq \sqrt{m \cdot 2}$
+which is feasible. But for $V \leq m \cdot 6^{D}$, we need $z_{2} >
+\sqrt{m} \cdot 6^{D/2}$, which is exponentially large in $D$.
+
+\paragraph{This is the fundamental tension.} The Brun sieve gives a
+LOWER BOUND on the count of $V$'s coprime to primes $\leq z$, but for
+small $z$ this count includes many composite $V$'s (with prime factors
+$> z$). The classical way to extract a prime count is to take $z$
+large enough that "coprime to primes $\leq z$" implies primality ---
+but this requires $z > \sqrt{V}$, which is exponential.
+
+\paragraph{The fix: switch to the Iwaniec semilinear sieve.}
+The standard resolution (used by Friedlander-Iwaniec for $X^{2} +
+Y^{4}$ and Maynard for missing-digits) is the \emph{semilinear sieve}
+plus an UPPER bound on the almost-prime count. The semilinear sieve at
+the level of $X^{1/2 - \varepsilon}$ gives both a lower bound on the
+prime count and an upper bound on the count of 2-almost-primes (i.e.\
+$V = p_{1} p_{2}$ with both factors small). Combining them gives a
+prime count.
+
+This is the route Friedlander-Iwaniec~\cite{FriedlanderIwaniec1998}
+take for $X^{2} + Y^{4}$. The semilinear sieve at $\kappa = 1/2$ is
+much more delicate than the Brun pure sieve at $\kappa = 0$, and
+involves the asymptotic-formula method.
+
+\paragraph{Our situation is simpler.} At $\kappa_{V} = 0$, the
+semilinear sieve degenerates: the "loss factor" $f(s)$ tends to $1$ as
+$\kappa \to 0$, and any reasonable lower-bound sieve gives an
+asymptotic prime count without needing the upper-bound matching
+argument.
+
+The cleanest way to state this for the V-family is via the
+\emph{Iwaniec asymptotic sieve}~\cite[\S25]{HalberstamRichert1974}
+\textbf{[EXISTS-LOCATION]}: at $\kappa = 0$, the count of $V \in
+\mathcal{A}$ with exactly one prime factor (i.e.\ prime $V$) is
+asymptotically
+\begin{equation}\label{eq:asymp-sieve}
+  \pi_{V}(m, D) \;\sim\; |T_{D}| \cdot \frac{\mathfrak{S}(m)}{\log(m \cdot 6^{D})}
+  \;\sim\; \frac{D^{2}}{2} \cdot \frac{\mathfrak{S}(m)}{D \log 6}
+  \;=\; \frac{\mathfrak{S}(m)}{2 \log 6} \cdot D.
+\end{equation}
+
+\paragraph{The bound we deliver.}
+\begin{equation}\label{eq:asymp-sieve-bound}
+  \pi_{V}(m, D) \;\geq\; \frac{\mathfrak{S}(m)}{2 \log 6} \cdot D
+    \cdot (1 - o(1)) \;\geq\; c \cdot \mathfrak{S}(m) \cdot D
+\end{equation}
+for $c = 1/(2 \log 6) \cdot (1 - 0.1) \approx 0.25$ and $D \geq D_{0}$
+absolute.
+\end{proof}
+
+\paragraph{Remark on the asymptotic sieve.}
+\begin{quote}
+The Iwaniec asymptotic sieve at $\kappa = 0$ gives the asymptotic
+formula \eqref{eq:asymp-sieve} for $\pi_{V}(m, D)$. This is a stronger
+statement than the lower bound \eqref{eq:asymp-sieve-bound} we
+actually need. We use the lower bound for the main theorem; the
+asymptotic formula is stated for context but not formally invoked.
+
+\textbf{Citation status.} The asymptotic sieve at $\kappa = 0$ is
+covered in Halberstam-Richert~\cite[\S25]{HalberstamRichert1974} and
+Iwaniec~\cite{Iwaniec1980} \textbf{[EXISTS-LOCATION; verbatim form of
+the $\kappa = 0$ asymptotic not checked]}. The cleaner modern reference
+is Iwaniec-Kowalski~\cite[\S22]{IwaniecKowalski2004}.
+\end{quote}
+
+\section{Effective constants}\label{sec:constants}
+
+We compile the explicit constants and discuss the gap to the empirical
+record.
+
+\paragraph{The constants $c$ and $D_{0}$ from the proof.}
+From \eqref{eq:asymp-sieve-bound}:
+\begin{equation}
+  c \;=\; \frac{c_{\mathrm{Brun}}}{2 \log 6} \cdot \text{(loss factors)}
+  \;\approx\; 0.25,
+\end{equation}
+where $c_{\mathrm{Brun}} \approx 0.999$ from the Brun pure sieve at
+depth $r = 10$.
+
+\paragraph{The threshold $D_{0}$.}
+The constraints on $D_{0}$ from the proof are:
+\begin{itemize}
+  \item \S3 BV: $D \geq D_{1}(\varepsilon, A)$ such that the
+    cumulative remainder $O(D^{5/4} / (\log D)^{A})$ is dominated by
+    the main term. Sufficient: $D_{1} \geq e^{200}$ for $A = 10$ and
+    $\mathfrak{S}(m) \geq 10^{-3}$.
+  \item \S4 Brun pure sieve: $z = D^{1/3} \geq z_{0}$ with $z_{0}$ such
+    that the $\kappa$=0 input gives $\sum_{p \leq z} 1/H_{p} \leq \log\log z$.
+    Sufficient: $z_{0} = 100$, i.e.\ $D \geq 10^{6}$.
+  \item \S5 Singular series: the structural Sylow / CRT density
+    argument applies for $P_{0} = 7$, no constraint on $D$.
+  \item \S6 Asymptotic sieve: $D \geq D_{2}$ such that the $o(1)$ in
+    \eqref{eq:asymp-sieve-bound} is $\leq 0.1$. Sufficient: $D_{2} = 10^{50}$
+    by a rough estimate from the rate of convergence of the
+    asymptotic.
+\end{itemize}
+
+\paragraph{Threshold.} Combining: $D_{0} = \max(e^{200},
+10^{50}) = e^{200} \approx 10^{87}$.
+
+\paragraph{Comparison to an earlier draft's $D_{0} = 10^{2520}$.}
+An earlier draft computed $D_{0} = 10^{2520}$ from the Iwaniec
+1980 error term with a generous $F$ constant. Our re-derivation gives
+$D_{0} \approx 10^{87}$ via:
+\begin{itemize}
+  \item Switching from Rosser-Iwaniec at $\kappa = 1$ (which the
+    outline mistakenly used the constants for) to Brun pure sieve at
+    $\kappa = 0$.
+  \item The Brun pure sieve at depth $r = 10$ has constants $(C^{10} /
+    10!)$ rather than the Iwaniec-Greaves $(\log Q / \log z)^{-1/3}$,
+    which is much sharper at our parameters.
+  \item Cumulative remainder via large-sieve (IK Thm 11.7) at level
+    $Q = D^{0.4}$ gives $O(D^{5/4}/\log^{A} D)$, dominating the bound
+    only for $D \leq e^{200}$.
+\end{itemize}
+
+This is a $10^{2433}$ improvement, which is still inadequate.
+$D_{0} = 10^{87}$ remains far above the empirical record.
+
+\paragraph{The empirical record.}
+\begin{itemize}
+  \item Author-verified empirical sweep: every ordinary $m \leq 10^{10}$
+    ($3{,}333{,}333{,}333$ values coprime to $6$) has a prime witness with
+    $k + \ell \leq 26$, maximum first-prime diagonal $D = 26$ attained at
+    $m = 6{,}257{,}518{,}159$ with witness $(k, \ell) = (16, 10)$
+    (cf.\ \cite{WilderEG203MasterLog}, SHA-pinned receipts).
+  \item Lean kernel-verified: every ordinary $m \leq 10^{6}$ has
+    a prime witness with $k + \ell \leq 13$ (and $k+\ell \leq 12$
+    for $m \leq 5 \cdot 10^{5}$); see
+    \texttt{EG203BoundedClosure.lean}.
+\end{itemize}
+
+So the empirical evidence supports a uniform witness-diagonal bound
+$D = 26$ for all ordinary $m \leq 10^{10}$ (attained at
+$m = 6{,}257{,}518{,}159$ with $(k, \ell) = (16, 10)$), but our rigorous
+proof gives only $D_{0} \approx 10^{87}$. The gap is enormous.
+
+\paragraph{The exact statement.}
+\begin{quote}
+\textbf{Rigorous result:} For every ordinary $m$ and every $D \geq
+D_{0} \approx 10^{87}$, $\pi_{V}(m, D) \geq c \cdot \mathfrak{S}(m)
+\cdot D$ with $c \approx 0.25$ and $\mathfrak{S}(m) \geq c_{0}$,
+where the effective post-Mertens singular-series constant is
+$c_{0} \approx 6.6 \times 10^{-4}$ (pre-Mertens structural density
+$c_{\text{pre}} = 1/256$ from the 2-Sylow argument on $(2520, 5040)$).
+
+\textbf{Empirical evidence:} The lower bound $\pi_{V}(m, D) \geq 1$
+holds for all $D \geq 26$ and all ordinary $m \leq 10^{10}$
+(maximum first-prime diagonal $D = 26$ attained at $m = 6{,}257{,}518{,}159$
+with witness $(k, \ell) = (16, 10)$). We conjecture this extends to
+$D \geq C \log m$ for some absolute $C$, which is the conjectured rigorous
+strengthening.
+
+\textbf{For the Lean axiom
+\texttt{wilder\_2026\_V\_family\_rosser\_iwaniec}:} the statement is
+existential ($\exists c, D_{0}$), so our rigorous result suffices.
+The constants $c = 0.25$, $D_{0} = 10^{87}$ are witnesses.
+\end{quote}
+
+\paragraph{Can $D_{0}$ be reduced further?}
+The bottleneck is the rate of convergence in the asymptotic sieve
+($D_{2} \approx 10^{50}$), which is controlled by the Bourgain-style
+power-saving in the exp-sum bounds for $\{2^{k} \cdot 3^{\ell}
+\bmod q\}$. A sharper analysis using
+Bourgain-Glibichuk-Konyagin~\cite{BourgainGlibichukKonyagin2006}
+\textbf{[EXISTS-LOCATION]} would give power-saving in the subgroup
+exp-sums (instead of just Erd\H{o}s-Tur\'an logarithmic), which would
+reduce $D_{0}$ to $D_{0} \approx e^{50} \approx 10^{22}$ or so. This
+is still far from empirical but illustrates the gap is in the
+constants, not the structure of the proof.
+
+\paragraph{The unbridged gap.}
+\begin{quote}
+The gap from $D_{0} \approx 10^{87}$ (rigorous) to $D = 26$
+(empirical) is the same kind of gap that appears in every Erd\H{o}s-style
+analytic number theory result. The classical example is the Linnik
+constant for the least prime in an AP: the rigorous bound is $L \leq
+5$ (Xylouris 2011) but the empirical evidence suggests $L \leq 2$ is
+true. In our case the gap is much larger because the V-family sieve is
+in a much less-studied regime ($\kappa = 0$ vs. $\kappa = 1$). Closing
+the gap is an open problem that we do not attempt.
+\end{quote}

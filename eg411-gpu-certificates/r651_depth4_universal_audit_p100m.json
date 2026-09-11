@@ -1,0 +1,143 @@
+{
+  "round": "R651_DEPTH4_UNIVERSAL_AUDIT",
+  "binary": "depth4 forced for every strict-underflow record OR survivor exists",
+  "parameters": {
+    "p_max": 100000000,
+    "factor_limit": 10000000
+  },
+  "tested_primes_p_7_mod_8": 1440406,
+  "strict_underflow_records": 24599,
+  "depth3_overshoot_or_hit_records": 24599,
+  "depth4_forced_records": 0,
+  "factor_incomplete_count": 0,
+  "depth4_survivor_count": 0,
+  "depth3_exact_hit_count": 0,
+  "worst_depth4_forced_record": null,
+  "first_factor_incomplete": null,
+  "first_depth4_survivor": null,
+  "first_depth3_exact_hit": null,
+  "strict_samples": [
+    {
+      "p": 7,
+      "N": 5,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9591836734693877,
+      "x3_float": 1.3615160349854227,
+      "C2_factor_count": 2,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 47,
+      "N": 35,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9945676776822091,
+      "x3_float": 1.443832291496104,
+      "C2_factor_count": 2,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 607,
+      "N": 455,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9864296008402791,
+      "x3_float": 1.4718017769514375,
+      "C2_factor_count": 3,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 887,
+      "N": 665,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9929610851469746,
+      "x3_float": 1.408878165209194,
+      "C2_factor_count": 5,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 1447,
+      "N": 1085,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9984458945395688,
+      "x3_float": 1.3959073991307145,
+      "C2_factor_count": 4,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 3967,
+      "N": 2975,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9918724485830893,
+      "x3_float": 1.3885212886133356,
+      "C2_factor_count": 3,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 5647,
+      "N": 4235,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9836667695351654,
+      "x3_float": 1.2962797894887148,
+      "C2_factor_count": 6,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 11527,
+      "N": 8645,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9748221685291685,
+      "x3_float": 1.4490187033112656,
+      "C2_factor_count": 3,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 11807,
+      "N": 8855,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9735560602886625,
+      "x3_float": 1.3275457446353203,
+      "C2_factor_count": 4,
+      "q_1_mod_p_factors_C2": []
+    },
+    {
+      "p": 13487,
+      "N": 10115,
+      "strict_underflow": true,
+      "status": "DEPTH3_OVERSHOOT_OR_HIT",
+      "depth3_overshoot": true,
+      "depth3_exact_hit": false,
+      "x2_float": 0.9919743448635546,
+      "x3_float": 1.4478940668209235,
+      "C2_factor_count": 4,
+      "q_1_mod_p_factors_C2": []
+    }
+  ],
+  "closed_on_test_range": true,
+  "elapsed_s": 137.246
+}

@@ -1,0 +1,42 @@
+{
+  "round": "R664_LEAN_RECURRENCE_PIPELINE",
+  "proof_status": "BLOCKED_ON_LOWER_JUMP",
+  "headline_proof_pct": 63.61,
+  "clean_build": {
+    "returncode": 0,
+    "elapsed_s": 21.698,
+    "stdout_tail": "Build completed successfully (839 jobs).\n",
+    "stderr_tail": ""
+  },
+  "clean_file_scan": {
+    "clean_files": [
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\EG411Formal\\EG411Formal.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\EG411Formal\\EG411Formal\\Basic.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\EG411Formal\\EG411Formal\\Gate.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\EG411Formal\\EG411Formal\\Recurrence.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\EG411Formal\\EG411Formal\\Counterexamples.lean"
+    ],
+    "forbidden_tokens": [
+      "sorry",
+      "admit",
+      "axiom",
+      "constant"
+    ],
+    "hits": [],
+    "passes": true
+  },
+  "axiom_check": {
+    "returncode": 0,
+    "elapsed_s": 94.693,
+    "no_sorry_axiom": true,
+    "output": "'EG411Formal.depth4_ratio_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'EG411Formal.normalized_depth4_gt_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'EG411Formal.depth4_from_gate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'EG411Formal.x3_step_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'EG411Formal.lower_jump_from_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]\n'EG411Formal.weak_strict_underflow_not_enough' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "lower_jump_gap_check": {
+    "returncode": 1,
+    "elapsed_s": 13.99,
+    "gap_is_open": true,
+    "gap_closed": false,
+    "output": "EG411Formal\\LowerJumpGap.lean:31:8: error: declaration uses `sorry`\n"
+  },
+  "next_material_task": "Replace LowerJumpGap.lean's sorry by constructing LowerJumpBounds for every CambieTailRecord, or demote this route to finite-only."
+}

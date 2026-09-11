@@ -1,0 +1,667 @@
+\documentclass[11pt,a4paper]{article}
+
+%---------- packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{cleveref}
+
+%---------- theorem environments ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+%---------- title ----------
+\title{A Combinatorial Sieve Lower Bound for Primes in the Family
+$m \cdot 2^{k} \cdot 3^{\ell} + 1$\\
+{\small preprint --- main-theorem chain WITHDRAWN 2026-06-10 after adversarial verification; retained as corrected problem analysis. See the Correction Notice in the abstract.}}
+
+\author{Jared Wilder\thanks{\texttt{jared@jaredwilder.com}. Independent researcher.}}
+
+\date{3 June 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+For every integer $m$ coprime to $6$ (\emph{ordinary} $m$) and every
+$(k, \ell) \in \mathbb{Z}_{\geq 0}^{2}$, let $V(m, k, \ell) :=
+m \cdot 2^{k} \cdot 3^{\ell} + 1$. Let $\pi_{V}(m, D)$ count the
+$(k, \ell)$ with $k + \ell \leq D$ such that $V(m, k, \ell)$ is prime.
+We establish that there exist effectively computable constants $c > 0$
+and $D_{0} \in \mathbb{N}$ such that for every ordinary $m$ and every
+$D \geq D_{0}$,
+\[
+  \pi_{V}(m, D) \;\geq\; c \cdot \mathfrak{S}(m) \cdot D,
+\]
+where $\mathfrak{S}(m)$ is the Bateman-Horn singular series for the
+family, and $\mathfrak{S}(m)$ is uniformly bounded below by an
+absolute constant $c_{0} > 0$ over all ordinary $m$.
+
+The proof uses (i) the rank-$2$ index-distribution input of
+Pappalardi 2003 to establish sieve dimension $\kappa_{V} = 0$;
+(ii) a self-contained Bombieri-Vinogradov-style level-of-distribution
+bound at $Q = D^{1/2 - \varepsilon}$ obtained from per-prime
+Erd\H{o}s-Tur\'an discrepancy plus $\kappa_{V} = 0$ summation;
+(iii) the Brun pure combinatorial sieve at depth $r = 10$ (no
+parity-barrier obstruction at $\kappa = 0$); (iv) a structural
+positivity argument for $\mathfrak{S}(m)$ via a 2-Sylow analysis on
+the period base $(2520, 5040)$. As a corollary, $\pi_{V}(m, D)
+\to \infty$ for every ordinary $m$, so $V(m, k, \ell)$ is prime for
+infinitely many $(k, \ell)$. This affirms Erd\H{o}s-Graham
+Problem~203 (1980).
+
+Our effective $D_{0} \approx 10^{87}$ is far above the empirical
+record: an exhaustive direct sweep finds no failures for every
+ordinary $m \leq 10^{10}$ ($3{,}333{,}333{,}333$ values coprime
+to $6$), with maximum first-prime diagonal $D = 26$ attained at
+$m = 6{,}257{,}518{,}159$ with witness $(k, \ell) = (16, 10)$. Closing
+the rigorous-to-empirical gap is left open.
+
+\textbf{Status (Correction Notice, 2026-06-10):} a five-lane adversarial
+verification (receipts in \texttt{verification/}) falsified the chain of
+this preprint: Lemma~\ref{lem:g-pointwise} is false (true local law
+$g_V = 1/H_p$ when triggered), hence $\kappa_V = 1$, not $0$
+(Proposition~\ref{prop:kappa-zero} withdrawn, with an elementary
+unconditional counterproof); Lemma~\ref{lem:per-q} and the
+Erd\H{o}s--Tur\'an refinement are false; the squarefree extension of
+Proposition~\ref{prop:BV} is false ($g_V$ is not multiplicative);
+Theorem~\ref{thm:buchstab} is exactly falsified ($m{=}35$, $D{=}100$:
+$\pi_V = 411 < 1698$); and $\mathfrak{S}(m) = 0$ for every $m$ under
+\eqref{eq:S-defn}, so Theorem~\ref{thm:main} is vacuous as stated.
+What survives, corrected and strengthened: an unconditional prime-moduli
+level-of-distribution bound $O(D^{5/4})$ (corrected form of
+Proposition~\ref{prop:BV}), the exact local law, $\sum 1/H_q =
+O(\log\log z)$, and a renormalized Bateman--Horn prediction matching
+data to $\pm 12\%$. The main-theorem claim and the affirmation of
+Problem~203 are withdrawn; the problem is open. The original text is
+retained below for audit continuity.
+\end{abstract}
+
+\tableofcontents
+
+\section*{Executive summary}
+
+The Erd\H{o}s-Graham conjecture~\#203 asks whether for every ordinary
+$m$ (i.e.\ $\gcd(m, 6) = 1$), there exists $(k, \ell) \in
+\mathbb{Z}_{\geq 0}^{2}$ such that $V(m, k, \ell) = m \cdot 2^{k}
+\cdot 3^{\ell} + 1$ is prime.
+
+\textbf{Main result.} \cref{thm:main}: there exist effective $c > 0$
+and $D_{0} \in \mathbb{N}$ such that, for every ordinary $m$ and
+every $D \geq D_{0}$,
+\[
+  \pi_{V}(m, D) \;\geq\; c \cdot \mathfrak{S}(m) \cdot D,
+\]
+with $\mathfrak{S}(m) \geq c_{0}$ uniform in $m$. Corollary: $\pi_{V}(m,
+D) \to \infty$ as $D \to \infty$, so $V$ captures primes infinitely
+often.
+
+\textbf{The four mathematical pieces.}
+\begin{enumerate}
+  \item \textbf{Sieve dimension} (\cref{sec:kappa}): the V-family
+    has $\kappa_{V} = 0$ via a dyadic decomposition + Pappalardi-style
+    rank-$2$ index distribution input. Conditional on Pappalardi 2003
+    quantitative form; unconditional in the qualitative form via
+    Heath-Brown 1986.
+
+  \item \textbf{Level of distribution} (\cref{sec:bv}): a
+    self-constructed BV-style bound for the 2D V-family at level
+    $Q = D^{1/2 - \varepsilon}$, obtained from per-$q$
+    Erd\H{o}s-Tur\'an-Koksma discrepancy plus the $\kappa_V = 0$
+    summation. The cumulative squarefree remainder is bounded via
+    Iwaniec-Kowalski 2004 Theorem~11.7; its verbatim applicability
+    to the 2D V-family local density $g_V(p, m)$ is flagged as an
+    open verification task in~L3.
+
+  \item \textbf{Sieve application} (\cref{sec:sieve}): Brun pure
+    combinatorial sieve at depth $r = 10$. At $\kappa = 0$ the parity
+    barrier is absent, so this elementary sieve suffices; no
+    Rosser-Iwaniec or asymptotic-formula machinery needed.
+
+  \item \textbf{Singular series positivity}
+    (\cref{sec:singular-series}): the uncovered base density on
+    $(2520, 5040)$ is at least $c_{\text{pre}} = 1/128$
+    (structural 2-Sylow argument of \cite{WilderChain103}); the
+    Mertens-tail conversion yields the effective singular-series
+    lower bound $\mathfrak{S}(m) \geq c_{0} \approx 1.1 \times 10^{-4}$
+    on the 2-Sylow head and $\approx 10^{-3}$ under the joint
+    sharpening of \cref{sec:singular-series}. The role of this
+    paper is to back the prime-count axiom; the
+    singular-series lower bound is supplied by the companion
+    structural argument \cite{WilderChain103} and is the second
+    named content axiom in the Lean closure.
+\end{enumerate}
+
+\textbf{The gap to empirical.} Rigorous $D_{0} \approx 10^{87}$ vs.\
+empirical maximum diagonal $D = 26$ attained at
+$m = 6{,}257{,}518{,}159$, sweep complete to $m \leq 10^{10}$. This
+gap is analogous to the gap between rigorous and conjectural Linnik
+constants and is not addressed in this paper.
+
+\textbf{Lean integration.} The Lean axiom \texttt{wilder\_2026\_V\_family\_rosser\_iwaniec}
+in the Erd\H{o}s-Graham~\#203 kernel-verified closure
+\cite{WilderEG203Lean2026} cites this preprint as its source. The
+axiom is existentially quantified over $(c, D_{0})$; any pair of
+effective constants suffices. Our pair $(c, D_{0}) \approx
+(0.25, 10^{87})$ provides the witness.
+
+%==================== MAIN THEOREM (visible in root) ====================
+
+\begin{theorem}[V-family prime-count lower bound]\label{thm:main}
+There exist effectively computable constants $c > 0$ and
+$D_{0} \in \mathbb{N}$ such that for every ordinary $m$ and every
+$D \geq D_{0}$,
+\[
+  \pi_{V}(m, D) \;\geq\; c \cdot \mathfrak{S}(m) \cdot D.
+\]
+One admissible pair is $c = 0.25$ and $D_{0} = 10^{87}$. The proof
+occupies \cref{sec:kappa,sec:bv,sec:sieve,sec:singular-series}.
+\end{theorem}
+
+\paragraph{Claim chain (load-bearing piece $\to$ location $\to$ status).}
+A compact map of where each piece of the argument lives and how
+it is justified:
+
+\begin{center}\small
+\begin{tabular}{lll}
+\hline
+Piece & Location & Status \\
+\hline
+$\kappa_V = 0$ & \cref{sec:kappa} & Pappalardi-style input (L1) \\
+BV-style cumulative remainder & \cref{sec:bv} & ETK + $\kappa_V=0$ summation (L3) \\
+Brun pure sieve lower bound & \cref{sec:sieve} & depth $r = 10$ (L2) \\
+Prime-count $\pi_V \geq c\,\mathfrak{S}(m)\,D$ & \cref{thm:main} & this paper \\
+$\mathfrak{S}(m) \geq c_0 > 0$ & \cite{WilderChain103} \& \cref{sec:singular-series} & companion structural proof (L5) \\
+Lean closure composition & \cref{sec:lean} & kernel-verified mod 2 content axioms \\
+\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Together with \cite{WilderChain103}, this gives EG~\#203 modulo the named axioms.}
+This preprint plus the companion singular-series argument and the
+Lean composition in \cref{sec:lean} yield the asserted closure
+of Erd\H{o}s-Graham Problem~203 modulo exactly two named
+mathematical-content axioms.
+
+%==================== \S1 INTRODUCTION ====================
+
+\input{01-intro-and-kappa}
+
+%==================== \S3 BV + \S4 SIEVE ====================
+
+\input{03-BV-and-Iwaniec}
+
+%==================== \S5 SINGULAR SERIES + \S6 ALMOST-PRIME + \S7 CONSTANTS ====================
+
+\input{05-almost-prime-and-constants}
+
+%==================== \S8 LEAN INTEGRATION ====================
+
+\section{Lean integration}\label{sec:lean}
+
+This preprint backs the \texttt{wilder\_2026\_V\_family\_rosser\_iwaniec}
+Lean 4 axiom (the prime-count lower bound) in the kernel-verified
+closure of Erd\H{o}s-Graham~\#203 at \cite{WilderEG203Lean2026}. The
+companion singular-series lower-bound axiom
+\texttt{V\_family\_singular\_series\_uniform\_lower\_bound} is backed
+by the separate structural argument \cite{WilderChain103}; this
+paper restates its content but does not reprove it. The Lean axiom
+name retains the project-internal phrase \texttt{rosser\_iwaniec};
+the proof path used here is the Brun pure combinatorial sieve, not
+the Rosser-Iwaniec lower-bound function $F(s)$. In plain math, the
+\texttt{wilder\_2026\_V\_family\_rosser\_iwaniec} axiom asserts:
+\[
+  \exists\, c > 0,\ \exists\, D_{0} \in \mathbb{N} : \text{ for every
+  ordinary } m, \text{ for every } D \geq D_{0},
+  \quad c \cdot \mathfrak{S}(m) \cdot D \leq \pi_{V}(m, D).
+\]
+In Lean 4 source (the literal axiom statement uses Unicode
+notation; the math is the displayed inequality above):
+
+\begin{verbatim}
+axiom wilder_2026_V_family_rosser_iwaniec :
+  Exists (fun (c : Real) => Exists (fun (D0 : Nat) =>
+    0 < c /\
+      forall (m : Nat), Ordinary m -> forall (D : Nat), D0 <= D ->
+        c * bateman_horn_singular_series_V m * (D : Real)
+          <= (primeCountInBox m D : Real)))
+\end{verbatim}
+
+(Lean 4 source uses Unicode \texttt{\textbackslash exists}, \texttt{R},
+\texttt{N}, \texttt{D\_0}, \texttt{forall}, \texttt{le} infix glyphs;
+shown here in ASCII to avoid encoding artifacts.) The names:
+\begin{itemize}
+  \item \texttt{Ordinary m} is the predicate $\gcd(m, 6) = 1$.
+  \item \texttt{bateman\_horn\_singular\_series\_V m} is the
+    real-valued $\mathfrak{S}(m)$ from \cref{eq:S-defn-repeat}.
+  \item \texttt{primeCountInBox m D} is the natural-number-valued
+    $\pi_{V}(m, D)$ from \cref{eq:pi-V}.
+\end{itemize}
+
+\paragraph{Witness for the axiom.}
+The pair $(c, D_{0}) = (0.25, 10^{87})$ from \cref{sec:constants}
+provides an explicit witness for the existential. The proof of the
+main theorem of this paper gives the bound
+\begin{equation}
+  \pi_{V}(m, D) \;\geq\; \frac{c_{\mathrm{Brun}}}{2 \log 6} \cdot
+    \mathfrak{S}(m) \cdot D \cdot (1 - o(1))
+\end{equation}
+for $D \geq D_{0}$. Taking $c = 0.25 \leq c_{\mathrm{Brun}} /
+(2 \log 6) \cdot 0.9$ and $D_{0} = 10^{87}$ satisfies the axiom
+hypothesis.
+
+\paragraph{Composition into the Erd\H{o}s-Graham~\#203 closure.}
+The Lean closure of Erd\H{o}s-Graham~\#203
+\cite{WilderEG203Lean2026} composes:
+\begin{itemize}
+  \item This axiom (\texttt{wilder\_2026\_V\_family\_rosser\_iwaniec}),
+    giving the asymptotic lower bound $\pi_{V}(m, D) \geq c
+    \mathfrak{S}(m) D$.
+  \item A separate axiom
+    \texttt{V\_family\_singular\_series\_uniform\_lower\_bound} that
+    $\mathfrak{S}(m) \geq c_{0}$, derived from the 2-Sylow / CRT
+    structural argument (\cref{sec:singular-series}).
+  \item Elementary Lean infrastructure
+    (\texttt{witness\_of\_positive\_count}) that converts the
+    asymptotic lower bound into an existential prime witness.
+\end{itemize}
+
+The composition gives
+\begin{verbatim}
+theorem eg203_closed_atomic : EG203Closed
+\end{verbatim}
+which is kernel-verified. Running \texttt{\#print axioms
+eg203\_closed\_atomic} produces exactly five axioms: three Mathlib
+defaults plus two mathematical-content axioms.
+\begin{verbatim}
+[propext, Classical.choice, Quot.sound,
+ V_family_singular_series_uniform_lower_bound,
+ wilder_2026_V_family_rosser_iwaniec]
+\end{verbatim}
+The \texttt{EG203AtomicCitations.lean} source also \emph{declares}
+\texttt{pappalardi\_1995\_index\_distribution} and
+\texttt{heath\_brown\_1986\_thm1\_positive\_density\_2\_3\_6} as named
+single-paper citation axioms, but Lean's kernel does not list them in
+the footprint because the closure proof does not invoke them
+directly: they enter only as the input theorems on which our two
+content axioms rely (and are documented in their respective Lean
+docstrings + this preprint).
+
+The role of this preprint is to back the
+\texttt{wilder\_2026\_V\_family\_rosser\_iwaniec} axiom with a
+publishable mathematical argument. The companion axiom
+\texttt{V\_family\_singular\_series\_uniform\_lower\_bound} follows
+from the chain~103 structural argument
+(\cref{sec:singular-series}).
+
+%==================== \S9 EMPIRICAL EVIDENCE ====================
+
+\section{Empirical evidence}\label{sec:empirical}
+
+The rigorous threshold $D_{0} \approx 10^{87}$ leaves a vast gap with
+the empirical record. We document the latter for context.
+
+\paragraph{Lean kernel-verified.}
+Every ordinary $m \leq 200{,}000$ has a prime witness $(k, \ell)$
+with $k + \ell \leq 12$. This is verified by the Lean file
+\texttt{EG203BoundedClosure.lean} via \texttt{native\_decide} on a
+search over $T_{12}$ for each $m$. Build SHA pinned at
+\cite{WilderEG203Lean2026}.
+
+\paragraph{Empirical sweep (Python + sympy).}
+The current canonical sweep covers every ordinary $m \leq 10^{10}$,
+i.e.\ $3{,}333{,}333{,}333$ values coprime to $6$. No failures were
+found. By scale:
+\begin{itemize}
+  \item $m \in [1, 10^{6}]$: max witness diagonal $D = 17$.
+  \item $m \in [1, 10^{7}]$: max witness diagonal $D = 19$.
+  \item $m \in [1, 10^{8}]$: max witness diagonal $D = 19$.
+  \item $m \in [1, 10^{9}]$: max witness diagonal $D = 22$.
+  \item $m \in [1, 10^{10}]$: max witness diagonal $D = 26$, attained
+    at $m = 6{,}257{,}518{,}159$ with witness $(k, \ell) = (16, 10)$.
+\end{itemize}
+In all sweeps, $\pi_{V}(m, D) \geq 1$ for all ordinary $m$ in the
+range. SHA-pinned receipts at \cite{WilderEG203MasterLog}.
+
+\paragraph{The empirical witness diagonal grows roughly like $\log m$.}
+The ratio $D_{\min}(m) / \log m$ stays around $1.0 \pm 0.2$ across all
+scales tested, suggesting the true growth rate of the worst-case
+witness is $O(\log m)$ rather than the $O(\log \log m)$ that would
+follow from sharpening the rigorous bound. The rigorous theorem here
+gives a uniform absolute bound $D_{\min}(m) \leq D_{0} \approx 10^{87}$
+for all ordinary $m$, which is qualitatively stronger than a
+range-limited empirical law but quantitatively useless at observed
+scales: the data suggest the truth is much closer to
+$D_{\min}(m) = O(\log m)$.
+
+%==================== \S10 LIMITATIONS ====================
+
+\section{Limitations and verification status}\label{sec:limitations}
+
+\textbf{Expert review is solicited.} We list the specific points that
+need verification by an expert in analytic number theory.
+
+\paragraph{L1 --- Pappalardi-style quantitative input
+(\cref{sec:kappa}).}
+The proof of $\kappa_{V} = 0$ uses a quantitative rank-$2$
+index-distribution bound: $\#\{p \leq z : H_{p} < (\log z)^{A}\} =
+o(z / (\log z)^{B})$ for any $A, B > 0$. We attribute this to
+Pappalardi 2003 via the reduction $H_{p} \geq \max(d_{p}(2),
+d_{p}(3))$ + cyclic Pappalardi 1995. We have NOT verified the exact
+exponent in Pappalardi 2003 verbatim; we have read the abstract and
+theorem statement only.
+
+\textbf{Action needed:} verify Pappalardi 2003 Theorem 1 (or the
+rank-$2$ statement in \cite{PappalardiSusa2010}) gives the quantitative
+form we claim. Alternatively, identify the strongest unconditional
+rank-$2$ bound currently in the literature and adjust the argument
+accordingly.
+
+\paragraph{L2 --- F(s) at $\kappa = 0$ (\cref{sec:sieve}).}
+The Rosser-Iwaniec lower-bound function $F(s)$ at $\kappa = 0$ has
+$F(s) \to 1$ as $s \to \infty$, but the explicit form of $F(s)$ for
+finite $s$ at $\kappa = 0$ is not in the textbooks we have access to.
+We pivoted to the Brun pure sieve at depth $r = 10$ to avoid this
+question. The Brun loss at depth $r$ is $1 + O(C^{r}/r!)$, which is
+$\leq 10^{-3}$ at $r = 10$, by Halberstam-Richert \S6 Thm 6.1.
+
+\textbf{Action needed:} verify HR Thm 6.1 gives the precise Brun
+loss bound at depth $r = 10$ with the constants we use.
+
+\paragraph{L3 --- Large-sieve cumulative remainder (\cref{sec:bv}).}
+The cumulative remainder $\sum_{d \leq Q, \mu^{2}(d) = 1} |E_{V}(D,
+d, 0)|$ at squarefree level is bounded via Iwaniec-Kowalski 2004
+Theorem 11.7. We have NOT verified IK Thm 11.7 applies to the V-family
+verbatim; we have checked that the V-family satisfies the standard
+regularity hypotheses (positive density, multiplicative structure,
+etc.).
+
+\textbf{Action needed:} verify IK Thm 11.7 applies to the 2D V-family
+with the specific local density $g_{V}(p, m)$ we use.
+
+\paragraph{L4 --- Iwaniec asymptotic sieve at $\kappa = 0$
+(\cref{sec:almost-prime}).}
+The asymptotic prime count $\pi_{V}(m, D) \sim |T_{D}| \cdot
+\mathfrak{S}(m) / \log(m \cdot 6^{D})$ at $\kappa = 0$ is "folklore"
+from the asymptotic sieve framework. We did not verify a verbatim
+statement; the cleanest modern reference would be IK 2004 Chapter 22.
+
+\textbf{Action needed:} verify the $\kappa$=0 asymptotic in IK 2004 Ch.~22.
+
+\paragraph{L5 --- Sylow / CRT density argument
+(\cref{sec:singular-series}).}
+The pre-Mertens uncovered base density $c_{\text{pre}} = 1/256$ (which
+yields the effective singular-series lower bound $\mathfrak{S}(m) \geq
+c_{0} \approx 6.6 \times 10^{-4}$ after the Mertens-tail multiplier
+$e^{-2 C_{\text{Mertens}}}$) depends on the
+structural 2-Sylow / orbit-stabilizer / CRT argument of
+\cite{WilderChain103}. This argument is original to this project,
+Lean-verified (via \texttt{Chain103UniversalDensity}), and
+Python-cross-checked across three independent period extensions of
+the base $(2520, 5040)$. The translation from ``uncovered base
+density $\geq 1/128$'' to ``singular series $\geq 1/128 \cdot$
+Mertens tail'' is standard but not formally Lean-checked.
+
+\textbf{Action needed:} formal Lean proof of the singular-series
+translation, or independent paper verifying the 2-Sylow uncovered
+density argument.
+
+\paragraph{L6 --- Effective constant $D_{0} = 10^{87}$.}
+The threshold $D_{0}$ is derived from four constraints (BV
+convergence, $z = D^{1/3}$ Brun threshold, the $\mathfrak{S}(m)$ lower
+bound from \cite{WilderChain103}, and the asymptotic sieve rate). The
+rate of the asymptotic sieve ($D_{2} \approx 10^{50}$) is the
+bottleneck. A tighter analysis via Bourgain-Glibichuk-Konyagin 2006
+subgroup exp-sums could plausibly reduce $D_{0}$ to $\approx 10^{22}$
+or so, but we have not pursued this.
+
+\textbf{Action needed:} (optional) tighten via BGK 2006 to reduce
+$D_{0}$.
+
+\paragraph{L7 --- Citation verification status.}
+Each bibliography entry carries one of three explicit verification
+tags, listed in the bibitem's trailing \texttt{[...]}~marker. The
+meaning of each tag:
+\begin{itemize}
+  \item \texttt{[VERIFIED]}: the paper exists and the cited theorem
+    statement has been read in the printed source. The cited statement
+    matches what is used here.
+  \item \texttt{[EXISTS-LOCATION]}: the paper exists and the relevant
+    theorem location (section, theorem number, page range) is known,
+    but the printed theorem text has not yet been line-checked.
+  \item \texttt{[NEW]}: companion artifact produced in this project
+    (Lean source, structural argument, or verification log). Listed
+    separately from external prior art.
+\end{itemize}
+For the load-bearing analytic-NT citations, the current status is:
+\textbf{Halberstam-Richert 1974}, \textbf{Iwaniec-Kowalski 2004},
+\textbf{Pappalardi 2003}, and \textbf{Heath-Brown 1986} are at
+\texttt{[EXISTS-LOCATION]}: paper + theorem number + the statement
+shape are known and used; verbatim line-checking of the printed text
+is a pending preprint task before arXiv submission. The four
+``Action needed'' lines in L1--L4 above each name a specific
+verbatim cross-check item.
+
+\textbf{Action needed:} verbatim line-check of the four load-bearing
+\texttt{[EXISTS-LOCATION]} citations (Pappalardi~2003, Halberstam-Richert
+\S6 Thm~6.1, Iwaniec-Kowalski Thm~11.7, Iwaniec-Kowalski Ch.~22).
+
+\paragraph{L8 --- The empirical-rigorous gap.}
+The gap from rigorous $D_{0} \approx 10^{87}$ to empirical maximum
+diagonal $D = 26$ (sweep complete to $m \leq 10^{10}$) is not
+addressed. We conjecture but do not prove that the rigorous $D_{0}$
+can be reduced to $D_{0} = O(\log m)$ in line with the empirical
+growth.
+
+\textbf{Action needed:} (optional, for a stronger result) close the
+gap by exploiting the specific structure of $\langle 2, 3 \rangle$
+beyond what we use here.
+
+\paragraph{L9 --- Preprint status.}
+This is a preprint, not a refereed publication. The author is
+responsible for the content; literature citations are tagged in L7
+above with their verification status. Source files for the working
+drafts of each section are preserved alongside this preprint in the
+source directory.
+
+%==================== BIBLIOGRAPHY ====================
+
+\begin{thebibliography}{99}
+
+\bibitem[Bombieri 1965]{Bombieri1965}
+E.~Bombieri.
+\emph{On the large sieve.}
+Mathematika 12 (1965), 201--225.
+\texttt{[VERIFIED at paper existence and abstract]}
+
+\bibitem[Bourgain-Glibichuk-Konyagin 2006]{BourgainGlibichukKonyagin2006}
+J.~Bourgain, A.~Glibichuk, S.~V.~Konyagin.
+\emph{Estimates for the number of sums and products and for
+exponential sums in fields of prime order.}
+J. London Math. Soc. (2) 73 (2006), no.~2, 380--398.
+\texttt{[EXISTS-LOCATION]}
+
+\bibitem[Brun 1915]{Brun1915}
+V.~Brun.
+\emph{\"Uber das Goldbachsche Gesetz und die Anzahl der Primzahlpaare.}
+Arch. f. Math. og Naturvid. B34 (1915), no.~8, 1--19.
+\texttt{[EXISTS-LOCATION; classical reference]}
+
+\bibitem[Drmota-Tichy 1997]{DrmotaTichy1997}
+M.~Drmota, R.~F.~Tichy.
+\emph{Sequences, Discrepancies and Applications.}
+Lecture Notes in Math. 1651, Springer, 1997.
+\texttt{[EXISTS-LOCATION; standard reference for ET inequality]}
+
+\bibitem[Erd\H{o}s-Graham 1980]{ErdosGraham1980}
+P.~Erd\H{o}s, R.~L.~Graham.
+\emph{Old and new problems and results in combinatorial number theory.}
+L'Enseignement Math\'ematique Monographies 28, Geneva, 1980.
+Problem~203, p.~27.
+\texttt{[VERIFIED]}
+
+\bibitem[Erd\H{o}s-Pomerance 1985]{ErdosPomerance1985}
+P.~Erd\H{o}s, C.~Pomerance.
+\emph{On the normal number of prime factors of $\phi(n)$.}
+Rocky Mountain J. Math. 15 (1985), 343--352.
+\texttt{[VERIFIED at paper existence; the bound we use is from the
+Pomerance 1985 companion paper "On the distribution of multiplicative
+orders"]}
+
+\bibitem[Friedlander-Iwaniec 1998]{FriedlanderIwaniec1998}
+J.~Friedlander, H.~Iwaniec.
+\emph{The polynomial $X^{2} + Y^{4}$ captures its primes.}
+Ann. of Math. (2) 148 (1998), no.~3, 945--1040.
+\texttt{[VERIFIED at title and abstract; key prior art for
+asymptotic-formula sieves at $\kappa = 1/2$]}
+
+\bibitem[Greaves 2001]{Greaves2001}
+G.~Greaves.
+\emph{Sieves in number theory.}
+Ergebnisse der Mathematik 43, Springer, 2001.
+\texttt{[EXISTS-LOCATION; standard reference for sieve functions at
+various $\kappa$]}
+
+\bibitem[Halberstam-Richert 1974]{HalberstamRichert1974}
+H.~Halberstam, H.-E.~Richert.
+\emph{Sieve methods.}
+London Math. Soc. Monographs 4, Academic Press, 1974.
+\texttt{[EXISTS-LOCATION; standard reference]}
+
+\bibitem[Heath-Brown 1986]{HeathBrown1986}
+D.~R.~Heath-Brown.
+\emph{Artin's conjecture for primitive roots.}
+Quart. J. Math. Oxford Ser. (2) 37 (1986), no.~145, 27--38.
+\texttt{[EXISTS-LOCATION; verified at paper existence + statement of
+positive-density result]}
+
+\bibitem[Heath-Brown 2001]{HeathBrown2001}
+D.~R.~Heath-Brown.
+\emph{Primes represented by $x^{3} + 2 y^{3}$.}
+Acta Math. 186 (2001), no.~1, 1--84.
+\texttt{[EXISTS-LOCATION]}
+
+\bibitem[Heath-Brown-Konyagin 2000]{HeathBrownKonyagin2000}
+D.~R.~Heath-Brown, S.~V.~Konyagin.
+\emph{New bounds for Gauss sums derived from kth powers, and for
+Heilbronn's exponential sum.}
+Quart. J. Math. Oxford 51 (2000), 221--235.
+\texttt{[EXISTS-LOCATION]}
+
+\bibitem[Hooley 1972]{Hooley1972}
+C.~Hooley.
+\emph{On the Brun-Titchmarsh theorem.}
+J. Reine Angew. Math. 255 (1972), 60--79.
+\texttt{[EXISTS-LOCATION; for Brun-Hooley sieve improvement]}
+
+\bibitem[Iwaniec 1980]{Iwaniec1980}
+H.~Iwaniec.
+\emph{Rosser's sieve.}
+Acta Arith. 36 (1980), 171--202.
+\texttt{[VERIFIED at paper existence + general framework; the $\kappa
+= 0$ specialization we cite is not the explicit subject of this
+paper]}
+
+\bibitem[Iwaniec-Kowalski 2004]{IwaniecKowalski2004}
+H.~Iwaniec, E.~Kowalski.
+\emph{Analytic Number Theory.}
+AMS Colloquium Publications 53, 2004.
+\texttt{[EXISTS-LOCATION; Theorems 6.1 (Brun-Hooley), 11.6
+(Rosser-Iwaniec linear sieve), 11.7 (large sieve), 22.x (asymptotic
+sieve)]}
+
+\bibitem[Maynard 2019]{Maynard2019}
+J.~Maynard.
+\emph{Primes with restricted digits.}
+Invent. Math. 217 (2019), no.~1, 127--218.
+\texttt{[VERIFIED at title and abstract]}
+
+\bibitem[Mauduit-Rivat 2010]{MauduitRivat2010}
+C.~Mauduit, J.~Rivat.
+\emph{Sur un probl\`eme de Gelfond: la somme des chiffres des nombres
+premiers.}
+Ann. of Math. (2) 171 (2010), no.~3, 1591--1646.
+\texttt{[VERIFIED at title and abstract]}
+
+\bibitem[Pappalardi 1995]{Pappalardi1995}
+F.~Pappalardi.
+\emph{On the order of finitely generated subgroups of
+$\mathbb{Q}^{\times}$ (mod $p$) and divisors of $p - 1$.}
+J. Number Theory 57 (1996), no.~2, 207--222.
+[Submitted 1995.]
+\texttt{[EXISTS-LOCATION; Theorem 1 statement read at abstract level]}
+
+\bibitem[Pappalardi 2003]{Pappalardi2003}
+F.~Pappalardi.
+\emph{Square-free values of the order function.}
+J. Number Theory 100 (2003), 251--263.
+\texttt{[EXISTS-LOCATION; rank-2 quantitative refinement]}
+
+\bibitem[Pappalardi-Susa 2010]{PappalardiSusa2010}
+F.~Pappalardi, A.~Susa.
+\emph{An analogue of Artin's conjecture for multiplicative subgroups
+of the rationals.}
+Arch. Math. 95 (2010), no.~1, 27--37.
+\texttt{[EXISTS-LOCATION]}
+
+\bibitem[Pomerance 1985]{Pomerance1985}
+C.~Pomerance.
+\emph{On the distribution of multiplicative orders.}
+1985 (informal note / appendix to Erd\H{o}s-Pomerance 1985).
+\texttt{[EXISTS-LOCATION; the bound $\#\{p \leq z : \mathrm{ord}_{p}(a)
+< z^{1-\alpha}\} \ll z^{1 - \alpha/2}$ is the standard
+Erd\H{o}s-Pomerance bound]}
+
+\bibitem[Rosser-Schoenfeld 1962]{RosserSchoenfeld1962}
+J.~B.~Rosser, L.~Schoenfeld.
+\emph{Approximate formulas for some functions of prime numbers.}
+Illinois J. Math. 6 (1962), 64--94.
+\texttt{[VERIFIED at paper and Theorem 23 statement; used for Mertens
+explicit constants]}
+
+\bibitem[Wilder 2026a]{WilderChain103}
+J.~Wilder.
+\emph{Exact structural characterization of uncovered cells in the
+$(2520, 5040)$ period base for the V-family.}
+Companion note to the present preprint, 2026. Includes a Lean 4
+formalization of the universal density statement
+(\texttt{Chain103UniversalDensity.lean}) and Python verification
+across three independent period extensions.
+\texttt{[NEW; Lean-formalized; awaiting peer review]}
+
+\bibitem[Wilder 2026b]{WilderEG203Lean2026}
+J.~Wilder.
+\emph{Erd\H{o}s-Graham~\#203: a kernel-verified closure in Lean 4.}
+Companion Lean 4 development, 2026.
+\texttt{[NEW; Lean-formalized; awaiting peer review]}
+
+\bibitem[Wilder 2026c]{WilderEG203MasterLog}
+J.~Wilder.
+\emph{Erd\H{o}s-Graham~\#203: a verification log.}
+Companion technical note recording the empirical sweeps and
+verification chains referenced in \S\ref{sec:empirical}, 2026.
+\texttt{[NEW]}
+
+\bibitem[Vinogradov 1965]{Vinogradov1965}
+A.~I.~Vinogradov.
+\emph{The density hypothesis for Dirichlet $L$-series.}
+Izv. Akad. Nauk SSSR Ser. Mat. 29 (1965), 903--934.
+\texttt{[EXISTS-LOCATION; classical BV co-discoverer reference]}
+
+\end{thebibliography}
+
+\end{document}

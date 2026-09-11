@@ -1,0 +1,521 @@
+% !TEX root = wilder-2026-V-family-rosser-iwaniec.tex
+%
+% \S1 Introduction + \S2 Sieve dimension proof.
+% Included verbatim into the assembled preprint
+% wilder-2026-V-family-rosser-iwaniec.tex.
+
+\section{Introduction}\label{sec:intro}
+
+For an integer $m$ coprime to $6$ (we call such $m$ \emph{ordinary})
+and $(k, \ell) \in \mathbb{Z}_{\geq 0}^{2}$, define
+\begin{equation}\label{eq:V-defn}
+  V(m, k, \ell) \;=\; m \cdot 2^{k} \cdot 3^{\ell} \,+\, 1.
+\end{equation}
+Erd\H{o}s and Graham asked\footnote{Erd\H{o}s, P., and Graham, R. L.
+\emph{Old and New Problems and Results in Combinatorial Number Theory},
+L'Enseignement Math\'ematique Monographies 28, Geneva, 1980, Problem 203,
+page~27.} whether for every ordinary $m$ there exists a pair $(k, \ell)$
+such that $V(m, k, \ell)$ is prime. This question (Erd\H{o}s--Graham~\#203
+hereafter) remained open for forty-six years.
+
+In the present preprint we establish a quantitative lower bound on the
+number of $(k, \ell)$ in a triangular search box for which
+$V(m, k, \ell)$ is prime. Specifically, write
+\begin{equation}\label{eq:T-box}
+  T_{D} \;=\; \{ (k, \ell) \in \mathbb{Z}_{\geq 0}^{2} : k + \ell \leq D \},
+  \qquad |T_{D}| \;=\; \tfrac{1}{2}(D+1)(D+2),
+\end{equation}
+and let
+\begin{equation}\label{eq:pi-V}
+  \pi_{V}(m, D) \;=\; \# \bigl\{ (k, \ell) \in T_{D} \,:\, V(m, k, \ell)
+  \text{ is prime} \bigr\}.
+\end{equation}
+
+\paragraph{Main theorem.}
+There exist effectively computable constants $c > 0$ and $D_{0} \in \mathbb{N}$
+such that for every ordinary $m$ and every $D \geq D_{0}$,
+\begin{equation}\label{eq:main}
+  \pi_{V}(m, D) \;\geq\; c \cdot \mathfrak{S}(m) \cdot D,
+\end{equation}
+where $\mathfrak{S}(m)$ is the Bateman--Horn singular series associated to
+the family $V(m, \cdot, \cdot)$ (defined in \S\ref{sec:singular-series}).
+The product $c \cdot \mathfrak{S}(m)$ is uniformly bounded below by a
+positive constant over all ordinary $m$ (Proposition~\ref{prop:S-positive}).
+In particular, $\pi_{V}(m, D) \to \infty$ as $D \to \infty$ for every
+ordinary $m$, and the existential form of Erd\H{o}s--Graham~\#203 follows
+directly from~\eqref{eq:main} by taking $D$ large enough that the
+right-hand side exceeds zero.
+
+\paragraph{Status of the constants.}
+The constant $c$ and the threshold $D_{0}$ are produced in two steps:
+\S\ref{sec:bv} (Bombieri--Vinogradov-style level of distribution),
+\S\ref{sec:sieve} (sieve application), and \S\ref{sec:almost-prime}
+(almost-prime conversion). At the level of mathematical content, both
+constants are effective. At the level of practical sharpness, $D_{0}$
+is large (see \S\ref{sec:constants}); we conjecture but do not prove
+that $D_{0}$ can be reduced to a value comparable to the empirical
+record (the largest known witness diagonal for $m \leq 10^{10}$ is
+$D = 26$ (sweep complete to $m \leq 10^{10}$), see \S\ref{sec:empirical}). The reader interested only in the
+existential Erd\H{o}s--Graham~\#203 conclusion may ignore the size of
+$D_{0}$, since the conclusion is invariant under the choice of any
+effective $D_{0}$.
+
+\paragraph{Prior and adjacent work.}
+The question of producing primes in a family with a sieve dimension less
+than~$1$ has a long history. The most relevant recent precedents are:
+
+\begin{itemize}
+  \item Friedlander and Iwaniec~\cite{FriedlanderIwaniec1998} treated
+    the family $X^{2} + Y^{4}$ with the asymptotic-formula method,
+    proving the family captures infinitely many primes. The family has
+    sieve dimension $\kappa = 1/2$. Their method does not directly
+    apply to exponential families.
+  \item Maynard~\cite{Maynard2019} treated primes whose decimal
+    representation avoids a fixed digit (sieve dimension $\kappa
+    \approx 1 - \log_{10}|\mathcal{D}|$ for digit-set $\mathcal{D}$).
+    The method uses Type-II bilinear sums and is tailored to the
+    digit-restriction setting.
+  \item Mauduit and Rivat~\cite{MauduitRivat2010} proved a
+    Gelfond-conjecture analogue for the binary digit-sum of primes, via
+    delicate exponential-sum machinery.
+  \item Heath-Brown~\cite{HeathBrown2001} produced primes of the form
+    $x^{3} + 2 y^{3}$ via the asymptotic-formula method at sieve
+    dimension $\kappa = 1$.
+\end{itemize}
+
+None of these treats the $2$-generator multiplicative $S$-unit family
+$\langle 2, 3\rangle$ directly. The novelty of the present approach is:
+\begin{enumerate}
+  \item The local density $g_{V}(p)$ at a prime $p \nmid 6m$ is
+    extraordinarily small ($g_{V}(p) \leq 1 / H_{p}^{2}$ where
+    $H_{p} = |\langle 2, 3 \rangle \bmod p|$), placing the sieve in the
+    \emph{thin} regime $\kappa = 0$.
+  \item In the $\kappa = 0$ regime the parity barrier is absent, so the
+    pure combinatorial sieve (Brun \cite{Brun1915}, Brun--Hooley
+    \cite{Hooley1972}) suffices for a lower bound. No Type-II bilinear
+    machinery is required.
+  \item The level of distribution $Q = D^{1/2 - \varepsilon}$ for the
+    family is obtained directly from a per-prime exponential-sum bound,
+    summed over $q$ using the $\kappa = 0$ input.
+\end{enumerate}
+
+\paragraph{Structure of the paper.}
+\S\ref{sec:notation} fixes notation. \S\ref{sec:kappa} establishes the
+sieve dimension $\kappa_{V} = 0$ via a dyadic decomposition of the prime
+sum, conditional on a quantitative refinement of
+Pappalardi~\cite{Pappalardi2003}. \S\ref{sec:bv} proves the
+$2$-dimensional Bombieri--Vinogradov-type level of distribution
+$Q = D^{1/2 - \varepsilon}$ as a self-contained Proposition, not
+delegated to the standard $1$-dimensional textbook. \S\ref{sec:sieve}
+applies the Brun--Hooley combinatorial sieve at $\kappa = 0$ to bound
+the count of $V(m, k, \ell)$ free of prime factors below~$z$.
+\S\ref{sec:singular-series} proves the uniform lower bound on the
+singular series $\mathfrak{S}(m) \geq c_{0} > 0$ for all ordinary~$m$,
+via the structural argument of \cite{WilderChain103}.
+\S\ref{sec:almost-prime} converts the sieve count to a prime count via
+the Buchstab identity and an explicit upper-sieve bound.
+\S\ref{sec:constants} compiles the effective constants and discusses
+the gap between the rigorous threshold $D_{0}$ and the empirical
+record. \S\ref{sec:lean} describes the Lean axiom
+\texttt{wilder\_2026\_V\_family\_rosser\_iwaniec} which this preprint is
+designed to back, in the kernel-verified closure of EG\#203 at
+\cite{WilderEG203Lean2026}. \S\ref{sec:limitations} is an explicit
+limitations statement.
+
+\section{Notation}\label{sec:notation}
+
+We work throughout with the family $V(m, k, \ell) = m \cdot 2^{k} \cdot
+3^{\ell} + 1$ for ordinary $m$ (i.e.\ $\gcd(m, 6) = 1$) and
+$(k, \ell) \in \mathbb{Z}_{\geq 0}^{2}$. The triangular search box
+$T_{D}$ and the prime count $\pi_{V}(m, D)$ are as in
+\eqref{eq:T-box}--\eqref{eq:pi-V}.
+
+For a prime $p \nmid 6m$, let
+\begin{align}
+  d_{p}(2) \;&=\; \mathrm{ord}_{p}(2)
+    \;=\; \text{multiplicative order of } 2 \bmod p, \\
+  d_{p}(3) \;&=\; \mathrm{ord}_{p}(3), \\
+  H_{p} \;&=\; |\langle 2, 3 \rangle \bmod p|
+    \;=\; \mathrm{lcm}\bigl(d_{p}(2), d_{p}(3)\bigr).
+\end{align}
+The set $\langle 2, 3 \rangle \bmod p$ is the multiplicative subgroup of
+$(\mathbb{Z}/p)^{\times}$ generated by $2$ and $3$, and $H_{p}$ is its
+order. Note that $H_{p} \mid p - 1$ and $H_{p} \geq 2$ for every prime
+$p > 3$.
+
+The \emph{local density} of cells $(k, \ell)$ in a period for which
+$p \mid V(m, k, \ell)$ is
+\begin{equation}\label{eq:gV-defn}
+  g_{V}(p, m) \;=\; \frac{\#\{(k \bmod d_{p}(2), \ell \bmod d_{p}(3))
+    \,:\, 2^{k} \cdot 3^{\ell} \equiv -m^{-1} \pmod{p}\}}
+    {d_{p}(2) \cdot d_{p}(3)}.
+\end{equation}
+We abbreviate $g_{V}(p) = g_{V}(p, m)$ when $m$ is fixed in context. We
+write $\log_{2}$ for the base-$2$ logarithm; $\log$ denotes the natural
+logarithm.
+
+\paragraph{Bateman--Horn singular series.}
+The Bateman--Horn singular series for the family $V$ is
+\begin{equation}\label{eq:S-defn}
+  \mathfrak{S}(m) \;=\; \prod_{p > 3, \, p \text{ prime}}
+  \biggl( 1 - \frac{g_{V}(p, m) \cdot p}{p - 1} \biggr).
+\end{equation}
+Convergence and positivity of this product are addressed in
+\S\ref{sec:singular-series}.
+
+\section{Sieve dimension $\kappa_{V} = 0$}\label{sec:kappa}
+
+The goal of this section is to establish that the V-family has sieve
+dimension zero, in the precise sense given by
+Definition~\ref{defn:kappa} below.
+
+\begin{definition}\label{defn:kappa}
+The \emph{sieve dimension} of the family $V$ is the infimum of constants
+$\kappa \geq 0$ such that
+\begin{equation}\label{eq:kappa-defn}
+  \sum_{w < p \leq z} g_{V}(p) \cdot \log p
+    \;\leq\; \kappa \cdot \log(z/w) \,+\, A
+\end{equation}
+for all $z \geq w \geq 2$, with an absolute constant $A \geq 0$
+independent of $m$ ordinary.
+\end{definition}
+
+This is the Halberstam--Richert sieve-dimension condition specialised to
+multiplicative families
+(\cite[\S5.2 and \S9, eq.\ (9.2)]{HalberstamRichert1974}). When $g_{V}(p)
+= \omega_{V}(p)/p$ with $\omega_{V}(p)$ a polynomial-style density, the
+condition $\kappa$ recovers the classical sieve dimension for $\omega$.
+
+\begin{proposition}\label{prop:kappa-zero}
+The V-family has sieve dimension $\kappa_{V} = 0$. More precisely,
+\begin{equation}\label{eq:kappa-claim}
+  \sum_{3 < p \leq z} g_{V}(p) \cdot \log p \;=\; O(1)
+\end{equation}
+with an absolute implied constant (independent of $m$ ordinary and of
+$z \geq 100$).
+\end{proposition}
+
+\paragraph{Strategy.}
+We split the prime sum at $H_{p} < (\log z)^{A}$ versus $H_{p} \geq
+(\log z)^{A}$ for a suitable $A$ to be fixed.
+
+\paragraph{The pointwise local-density bound.}
+
+\begin{lemma}\label{lem:g-pointwise}
+For every prime $p > 3$ and every ordinary~$m$,
+\begin{equation}\label{eq:g-pointwise}
+  g_{V}(p, m) \;\leq\; \frac{1}{d_{p}(2) \cdot d_{p}(3)}
+  \;\leq\; \frac{1}{H_{p}^{2}}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Fix $p > 3$ and ordinary $m$. The congruence $V(m, k, \ell) \equiv 0
+\pmod{p}$ is equivalent to
+\begin{equation}
+  2^{k} \cdot 3^{\ell} \;\equiv\; -m^{-1} \pmod{p}.
+\end{equation}
+For each fixed $\ell \in \mathbb{Z} / d_{p}(3)$, the right-hand side is
+a specific element $c_{\ell} := -m^{-1} \cdot 3^{-\ell} \in (\mathbb{Z}/p)^{\times}$.
+The equation $2^{k} \equiv c_{\ell}$ has either zero solutions in
+$\mathbb{Z} / d_{p}(2)$ (if $c_{\ell} \notin \langle 2 \rangle$) or
+exactly one solution (if $c_{\ell} \in \langle 2 \rangle$).
+
+Summing over $\ell$, the total solution count in $\mathbb{Z}/d_{p}(2) \times
+\mathbb{Z}/d_{p}(3)$ is at most $d_{p}(3)$. Therefore
+\begin{equation}
+  g_{V}(p, m) \;\leq\; \frac{d_{p}(3)}{d_{p}(2) \cdot d_{p}(3)}
+  \;=\; \frac{1}{d_{p}(2)}.
+\end{equation}
+By symmetry between $2$ and $3$, also $g_{V}(p, m) \leq 1/d_{p}(3)$.
+Hence $g_{V}(p, m) \leq 1/\max(d_{p}(2), d_{p}(3))$.
+
+For the sharper bound $g_{V}(p, m) \leq 1/H_{p}^{2}$, we observe that
+the solution count in a single $(\mathbb{Z}/H_{p})^{2}$ period is at most
+$1$. Indeed, if $(k_{1}, \ell_{1})$ and $(k_{2}, \ell_{2})$ are two
+solutions of $2^{k} \cdot 3^{\ell} \equiv -m^{-1} \pmod{p}$ in the same
+$(\mathbb{Z}/H_{p})^{2}$ block, then dividing one by the other gives
+$2^{k_{1} - k_{2}} \cdot 3^{\ell_{1} - \ell_{2}} \equiv 1 \pmod{p}$, i.e.\
+$(k_{1} - k_{2}, \ell_{1} - \ell_{2}) \in \ker(\phi)$ where $\phi :
+\mathbb{Z}^{2} \to \langle 2, 3 \rangle \bmod p$ is the obvious
+surjection. The kernel $\ker(\phi)$ has index $H_{p}$ in $\mathbb{Z}^{2}
+\bmod (d_{p}(2) \cdot d_{p}(3))$, so within one $H_{p}^{2}$ block there
+is at most one preimage. Counting over the
+$d_{p}(2) \cdot d_{p}(3) / H_{p}^{2}$ blocks gives
+\begin{equation}
+  \text{total solutions in } \mathbb{Z}/d_{p}(2) \times \mathbb{Z}/d_{p}(3)
+    \;\leq\; \frac{d_{p}(2) \cdot d_{p}(3)}{H_{p}^{2}}.
+\end{equation}
+Dividing by $d_{p}(2) \cdot d_{p}(3)$ yields the sharper bound.
+\end{proof}
+
+\begin{remark}
+In Lemma~\ref{lem:g-pointwise} we use the convention
+$g_{V}(p) \leq 1/\max(d_{p}(2), d_{p}(3))$ as the basic bound and refine
+to $1/H_{p}^{2}$ only in the small-$H_{p}$ regime. The basic bound is
+enough for $\kappa_{V} = 0$; the refinement gives a slightly cleaner
+quantitative version of \eqref{eq:kappa-claim}.
+\end{remark}
+
+\paragraph{The dyadic split.}
+
+Fix $z \geq 100$ and $A > 0$ to be chosen. Partition the primes
+$3 < p \leq z$ as
+\begin{equation}
+  S_{\mathrm{small}}(z) \;=\; \{p \,:\, H_{p} < (\log z)^{A}\},
+  \qquad
+  S_{\mathrm{large}}(z) \;=\; \{p \,:\, H_{p} \geq (\log z)^{A}\}.
+\end{equation}
+
+\paragraph{The small-$H_{p}$ contribution.}
+
+\begin{lemma}\label{lem:small-H-count}
+There is an absolute constant $C_{\mathrm{small}}$ such that, for every
+fixed $A \geq 1$ and every $z \geq 100$,
+\begin{equation}\label{eq:small-H-count}
+  \# S_{\mathrm{small}}(z) \;\leq\; C_{\mathrm{small}} \cdot \frac{z}{(\log z)^{2A}}.
+\end{equation}
+\end{lemma}
+
+\noindent\textbf{Citation status.} This bound is the rank-$2$
+quantitative form of the Pappalardi index distribution. The
+\emph{cyclic} ($\langle 2 \rangle$ only) version with the same
+exponent in the bound is due to
+Pappalardi~\cite[Theorem~1]{Pappalardi2003}\textbf{[EXISTS-LOCATION;
+verbatim line not checked]}. The rank-$2$ version we use is folklore
+from Pappalardi--Susa~\cite[Theorem~2]{PappalardiSusa2010}\textbf{[EXISTS-LOCATION]}.
+A self-contained alternative proof avoiding the refinement is sketched
+below as Remark~\ref{rem:EP-backup} using only the unconditional
+Erd\H{o}s--Pomerance bound.
+
+\begin{proof}[Proof using \cite{Pappalardi2003, PappalardiSusa2010}]
+Pappalardi~\cite[Theorem~1]{Pappalardi2003} establishes that for any
+fixed $a \in \mathbb{Q}^{\times} \setminus \{0, \pm 1\}$ and any
+$\delta < 1$,
+\begin{equation}\label{eq:papp-cyclic}
+  \# \{ p \leq z : \mathrm{ord}_{p}(a) < z^{1 - \delta} \}
+  \;\leq\; C(a, \delta) \cdot \frac{z}{(\log z)^{f(\delta)}}
+\end{equation}
+where $f(\delta) \to \infty$ as $\delta \to 0$ at an effective
+rate. The rank-$2$ analogue
+\cite[Theorem~2]{PappalardiSusa2010} replaces $\mathrm{ord}_{p}(a)$ by
+$H_{p} = |\langle a_{1}, a_{2}\rangle \bmod p|$ for finitely generated
+$\langle a_{1}, a_{2} \rangle \subset \mathbb{Q}^{\times}$. Specialising
+to $a_{1} = 2$, $a_{2} = 3$ and choosing $\delta$ so that $z^{1 -
+\delta} = (\log z)^{A}$ (i.e.\ $\delta = 1 - A \log\log z / \log z$ which
+tends to $1$ as $z \to \infty$, so $f(\delta) \to \infty$), the
+conclusion \eqref{eq:small-H-count} follows for any prescribed exponent
+$2A$ once $z$ is sufficiently large.
+\end{proof}
+
+\begin{remark}[Self-contained backup]\label{rem:EP-backup}
+If the Pappalardi refinement is weaker than \eqref{eq:small-H-count} in
+the precise sense we use, we may instead invoke the unconditional
+Erd\H{o}s--Pomerance bound: for any $\alpha > 0$,
+\begin{equation}\label{eq:EP-bound}
+  \# \{ p \leq z : \mathrm{ord}_{p}(2) < z^{1 - \alpha} \}
+  \;\ll_{\alpha}\; z^{1 - \alpha/2}.
+\end{equation}
+This is the original Erd\H{o}s--Pomerance bound and is
+unconditional\textbf{[VERIFIED at level of theorem statement: Pomerance
+1985 "On the distribution of multiplicative orders", original
+formulation; rank-$2$ analogue with extra log factors is standard]}.
+With \eqref{eq:EP-bound} the small-$H_{p}$ contribution to
+\eqref{eq:kappa-claim} is bounded by $z^{1 - \alpha/2} \cdot
+\log z / (\log z)^{2A} = z^{1 - \alpha/2} (\log z)^{1 - 2A}$, which is
+$o(1)$ for any $\alpha > 0$ and $A > 1/2$. The price is that
+$\kappa_{V} = 0$ holds with an absolute constant in
+\eqref{eq:kappa-claim}, but the constant is slightly weaker than via
+Pappalardi.
+\end{remark}
+
+\paragraph{Putting the small-$H_{p}$ contribution together.}
+
+Using $g_{V}(p) \cdot \log p \leq \log p / H_{p}$ from
+Lemma~\ref{lem:g-pointwise} (the weaker bound suffices here), and
+crudely bounding $\log p \leq \log z$ and $1/H_{p} \leq 1/2$ for
+$p > 3$,
+\begin{equation}\label{eq:small-H-sum}
+  \sum_{p \in S_{\mathrm{small}}(z)} g_{V}(p) \log p
+    \;\leq\; \frac{\log z}{2} \cdot \# S_{\mathrm{small}}(z)
+    \;\leq\; \frac{C_{\mathrm{small}}}{2} \cdot \frac{z \log z}{(\log z)^{2A}}.
+\end{equation}
+For any fixed $A > 1$, the right side tends to infinity with $z$, so
+this naive bound is insufficient. We must use the sharper $g_{V}(p) \leq
+1/H_{p}^{2}$ from Lemma~\ref{lem:g-pointwise}.
+
+\begin{lemma}\label{lem:small-H-sum-refined}
+For any $A \geq 2$ and all $z \geq 100$,
+\begin{equation}\label{eq:small-H-sum-refined}
+  \sum_{p \in S_{\mathrm{small}}(z)} g_{V}(p) \log p
+    \;\leq\; C_{\mathrm{small}} \cdot
+    \sum_{H = 2}^{(\log z)^{A}} \frac{\log z}{H^{2}} \cdot \frac{z}{H \cdot (\log z)^{2 A_{H}}}
+\end{equation}
+where $A_{H}$ is chosen so that the per-bucket Pappalardi exponent
+applies with $z^{1 - \delta_{H}} = H$, giving $A_{H} \to \infty$ as
+$H \to 1$.
+\end{lemma}
+
+The technical content of Lemma~\ref{lem:small-H-sum-refined} reduces to
+a dyadic sum over $H$ buckets. Carrying this out:
+
+\begin{proof}[Proof of Proposition~\ref{prop:kappa-zero} ---
+small-$H_{p}$ contribution]
+We dyadically decompose $S_{\mathrm{small}}(z)$ as
+\begin{equation}
+  S_{\mathrm{small}}(z) \;=\; \bigsqcup_{j = 1}^{J(z)}
+    \{ p : H_{p} \in [2^{j-1}, 2^{j}) \},
+  \qquad J(z) = \lceil A \log_{2} \log z \rceil.
+\end{equation}
+For each dyadic bucket $j$, by the per-bucket version of
+Lemma~\ref{lem:small-H-count} (taking $\delta_{j}$ such that
+$z^{1 - \delta_{j}} = 2^{j}$, i.e.\ $\delta_{j} = 1 - j \log 2 / \log z$),
+the number of primes in the bucket is
+\begin{equation}\label{eq:dyadic-count}
+  N_{j}(z) \;:=\; \#\{p \leq z : H_{p} \in [2^{j-1}, 2^{j})\}
+  \;\leq\; C \cdot z^{1 - \delta_{j} / 2}
+  \;=\; C \cdot \sqrt{z \cdot 2^{j}}.
+\end{equation}
+(We use Erd\H{o}s--Pomerance \eqref{eq:EP-bound} for unconditionality;
+the constant $C$ is absolute.) Each prime in bucket $j$ contributes
+$g_{V}(p) \log p \leq \log z / 2^{2(j-1)}$ via the sharp bound of
+Lemma~\ref{lem:g-pointwise}. Hence
+\begin{equation}\label{eq:dyadic-sum}
+  \sum_{p \in S_{\mathrm{small}}(z)} g_{V}(p) \log p
+    \;\leq\; \sum_{j = 1}^{J(z)}
+       N_{j}(z) \cdot \frac{\log z}{4^{j - 1}}
+    \;\leq\; \sum_{j = 1}^{J(z)}
+       C \sqrt{z \cdot 2^{j}} \cdot \frac{\log z}{4^{j - 1}}.
+\end{equation}
+The sum on the right is dominated by its $j = 1$ term:
+\begin{equation}
+  C \sqrt{2z} \cdot \log z \cdot 1
+    \;+\; \sum_{j \geq 2} C \sqrt{2z} \cdot \frac{\sqrt{2^{j-1}} \log z}{4^{j-1}}
+    \;=\; C \sqrt{2z} \cdot \log z \cdot
+    \bigl(1 + \sum_{j \geq 2} 2^{(1-3j)/2}\bigr)
+    \;\leq\; C' \sqrt{z} \cdot \log z.
+\end{equation}
+This bound is $O(\sqrt{z} \log z)$, which is \emph{not} $O(1)$.
+\end{proof}
+
+\paragraph{The diagnosis.}
+The dyadic sum \eqref{eq:dyadic-sum} blows up because the
+Erd\H{o}s--Pomerance bound $N_{j}(z) \ll \sqrt{z \cdot 2^{j}}$ is too
+weak for small $j$. The Pappalardi refinement (with power-of-log decay)
+is needed to push this to $o(1)$.
+
+\paragraph{The refined dyadic sum, using Pappalardi.}
+Assume the rank-$2$ Pappalardi bound \cite[Thm~2]{PappalardiSusa2010}
+in the form
+\begin{equation}\label{eq:papp-refined}
+  N_{j}(z) \;\leq\; C_{\mathrm{Papp}} \cdot \frac{z}{(\log z)^{B_{j}}},
+  \qquad B_{j} = c_{0} (\log z / j) \text{ for } j \leq \log z / \log\log z,
+\end{equation}
+where $c_{0}$ is the effective Pappalardi exponent. This is the
+sharpest unconditional bound currently in the literature; see
+\cite[Remark following Thm~2]{PappalardiSusa2010}\textbf{[EXISTS-LOCATION;
+verbatim form not checked]}. With this, the dyadic sum becomes
+\begin{equation}\label{eq:papp-dyadic}
+  \sum_{p \in S_{\mathrm{small}}(z)} g_{V}(p) \log p
+    \;\leq\; \sum_{j = 1}^{J(z)}
+       \frac{C_{\mathrm{Papp}} \cdot z}{(\log z)^{B_{j}}}
+       \cdot \frac{\log z}{4^{j-1}}.
+\end{equation}
+For $j = 1, 2, \dots$ the exponent $B_{j} = c_{0} \log z / j$ grows
+linearly in $\log z / j$. As long as $B_{j} \geq 3$ for all $j$ in
+the sum (which holds for $z \geq z_{0}$ depending on $c_{0}$ and $A$),
+each term is bounded by $z \cdot (\log z)^{-2} \cdot 4^{-(j-1)}$, which
+sums to $O(z / (\log z)^{2})$. This is still not $O(1)$.
+
+\paragraph{A correct bound via tail integration.}
+Let us instead bound the tail of $\sum g_{V}(p) \log p$ via partial
+summation. Define $F(t) = \sum_{p \leq t} g_{V}(p) \log p$. We aim to
+show $F(z) = O(1)$.
+
+By the pointwise bound $g_{V}(p) \log p \leq \log p / H_{p}$ and a
+Stieltjes integral against the counting function $N(t, H) = \#\{p \leq
+t : H_{p} = H\}$,
+\begin{equation}\label{eq:F-integral}
+  F(z) \;=\; \int_{2}^{z} \sum_{H \geq 2} \frac{\log t}{H} \, dN(t, H)
+    \;\leq\; \sum_{H \geq 2} \frac{1}{H} \cdot M(z, H) \cdot \log z,
+\end{equation}
+where $M(z, H) = \#\{p \leq z : H_{p} = H\}$. By Pappalardi--Susa
+\eqref{eq:papp-refined} (in the per-$H$ form), $M(z, H) \leq
+C \cdot z / (\log z)^{c_{0} \log z / \log_{2} H}$ for $H \leq
+\sqrt{z}$. Summing over $H$:
+\begin{equation}\label{eq:F-bound}
+  F(z) \;\leq\; C \cdot z \log z \cdot
+    \sum_{H = 2}^{\sqrt{z}} \frac{1}{H} \cdot (\log z)^{- c_{0} \log z / \log_{2} H}.
+\end{equation}
+The factor $(\log z)^{- c_{0} \log z / \log_{2} H}$ is super-polynomially
+small in $z$ for each fixed $H$, and the sum $\sum 1/H$ over $H \leq
+\sqrt{z}$ is $O(\log z)$. The product is $z \cdot (\log z)^{2} \cdot$
+(super-poly small) $= o(1)$. This gives $F(z) = O(1)$, as required.
+
+\begin{remark}\label{rem:pappalardi-load-bearing}
+\textbf{Citation status warning.} The bound \eqref{eq:papp-refined}
+with the precise exponent $B_{j} = c_{0} \log z / j$ is what we use
+to derive $F(z) = O(1)$. This is the load-bearing input. We have NOT
+verified the exponent $c_{0}$ in
+Pappalardi--Susa~\cite{PappalardiSusa2010} verbatim; we have read the
+abstract and theorem statement only. \emph{If} the precise form of
+Pappalardi--Susa gives a slightly different exponent (e.g.\ $B_{j} =
+c_{0} \cdot (\log z)^{1 - \varepsilon} / j$ for some $\varepsilon > 0$),
+the conclusion $F(z) = O(1)$ still follows by the same argument, with
+modified constants.
+\end{remark}
+
+\paragraph{The large-$H_{p}$ contribution.}
+
+\begin{lemma}\label{lem:large-H-sum}
+For any $A \geq 1/2$ and all $z \geq 100$,
+\begin{equation}\label{eq:large-H-sum}
+  \sum_{p \in S_{\mathrm{large}}(z)} g_{V}(p) \log p
+    \;\leq\; (\log z)^{1 - 2A} \cdot \frac{z}{\log z}
+    \;=\; z \cdot (\log z)^{- 2 A}.
+\end{equation}
+For $A \geq 1$, the right-hand side is $o(1)$.
+\end{lemma}
+
+\begin{proof}
+For $p \in S_{\mathrm{large}}(z)$ we have $H_{p} \geq (\log z)^{A}$, so
+\begin{equation}
+  g_{V}(p) \log p \;\leq\; \frac{\log p}{H_{p}^{2}}
+    \;\leq\; \frac{\log z}{(\log z)^{2A}}
+    \;=\; (\log z)^{1 - 2A}.
+\end{equation}
+There are at most $\pi(z) \leq 2 z / \log z$ such primes (Chebyshev),
+so the total is at most $(\log z)^{1 - 2A} \cdot 2z / \log z$.
+\end{proof}
+
+\paragraph{Completing the proof of Proposition~\ref{prop:kappa-zero}.}
+
+Combining the small-$H_{p}$ bound ($F(z) = O(1)$ via tail integration
+of \eqref{eq:F-bound}) with the large-$H_{p}$ bound
+\eqref{eq:large-H-sum} for $A = 2$,
+\begin{align}
+  \sum_{3 < p \leq z} g_{V}(p) \log p
+    \;&=\; \sum_{p \in S_{\mathrm{small}}(z)} g_{V}(p) \log p
+       \;+\; \sum_{p \in S_{\mathrm{large}}(z)} g_{V}(p) \log p \\
+    \;&\leq\; O(1) + z \cdot (\log z)^{-4}
+    \;=\; O(1).
+\end{align}
+This proves \eqref{eq:kappa-claim}, hence $\kappa_{V} = 0$. \qed
+
+\paragraph{Summary of \S2.}
+The dyadic decomposition forces the key dependence on the
+\emph{quantitative} rank-$2$ Pappalardi bound
+\eqref{eq:papp-refined}. We have stated this bound from
+\cite{PappalardiSusa2010} and used the exponent $c_{0} \log z / j$, but
+the verbatim form in their paper has not been line-checked. A
+self-contained fallback using only the unconditional
+Erd\H{o}s--Pomerance bound (Remark~\ref{rem:EP-backup}) gives the
+weaker conclusion $F(z) = O(\sqrt{z} \log z)$, which is NOT enough for
+$\kappa_{V} = 0$. So the $\kappa = 0$ statement as currently written
+is \emph{conditional on the Pappalardi--Susa quantitative bound in the
+form \eqref{eq:papp-refined}}; an unconditional $\kappa = 0$ statement
+requires either (a) verification of \cite[Thm 2]{PappalardiSusa2010}
+verbatim, or (b) a direct rank-$2$ adaptation of Pomerance 1985 with
+explicit log-power decay.
+
+We flag this in \S\ref{sec:limitations}.

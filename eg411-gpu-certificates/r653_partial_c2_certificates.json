@@ -1,0 +1,254 @@
+{
+  "round": "R653_PARTIAL_C2_CERTIFICATES",
+  "binary": "R652 C2-hard candidates are forced by partial C2 bounds OR a not-forced candidate remains",
+  "input": "UNIVERSAL_LAW\\oracle\\results\\r652_gpu_2m_top512_fastfactor.json",
+  "factor_limit": 100000,
+  "hard_candidate_count": 6,
+  "status_counts": {
+    "NOT_FORCED_BY_PARTIAL_C2": 6
+  },
+  "not_forced_count": 6,
+  "certificates": [
+    {
+      "input_rank": 1,
+      "source": "base_r646",
+      "support_size": 63,
+      "N_digits": 220,
+      "p_digits": 220,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 440,
+      "x2_float": 0.8598619916409027,
+      "factor_limit": 100000,
+      "factor_count": 45,
+      "rebuilds_C2": true,
+      "prime_factor_count": 44,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        317
+      ],
+      "known_phi_ratio_float": 0.15982739128893172,
+      "unknown_part_digits": 317,
+      "unknown_lower_ratio_float": 0.08417516098148169,
+      "unknown_primorial": {
+        "ratio_float": 0.08417516098148169,
+        "prime_count": 134,
+        "last_prime": 757,
+        "next_prime": 761,
+        "primorial_product_digits": 316
+      },
+      "x3_lower_float": 0.8714301418421984,
+      "x3_upper_float": 0.9972914906333734,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07608843839680195,
+        "prime_count": 246,
+        "last_prime": 1559,
+        "next_prime": 1567,
+        "primorial_product_digits": 658
+      },
+      "x4_lower_float": 0.9377359005068748,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    },
+    {
+      "input_rank": 89,
+      "source": "gpu_batch_7",
+      "support_size": 59,
+      "N_digits": 249,
+      "p_digits": 249,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 498,
+      "x2_float": 0.8613299735080036,
+      "factor_limit": 100000,
+      "factor_count": 54,
+      "rebuilds_C2": true,
+      "prime_factor_count": 53,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        337
+      ],
+      "known_phi_ratio_float": 0.1534080368261117,
+      "unknown_part_digits": 337,
+      "unknown_lower_ratio_float": 0.08342863569462843,
+      "unknown_primorial": {
+        "ratio_float": 0.08342863569462843,
+        "prime_count": 141,
+        "last_prime": 811,
+        "next_prime": 821,
+        "primorial_product_digits": 336
+      },
+      "x3_lower_float": 0.8723538113044358,
+      "x3_upper_float": 0.9934649138033532,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.0748558165035261,
+        "prime_count": 273,
+        "last_prime": 1753,
+        "next_prime": 1759,
+        "primorial_product_digits": 745
+      },
+      "x4_lower_float": 0.9376545681295922,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    },
+    {
+      "input_rank": 120,
+      "source": "gpu_batch_8",
+      "support_size": 61,
+      "N_digits": 253,
+      "p_digits": 253,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 506,
+      "x2_float": 0.8605436248264768,
+      "factor_limit": 100000,
+      "factor_count": 53,
+      "rebuilds_C2": true,
+      "prime_factor_count": 52,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        343
+      ],
+      "known_phi_ratio_float": 0.15471170115052618,
+      "unknown_part_digits": 343,
+      "unknown_lower_ratio_float": 0.08322576948599765,
+      "unknown_primorial": {
+        "ratio_float": 0.08322576948599765,
+        "prime_count": 143,
+        "last_prime": 823,
+        "next_prime": 827,
+        "primorial_product_digits": 342
+      },
+      "x3_lower_float": 0.871623984863944,
+      "x3_upper_float": 0.9936797929376212,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07468740588396833,
+        "prime_count": 277,
+        "last_prime": 1787,
+        "next_prime": 1789,
+        "primorial_product_digits": 758
+      },
+      "x4_lower_float": 0.9367233191996792,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    },
+    {
+      "input_rank": 329,
+      "source": "gpu_batch_4",
+      "support_size": 59,
+      "N_digits": 242,
+      "p_digits": 243,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 485,
+      "x2_float": 0.8612864118161335,
+      "factor_limit": 100000,
+      "factor_count": 54,
+      "rebuilds_C2": true,
+      "prime_factor_count": 53,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        332
+      ],
+      "known_phi_ratio_float": 0.1547573434123096,
+      "unknown_part_digits": 332,
+      "unknown_lower_ratio_float": 0.08363501474546207,
+      "unknown_primorial": {
+        "ratio_float": 0.08363501474546207,
+        "prime_count": 139,
+        "last_prime": 797,
+        "next_prime": 809,
+        "primorial_product_digits": 330
+      },
+      "x3_lower_float": 0.8724341561354755,
+      "x3_upper_float": 0.9945768088259188,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07511501933359417,
+        "prime_count": 267,
+        "last_prime": 1709,
+        "next_prime": 1721,
+        "primorial_product_digits": 725
+      },
+      "x4_lower_float": 0.9379670646408796,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    },
+    {
+      "input_rank": 461,
+      "source": "gpu_batch_2",
+      "support_size": 59,
+      "N_digits": 242,
+      "p_digits": 242,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 484,
+      "x2_float": 0.8616193737062664,
+      "factor_limit": 100000,
+      "factor_count": 51,
+      "rebuilds_C2": true,
+      "prime_factor_count": 50,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        333
+      ],
+      "known_phi_ratio_float": 0.15472608252786177,
+      "unknown_part_digits": 333,
+      "unknown_lower_ratio_float": 0.08353163401030081,
+      "unknown_primorial": {
+        "ratio_float": 0.08353163401030081,
+        "prime_count": 140,
+        "last_prime": 809,
+        "next_prime": 811,
+        "primorial_product_digits": 333
+      },
+      "x3_lower_float": 0.8727553926860708,
+      "x3_upper_float": 0.9949343640299467,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07511501933359417,
+        "prime_count": 267,
+        "last_prime": 1709,
+        "next_prime": 1721,
+        "primorial_product_digits": 725
+      },
+      "x4_lower_float": 0.9383124308811837,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    },
+    {
+      "input_rank": 484,
+      "source": "gpu_batch_9",
+      "support_size": 57,
+      "N_digits": 254,
+      "p_digits": 254,
+      "p_mod_8": 7,
+      "sympy_isprime_p": true,
+      "C2_digits": 508,
+      "x2_float": 0.8622600548394184,
+      "factor_limit": 100000,
+      "factor_count": 56,
+      "rebuilds_C2": true,
+      "prime_factor_count": 55,
+      "composite_factor_count": 1,
+      "composite_factor_digits": [
+        328
+      ],
+      "known_phi_ratio_float": 0.15392982806841193,
+      "unknown_part_digits": 328,
+      "unknown_lower_ratio_float": 0.08374008385946391,
+      "unknown_primorial": {
+        "ratio_float": 0.08374008385946391,
+        "prime_count": 138,
+        "last_prime": 787,
+        "next_prime": 797,
+        "primorial_product_digits": 327
+      },
+      "x3_lower_float": 0.873374670336263,
+      "x3_upper_float": 0.9949875968311095,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07468740588396833,
+        "prime_count": 277,
+        "last_prime": 1787,
+        "next_prime": 1789,
+        "primorial_product_digits": 758
+      },
+      "x4_lower_float": 0.9386047588284446,
+      "status": "NOT_FORCED_BY_PARTIAL_C2"
+    }
+  ],
+  "closed_by_this_pass": false
+}

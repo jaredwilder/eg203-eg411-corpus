@@ -1,0 +1,10 @@
+[R652] batch=1/10 valid=99991 strict=99991 selected=128 unique=129 elapsed_s=3.1
+[R652] batch=2/10 valid=199774 strict=199774 selected=256 unique=257 elapsed_s=5.3
+[R652] batch=3/10 valid=300197 strict=300197 selected=384 unique=385 elapsed_s=7.0
+[R652] batch=4/10 valid=400441 strict=400441 selected=512 unique=513 elapsed_s=8.1
+[R652] batch=5/10 valid=500045 strict=500045 selected=640 unique=641 elapsed_s=9.2
+[R652] batch=6/10 valid=599961 strict=599961 selected=768 unique=769 elapsed_s=10.6
+[R652] batch=7/10 valid=700047 strict=700047 selected=896 unique=897 elapsed_s=12.7
+[R652] batch=8/10 valid=799926 strict=799926 selected=1024 unique=1025 elapsed_s=15.1
+[R652] batch=9/10 valid=899832 strict=899832 selected=1152 unique=1153 elapsed_s=16.6
+[R652] batch=10/10 valid=999916 strict=999916 selected=1280 unique=1281 elapsed_s=17.9

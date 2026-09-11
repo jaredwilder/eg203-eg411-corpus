@@ -1,0 +1,8 @@
+{
+ "selftest": "PASS",
+ "hnf_tests": 400,
+ "intersect_tests": 250,
+ "coset_tests": 250,
+ "coset_empty_cases_seen": 21,
+ "known_answer": "q5/q7 m=1 joint 6/144 == 1/24 == E/(H1*H2) with E=1"
+}

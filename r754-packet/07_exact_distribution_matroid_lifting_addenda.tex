@@ -1,0 +1,604 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{problem}{Problem}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Pj}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\one}{\mathbf 1}
+
+\title{Exact Distribution, Matroid, and Lifting Addenda for the EG203 Obstruction Calculus}
+\author{Jared Wilder}
+\date{2026-05-13}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This addendum adds theorem-grade components to the EG203 stack.  First, the local subgroup-obstruction indicators over a squarefree prime set are independent Bernoulli variables under CRT, giving an exact Poisson-binomial distribution and a direct Erd\H{o}s--Kac normalization criterion.  Second, Kummer log rows define a representable matroid over \(\F_\ell\), with synchronization defects equal to matroid nullities.  Third, prime-power lifting defects are identified with a precise generalized Wieferich relation map.  Fourth, collision excess of Kummer slopes is expressed by a finite Fourier/Parseval identity over the rank-\(r\) Kummer Galois group.  A final section records the Tate-module finite-linear analogue for elliptic and higher Galois representations.
+\end{abstract}
+
+\section{Exact Poisson-binomial law for local obstruction counts}
+
+Let \(\mathcal Q\) be a finite set of primes with \(q\nmid ab\).  Put
+\[
+P=\prod_{q\in\mathcal Q}q,
+\qquad
+G_P=(\Z/P\Z)^*.
+\]
+For each \(q\in\mathcal Q\), write
+\[
+\Gamma_q=\langle a,b\rangle\subset\F_q^*
+\]
+and define the local membership indicator
+\[
+B_q(m)=\one_{\Gamma_q}(-m^{-1}) ,
+\qquad m\in G_P.
+\]
+Let
+\[
+p_q=\frac{|\Gamma_q|}{q-1}.
+\]
+
+\begin{theorem}[CRT independence of local obstruction indicators]\label{T:crt-independence}
+As \(m\) varies uniformly over \(G_P\), the random variables
+\[
+\{B_q(m)\}_{q\in\mathcal Q}
+\]
+are independent Bernoulli random variables with
+\[
+\mathbb P(B_q=1)=p_q.
+\]
+\end{theorem}
+
+\begin{proof}
+By the Chinese remainder theorem,
+\[
+G_P\simeq\prod_{q\in\mathcal Q}\F_q^*,
+\]
+and uniform \(m\in G_P\) corresponds to independent uniform residues \(m_q\in\F_q^*\).  The map \(m_q\mapsto -m_q^{-1}\) is a bijection of \(\F_q^*\), so
+\[
+\mathbb P(B_q=1)=\frac{|\Gamma_q|}{q-1}=p_q.
+\]
+For any subset \(S\subseteq\mathcal Q\),
+\[
+\mathbb P(B_q=1\ \forall q\in S)
+=
+\prod_{q\in S}\frac{|\Gamma_q|}{q-1}
+=
+\prod_{q\in S}p_q,
+\]
+again by CRT product measure.  This is exactly independence.
+\end{proof}
+
+\begin{corollary}[Exact obstruction-count distribution]\label{C:poisson-binomial}
+Define
+\[
+N_{\mathcal Q}(m)=\sum_{q\in\mathcal Q}B_q(m).
+\]
+Then \(N_{\mathcal Q}\) has the Poisson-binomial distribution with generating function
+\[
+\E z^{N_{\mathcal Q}}
+=
+\prod_{q\in\mathcal Q}(1-p_q+p_qz).
+\]
+Consequently,
+\[
+\E N_{\mathcal Q}=\sum_{q\in\mathcal Q}p_q,
+\qquad
+\Var(N_{\mathcal Q})=\sum_{q\in\mathcal Q}p_q(1-p_q).
+\]
+\end{corollary}
+
+\begin{proof}
+The generating function follows from independence:
+\[
+\E z^{N_{\mathcal Q}}
+=
+\E\prod_q z^{B_q}
+=
+\prod_q\E z^{B_q}
+=
+\prod_q(1-p_q+p_qz).
+\]
+The mean and variance follow by differentiating the generating function, or directly by summing independent Bernoulli means and variances.
+\end{proof}
+
+\begin{theorem}[Erd\H{o}s--Kac normalization criterion for obstruction counts]\label{T:ek-criterion}
+Let \(\mathcal Q_X\) be a sequence of finite prime sets and put
+\[
+V_X=\sum_{q\in\mathcal Q_X}p_q(1-p_q).
+\]
+If
+\[
+V_X\to\infty
+\quad\text{and}\quad
+\frac{\max_{q\in\mathcal Q_X}p_q(1-p_q)}{V_X}\to0,
+\]
+then
+\[
+\frac{N_{\mathcal Q_X}-\sum_{q\in\mathcal Q_X}p_q}{\sqrt{V_X}}
+\]
+converges in distribution to the standard normal law as \(X\to\infty\).
+\end{theorem}
+
+\begin{proof}
+By \cref{T:crt-independence}, the summands \(B_q-p_q\) are independent, centered, and bounded by \(1\) in absolute value.  The displayed maximum condition is the Lindeberg condition for this triangular array, because for every fixed \(\varepsilon>0\), eventually
+\[
+|B_q-p_q|\le1<\varepsilon\sqrt{V_X}
+\]
+for every \(q\).  The Lindeberg--Feller central limit theorem gives the conclusion.
+\end{proof}
+
+\begin{remark}
+This theorem is exact finite CRT probability plus a standard triangular-array central limit theorem.  Analytic number theory enters only when one estimates the subgroup densities \(p_q=|\langle a,b\rangle\bmod q|/(q-1)\).
+\end{remark}
+
+\section{The Kummer matroid}
+
+Let \(r\ge1\), let \(\mathbf a=(a_1,\ldots,a_r)\), and fix a prime \(\ell\).  For primes \(q\equiv1\pmod\ell\), \(q\nmid a_1\cdots a_r\), choose a primitive root \(g_q\bmod q\) and write
+\[
+a_j\equiv g_q^{u_{qj}}\pmod q.
+\]
+Set
+\[
+x_\ell(q)=(u_{q1},\ldots,u_{qr})\in\F_\ell^r.
+\]
+
+\begin{definition}[Kummer log matroid]\label{D:kummer-matroid}
+For a finite prime set \(V\), define \(M_\ell(V;\mathbf a)\) to be the representable matroid over \(\F_\ell\) with ground set \(V\) and rank function
+\[
+\rho_\ell(S)=\rank_{\F_\ell}\{x_\ell(q):q\in S\},
+\qquad S\subseteq V.
+\]
+The nullity is
+\[
+\eta_\ell(S)=|S|-\rho_\ell(S).
+\]
+\end{definition}
+
+\begin{proposition}[Matroid axioms]\label{P:matroid-axioms}
+The function \(\rho_\ell\) is a matroid rank function:
+\[
+0\le\rho_\ell(S)\le |S|,
+\]
+\[
+S\subseteq T\Rightarrow \rho_\ell(S)\le\rho_\ell(T),
+\]
+and
+\[
+\rho_\ell(S\cup T)+\rho_\ell(S\cap T)\le \rho_\ell(S)+\rho_\ell(T).
+\]
+\end{proposition}
+
+\begin{proof}
+The first two properties are immediate for vector-space rank.  For submodularity, let
+\[
+U_S=\Span_{\F_\ell}\{x_\ell(q):q\in S\},
+\qquad
+U_T=\Span_{\F_\ell}\{x_\ell(q):q\in T\}.
+\]
+Then
+\[
+U_{S\cup T}=U_S+U_T,
+\]
+and
+\[
+U_{S\cap T}\subseteq U_S\cap U_T.
+\]
+Therefore
+\[
+\rho_\ell(S\cup T)
+=
+\dim(U_S+U_T)
+=
+\dim U_S+\dim U_T-\dim(U_S\cap U_T)
+\]
+and since \(\dim(U_S\cap U_T)\ge \dim U_{S\cap T}\), submodularity follows.
+\end{proof}
+
+\begin{theorem}[Synchronization defect equals matroid nullity]\label{T:defect-nullity}
+For any finite \(S\subseteq V\), the first-level \(\ell\)-synchronization defect dimension of the Kummer log matrix on \(S\) is
+\[
+\delta_\ell(S;\mathbf a)=\eta_\ell(S)=|S|-\rho_\ell(S).
+\]
+\end{theorem}
+
+\begin{proof}
+The first-level synchronization map is
+\[
+\phi_{\ell,S}:\F_\ell^r\to\F_\ell^S,
+\qquad
+n\mapsto(x_\ell(q)\cdot n)_{q\in S}.
+\]
+Its matrix has rows \(x_\ell(q)\).  Hence
+\[
+\rank(\phi_{\ell,S})=\rho_\ell(S).
+\]
+Therefore
+\[
+\dim\coker(\phi_{\ell,S})=|S|-\rank(\phi_{\ell,S})=|S|-\rho_\ell(S)=\eta_\ell(S).
+\]
+\end{proof}
+
+\begin{definition}[Kummer Tutte polynomial]\label{D:tutte}
+The Kummer Tutte polynomial is
+\[
+T_{M_\ell}(x,y)=
+\sum_{S\subseteq V}
+(x-1)^{\rho_\ell(V)-\rho_\ell(S)}
+(y-1)^{|S|-\rho_\ell(S)}.
+\]
+\end{definition}
+
+\begin{corollary}[Tutte polynomial packages all first-level defects]\label{C:tutte-packages}
+The exponent of \(y-1\) in each term of \(T_{M_\ell}\) is exactly the first-level synchronization defect dimension \(\delta_\ell(S;\mathbf a)\).
+\end{corollary}
+
+\begin{proof}
+By \cref{T:defect-nullity}, the exponent
+\[
+|S|-\rho_\ell(S)
+\]
+equals \(\delta_\ell(S;\mathbf a)\).
+\end{proof}
+
+\section{Vertical lifting defect and generalized Wieferich relations}
+
+Let \(q\) be an odd prime and let \(\mathbf a=(a_1,\ldots,a_r)\) with \(q\nmid a_1\cdots a_r\).  Put
+\[
+\Gamma_{q^e}(\mathbf a)=\langle a_1,\ldots,a_r\rangle\subset(\Z/q^e\Z)^*.
+\]
+The reduction map gives
+\[
+1\to K_e\to\Gamma_{q^{e+1}}(\mathbf a)\to\Gamma_{q^e}(\mathbf a)\to1,
+\]
+where
+\[
+K_e=\Gamma_{q^{e+1}}(\mathbf a)\cap(1+q^e\Z/q^{e+1}\Z),
+\qquad |K_e|\in\{1,q\}.
+\]
+
+Define the mod-\(q\) exponent-relation lattice
+\[
+R_q(\mathbf a)=
+\{n=(n_1,\ldots,n_r)\in\Z^r:
+a_1^{n_1}\cdots a_r^{n_r}\equiv1\pmod q\}.
+\]
+For \(n\in R_q(\mathbf a)\), define
+\[
+\lambda_q(n)
+=
+\frac{a_1^{n_1}\cdots a_r^{n_r}-1}{q}\pmod q.
+\]
+
+\begin{lemma}[Well-defined homomorphism]\label{L:lambda-hom}
+The map
+\[
+\lambda_q:R_q(\mathbf a)\to\F_q
+\]
+is a group homomorphism from the additive relation lattice to the additive group \(\F_q\).
+\end{lemma}
+
+\begin{proof}
+For \(n,m\in R_q(\mathbf a)\), write
+\[
+A(n)=a_1^{n_1}\cdots a_r^{n_r}=1+q\lambda_q(n)\pmod{q^2},
+\]
+\[
+A(m)=a_1^{m_1}\cdots a_r^{m_r}=1+q\lambda_q(m)\pmod{q^2}.
+\]
+Then
+\[
+A(n+m)=A(n)A(m)
+\equiv
+1+q(\lambda_q(n)+\lambda_q(m))
+\pmod{q^2}.
+\]
+Thus \(\lambda_q(n+m)=\lambda_q(n)+\lambda_q(m)\) in \(\F_q\).
+\end{proof}
+
+\begin{theorem}[Vertical lifting defect as generalized Wieferich relation]\label{T:wieferich-relation}
+At the first lifting level \(q\to q^2\),
+\[
+K_1\ne1
+\]
+if and only if \(\lambda_q\) is nonzero.  Equivalently,
+\[
+K_1=1
+\]
+if and only if every mod-\(q\) exponent relation among the bases lifts to a mod-\(q^2\) relation.
+\end{theorem}
+
+\begin{proof}
+An element of \(K_1\) is represented by a product
+\[
+A(n)=a_1^{n_1}\cdots a_r^{n_r}
+\]
+such that \(A(n)\equiv1\pmod q\), but considered modulo \(q^2\) it lies in
+\[
+1+q\Z/q^2\Z.
+\]
+Thus \(n\in R_q(\mathbf a)\), and its image in the kernel is
+\[
+A(n)\equiv1+q\lambda_q(n)\pmod{q^2}.
+\]
+This kernel element is nontrivial exactly when \(\lambda_q(n)\ne0\).  Therefore \(K_1\ne1\) exactly when \(\lambda_q\) is not the zero homomorphism.
+\end{proof}
+
+\begin{corollary}[Classical Wieferich criterion, rank one]\label{C:rank-one-wieferich}
+Let \(r=1\), \(\mathbf a=(a)\), and let \(h=\ord_q(a)\).  Then
+\[
+K_1=1
+\]
+if and only if
+\[
+a^h\equiv1\pmod{q^2}.
+\]
+Equivalently,
+\[
+K_1=1
+\]
+if and only if
+\[
+a^{q-1}\equiv1\pmod{q^2}.
+\]
+\end{corollary}
+
+\begin{proof}
+For \(r=1\), the relation lattice is generated by \(h=\ord_q(a)\).  By \cref{T:wieferich-relation}, \(K_1=1\) exactly when
+\[
+a^h\equiv1\pmod{q^2}.
+\]
+Since \(h\mid q-1\), write \(q-1=ht\), with \(q\nmid t\).  If \(a^h\equiv1\pmod{q^2}\), then \(a^{q-1}\equiv1\pmod{q^2}\).  Conversely, if
+\[
+a^h\equiv 1+cq\pmod{q^2},
+\]
+then
+\[
+a^{q-1}=(a^h)^t\equiv1+tcq\pmod{q^2}.
+\]
+Since \(q\nmid t\), the congruence \(a^{q-1}\equiv1\pmod{q^2}\) forces \(c\equiv0\pmod q\).  Hence \(a^h\equiv1\pmod{q^2}\).
+\end{proof}
+
+\begin{definition}[Small Synchronization Defect lattice]\label{D:ssd-lattice}
+For a modulus vector \(m_1,\ldots,m_s\) and row vectors \(u_i\in(\Z/m_i\Z)^r\), define
+\[
+L(U)=
+\{n\in\Z^r:u_i\cdot n\equiv0\pmod{m_i}\ \text{for all }i\}.
+\]
+The Small Synchronization Defect Problem asks for a nonzero vector \(n\in L(U)\) of minimal norm.
+\end{definition}
+
+\begin{proposition}[SSDP is a congruence-lattice shortest-vector problem]\label{P:ssdp-svp}
+The set \(L(U)\) is a full-rank lattice in \(\Z^r\).  Solving SSDP is exactly solving the shortest nonzero vector problem in this explicitly given congruence lattice.
+\end{proposition}
+
+\begin{proof}
+Each condition
+\[
+u_i\cdot n\equiv0\pmod{m_i}
+\]
+defines the kernel of a homomorphism \(\Z^r\to\Z/m_i\Z\).  The intersection of finitely many finite-index sublattices of \(\Z^r\) is again a finite-index full-rank sublattice.  By definition, SSDP asks for a shortest nonzero vector in that lattice.
+\end{proof}
+
+\section{Collision excess and finite Fourier over the Kummer Galois group}
+
+Assume \(a_1,\ldots,a_r\) are distinct rational primes and set
+\[
+K_{\ell,\star}=\Q(\zeta_\ell,a_1^{1/\ell},\ldots,a_r^{1/\ell}).
+\]
+Over \(\Q(\zeta_\ell)\),
+\[
+G_\ell=\Gal(K_{\ell,\star}/\Q(\zeta_\ell))\simeq\F_\ell^r.
+\]
+For unramified primes \(q\equiv1\pmod\ell\), identify
+\[
+\Frob_q\in G_\ell
+\]
+with the Kummer log vector \(x_\ell(q)\in\F_\ell^r\).
+
+Let \(N:\F_\ell^r\to\Z_{\ge0}\) be a finite count function; in applications
+\[
+N(v)=\#\{q\le Q:q\equiv1\pmod\ell,\ x_\ell(q)=v\}.
+\]
+Let
+\[
+\widehat N(A)=\sum_{v\in\F_\ell^r}N(v)e^{2\pi i A\cdot v/\ell}
+\]
+for \(A\in\F_\ell^r\), and put
+\[
+\overline N=\ell^{-r}\sum_v N(v).
+\]
+
+\begin{theorem}[Collision-excess Parseval identity]\label{T:parseval-collision}
+The collision excess
+\[
+\mathcal C_\ell(N)
+=
+\sum_{v\in\F_\ell^r}\left(N(v)-\overline N\right)^2
+\]
+satisfies
+\[
+\mathcal C_\ell(N)
+=
+\ell^{-r}
+\sum_{\substack{A\in\F_\ell^r\\A\ne0}}
+|\widehat N(A)|^2.
+\]
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+f(v)=N(v)-\overline N.
+\]
+Then
+\[
+\sum_v f(v)=0,
+\]
+so \(\widehat f(0)=0\) and \(\widehat f(A)=\widehat N(A)\) for \(A\ne0\).  Finite Fourier Parseval on the abelian group \(\F_\ell^r\) gives
+\[
+\sum_v |f(v)|^2
+=
+\ell^{-r}\sum_A|\widehat f(A)|^2
+=
+\ell^{-r}\sum_{A\ne0}|\widehat N(A)|^2.
+\]
+This is the displayed formula.
+\end{proof}
+
+\begin{corollary}[Hyperplane subextensions control collision excess]\label{C:subextension-control}
+Each nonzero Fourier coefficient \(\widehat N(A)\) is attached to the order-\(\ell\) Kummer subextension
+\[
+K_{\ell,A}=\Q(\zeta_\ell,\alpha_A^{1/\ell}),
+\qquad
+\alpha_A=\prod_{j=1}^r a_j^{A_j}.
+\]
+Thus \(\mathcal C_\ell(N)\) is exactly the average squared Frobenius bias over all nontrivial hyperplane Kummer subextensions.
+\end{corollary}
+
+\begin{proof}
+The character
+\[
+v\mapsto e^{2\pi i A\cdot v/\ell}
+\]
+is the character of \(G_\ell\simeq\F_\ell^r\) whose kernel is the hyperplane \(A\cdot v=0\).  The corresponding quotient of \(G_\ell\) has order \(\ell\), and its fixed field is
+\[
+K_{\ell,A}=\Q(\zeta_\ell,\alpha_A^{1/\ell}).
+\]
+The formula in \cref{T:parseval-collision} expresses collision excess as the sum of squared biases over these nontrivial characters.
+\end{proof}
+
+\begin{remark}
+This is the rigorous finite statement behind the Kummer-Vandiver/class-group probe direction.  Any proposed connection to cyclotomic class groups must enter through unusually large Frobenius bias in the hyperplane subextensions \(K_{\ell,A}\), and the statistic that sees that bias is \(\mathcal C_\ell(N)\).
+\end{remark}
+
+\section{Tate-module finite-linear obstruction calculus}
+
+The multiplicative Kummer rows \(x_\ell(q)\in\F_\ell^r\) are one instance of a broader finite-linear obstruction pattern.
+
+Let \(V\) be a finite-dimensional \(\F_\ell\)-vector space and let \(T_q\in\operatorname{End}_{\F_\ell}(V)\) be a family of linear operators indexed by primes.  For vectors \(v_1,\ldots,v_r\in V\), define the row map
+\[
+\Psi_q:\F_\ell^r\to V,
+\qquad
+(c_1,\ldots,c_r)\mapsto (T_q-I)\left(\sum_{j=1}^r c_jv_j\right).
+\]
+
+\begin{definition}[Linear residual defect]\label{D:linear-residual}
+For a finite prime set \(S\), define
+\[
+\Psi_S:\F_\ell^r\to V^S,
+\qquad
+c\mapsto(\Psi_q(c))_{q\in S}.
+\]
+The residual defect space is
+\[
+D_{\ell,V}(S)=\coker(\Psi_S).
+\]
+\end{definition}
+
+\begin{theorem}[Finite-linear obstruction identity]\label{T:finite-linear}
+For every finite \(S\),
+\[
+\dim_{\F_\ell}D_{\ell,V}(S)
+=
+|S|\dim V-\rank_{\F_\ell}\Psi_S.
+\]
+\end{theorem}
+
+\begin{proof}
+This is rank-nullity for the linear map
+\[
+\Psi_S:\F_\ell^r\to V^S.
+\]
+The codomain has dimension \(|S|\dim V\).
+\end{proof}
+
+\begin{corollary}[Elliptic Tate-module shadow]\label{C:tate-shadow}
+Let \(E/\Q\) be an elliptic curve, let \(V=E[\ell]\), and for primes \(q\nmid \ell N_E\), let \(T_q=\rho_{E,\ell}(\Frob_q)\in\operatorname{GL}(E[\ell])\).  Then the residual defect space
+\[
+D_{\ell,E}(S)=\coker\left(\F_\ell^r\to E[\ell]^S\right)
+\]
+has dimension
+\[
+\dim_{\F_\ell}D_{\ell,E}(S)=2|S|-\rank\Psi_S.
+\]
+\end{corollary}
+
+\begin{proof}
+For an elliptic curve, \(E[\ell]\) is a two-dimensional \(\F_\ell\)-vector space.  Apply \cref{T:finite-linear}.
+\end{proof}
+
+\begin{remark}
+This proves the finite-linear Tate-module form of the obstruction calculus.  Analytic distribution of Frobenius in the relevant Galois representation is a separate input.
+\end{remark}
+
+\section{Stack insertion list}
+
+\begin{enumerate}[leftmargin=1.5em]
+\item Add \cref{T:crt-independence}--\cref{T:ek-criterion} to Paper 1 or as a new companion note on exact distribution laws.
+\item Add \cref{D:kummer-matroid}--\cref{C:tutte-packages} to Paper 6.
+\item Add \cref{T:wieferich-relation}, \cref{C:rank-one-wieferich}, and \cref{P:ssdp-svp} to the prime-power/Hensel section.
+\item Add \cref{T:parseval-collision}--\cref{C:subextension-control} to the Kummer slope collision graph program.
+\item Add \cref{T:finite-linear}--\cref{C:tate-shadow} as the finite-linear/Tate-module port.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+
+\bibitem{Billingsley}
+P. Billingsley.
+\newblock \emph{Probability and Measure}.
+\newblock Wiley, 3rd edition, 1995.
+
+\bibitem{LangAlgebra}
+S. Lang.
+\newblock \emph{Algebra}.
+\newblock Springer, revised 3rd edition, 2002.
+
+\bibitem{Washington}
+L. C. Washington.
+\newblock \emph{Introduction to Cyclotomic Fields}.
+\newblock Springer, 2nd edition, 1997.
+
+\bibitem{Serre}
+J.-P. Serre.
+\newblock \emph{Abelian \(l\)-adic Representations and Elliptic Curves}.
+\newblock Addison-Wesley, 1989.
+
+\bibitem{Oxley}
+J. Oxley.
+\newblock \emph{Matroid Theory}.
+\newblock Oxford University Press, 2nd edition, 2011.
+
+\bibitem{Wieferich}
+A. Wieferich.
+\newblock Zum letzten Fermatschen Theorem.
+\newblock \emph{Journal f\"ur die reine und angewandte Mathematik}, 136:293--302, 1909.
+
+\end{thebibliography}
+
+\end{document}

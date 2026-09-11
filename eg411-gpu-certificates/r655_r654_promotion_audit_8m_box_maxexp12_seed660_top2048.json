@@ -1,0 +1,190 @@
+{
+  "round": "R655_R654_PROMOTION_AUDIT",
+  "binary": "R654 promotes globally as written OR requires an additional lower-jump invariant",
+  "input": "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\UNIVERSAL_LAW\\oracle\\math\\results\\eg411\\r654_rough_cofactor_certificates_8m_box_maxexp12_seed660_top2048.json",
+  "certificate_count": 9,
+  "prime_y_max": 3000000,
+  "ladder_final": {
+    "y": 2999999,
+    "prime_count": 216816,
+    "ratio_float": 0.03764481378701614,
+    "primorial_log10": 1302061.5566277115,
+    "p_digits_covered_if_C3_le_4p3": 434020
+  },
+  "required_ratio_range": {
+    "min": 0.0028028947812844492,
+    "max": 0.014847951538745362
+  },
+  "minimum_depth4_margin_factor_on_input": 4.368450418845464,
+  "all_input_thresholds_above_ladder_floor_through_y_max": true,
+  "route_verdict": "FINITE_CERTIFICATE_STRONG_BUT_NOT_GLOBAL",
+  "global_promotion_gate": {
+    "promoted": false,
+    "reason": "R654 needs a uniform theorem forcing x3_lower close enough to 1 as p grows; a fixed observed x3 gap plus primorial lower bound is a finite-size certificate, not an unbounded proof.",
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower >= 1 / (1 + L(4p^3)) before depth-4, or prove a stronger q-birth/roughness condition that implies it."
+  },
+  "audits": [
+    {
+      "input_rank": 1,
+      "source": "base_r646",
+      "p_digits": 220,
+      "x3_lower_float": 0.9972049394792625,
+      "required_phi_C3_ratio_for_depth4": 0.0028028947812844492,
+      "actual_primorial_ratio_used": 0.07608843839680195,
+      "depth4_margin_factor": 27.14637699026783,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 58,
+      "source": "gpu_batch_16",
+      "p_digits": 775,
+      "x3_lower_float": 0.985369284614279,
+      "required_phi_C3_ratio_for_depth4": 0.014847951538745362,
+      "actual_primorial_ratio_used": 0.06517637683521098,
+      "depth4_margin_factor": 4.389587120158282,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 302,
+      "source": "gpu_batch_11",
+      "p_digits": 912,
+      "x3_lower_float": 0.9855646395732748,
+      "required_phi_C3_ratio_for_depth4": 0.014646792150513187,
+      "actual_primorial_ratio_used": 0.06398378530465179,
+      "depth4_margin_factor": 4.368450418845464,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 451,
+      "source": "gpu_batch_25",
+      "p_digits": 807,
+      "x3_lower_float": 0.9855775027880015,
+      "required_phi_C3_ratio_for_depth4": 0.014633549539432609,
+      "actual_primorial_ratio_used": 0.06487226072983063,
+      "depth4_margin_factor": 4.433118605641181,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 824,
+      "source": "gpu_batch_8",
+      "p_digits": 858,
+      "x3_lower_float": 0.9858758416738483,
+      "required_phi_C3_ratio_for_depth4": 0.014326508196175392,
+      "actual_primorial_ratio_used": 0.06442892318021583,
+      "depth4_margin_factor": 4.497182586152835,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 912,
+      "source": "gpu_batch_32",
+      "p_digits": 849,
+      "x3_lower_float": 0.9858965029006322,
+      "required_phi_C3_ratio_for_depth4": 0.01430525116771743,
+      "actual_primorial_ratio_used": 0.064504309304817,
+      "depth4_margin_factor": 4.50913504059149,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 1148,
+      "source": "gpu_batch_6",
+      "p_digits": 838,
+      "x3_lower_float": 0.9859492244911405,
+      "required_phi_C3_ratio_for_depth4": 0.014251013297476108,
+      "actual_primorial_ratio_used": 0.06460296355600334,
+      "depth4_margin_factor": 4.533218951346056,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 1157,
+      "source": "gpu_batch_14",
+      "p_digits": 878,
+      "x3_lower_float": 0.9859359002208224,
+      "required_phi_C3_ratio_for_depth4": 0.014264720227783197,
+      "actual_primorial_ratio_used": 0.0642599096197302,
+      "depth4_margin_factor": 4.504813876024857,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    },
+    {
+      "input_rank": 1776,
+      "source": "gpu_batch_36",
+      "p_digits": 745,
+      "x3_lower_float": 0.9861332963607526,
+      "required_phi_C3_ratio_for_depth4": 0.014061692968304973,
+      "actual_primorial_ratio_used": 0.065469112458231,
+      "depth4_margin_factor": 4.655848524484089,
+      "last_ladder_row_still_above_required": {
+        "y": 2999999,
+        "prime_count": 216816,
+        "ratio_float": 0.03764481378701614,
+        "primorial_log10": 1302061.5566277115,
+        "p_digits_covered_if_C3_le_4p3": 434020
+      },
+      "first_ladder_row_below_required": null,
+      "crossing_seen_in_ladder": false
+    }
+  ]
+}

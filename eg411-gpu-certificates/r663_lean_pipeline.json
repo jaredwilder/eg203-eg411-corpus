@@ -1,0 +1,42 @@
+{
+  "round": "R664_LEAN_RECURRENCE_PIPELINE",
+  "proof_status": "PIPELINE_FAILED_CLEAN_LAYER",
+  "headline_proof_pct": 63.61,
+  "clean_build": {
+    "returncode": 1,
+    "elapsed_s": 150.84,
+    "stdout_tail": "ommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\Counterexamples.lean -o C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean\\EG411Formal\\Counterexamples.olean -i C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean\\EG411Formal\\Counterexamples.ilean -c C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\ir\\EG411Formal\\Counterexamples.c --setup C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\ir\\EG411Formal\\Counterexamples.setup.json --json\nerror: EG411Formal/Counterexamples.lean:24:1: expected '{' or indented tactic sequence\nerror: EG411Formal/Counterexamples.lean:23:46: unsolved goals\nh : \u00e2\u02c6\u20ac (p c3 : \u00e2\u201e\u0161), WeakStrictUnderflowRecord p c3 \u00e2\u2020\u2019 9849 / 10000 \u00e2\u2030\u00a4 x3Q p c3\n\u00e2\u0160\u00a2 WeakStrictUnderflowRecord 1 1\nerror: EG411Formal/Counterexamples.lean:21:72: unsolved goals\nh : \u00e2\u02c6\u20ac (p c3 : \u00e2\u201e\u0161), WeakStrictUnderflowRecord p c3 \u00e2\u2020\u2019 9849 / 10000 \u00e2\u2030\u00a4 x3Q p c3\nhrec : WeakStrictUnderflowRecord 1 1\n\u00e2\u0160\u00a2 False\nerror: Lean exited with code 1\n\u00e2\u0153\u201d [3293/3306] Built EG411Formal.LowerJumpGap (9.5s)\n\u00e2\u0153\u2013 [3294/3306] Building EG411Formal.LowerJumpGapRefuted (11s)\ntrace: .> LEAN_PATH=C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean;C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean c:\\Users\\jared\\.elan\\toolchains\\leanprover--lean4---v4.29.1\\bin\\lean.exe C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\LowerJumpGapRefuted.lean -o C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean\\EG411Formal\\LowerJumpGapRefuted.olean -i C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean\\EG411Formal\\LowerJumpGapRefuted.ilean -c C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\ir\\EG411Formal\\LowerJumpGapRefuted.c --setup C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\ir\\EG411Formal\\LowerJumpGapRefuted.setup.json --json\nerror: EG411Formal/LowerJumpGapRefuted.lean:58:1: unsolved goals\ncase refine_4\n\u00e2\u0160\u00a2 1 / 16 < 1\nerror: EG411Formal/LowerJumpGapRefuted.lean:59:1: No goals to be solved\nerror: EG411Formal/LowerJumpGapRefuted.lean:74:1: expected '{' or indented tactic sequence\nerror: EG411Formal/LowerJumpGapRefuted.lean:73:31: unsolved goals\nx2L rhoL : \u00e2\u201e\u0161\nh : LowerJumpBounds 2 1 0 x2L rhoL R661Threshold\n\u00e2\u0160\u00a2 x2L \u00e2\u2030\u00a4 1 / 16\nerror: EG411Formal/LowerJumpGapRefuted.lean:68:62: unsolved goals\nx2L rhoL : \u00e2\u201e\u0161\nh : LowerJumpBounds 2 1 0 x2L rhoL R661Threshold\nhx2_le : x2L \u00e2\u2030\u00a4 1 / 16\n\u00e2\u0160\u00a2 False\nerror: Lean exited with code 1\n\u00e2\u0153\u201d [3297/3306] Built EG411Formal.AboveThresholdClosure (11s)\n\u00e2\u0153\u201d [3304/3306] Built EG411Formal.S3C_Oracle_114 (93s)\nSome required targets logged failures:\n- EG411Formal.StructuralMertens\n- EG411Formal.Gate\n- EG411Formal.Counterexamples\n- EG411Formal.LowerJumpGapRefuted\n",
+    "stderr_tail": "error: build failed\n"
+  },
+  "clean_file_scan": {
+    "clean_files": [
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\Basic.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\Gate.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\Recurrence.lean",
+      "C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\EG411Formal\\Counterexamples.lean"
+    ],
+    "forbidden_tokens": [
+      "sorry",
+      "admit",
+      "axiom",
+      "constant"
+    ],
+    "hits": [],
+    "passes": true
+  },
+  "axiom_check": {
+    "returncode": 1,
+    "elapsed_s": 2.392,
+    "no_sorry_axiom": true,
+    "output": "<stdin>:1:0: error: object file 'C:\\Users\\jared\\Local Sites\\woocommerce-enterprise\\oracle\\math\\EG411Formal\\.lake\\build\\lib\\lean\\EG411Formal\\Gate.olean' of module EG411Formal.Gate does not exist\n"
+  },
+  "lower_jump_gap_check": {
+    "returncode": 0,
+    "elapsed_s": 9.685,
+    "gap_is_open": false,
+    "gap_closed": true,
+    "output": ""
+  },
+  "next_material_task": "Replace LowerJumpGap.lean's sorry by constructing LowerJumpBounds for every CambieTailRecord, or demote this route to finite-only."
+}

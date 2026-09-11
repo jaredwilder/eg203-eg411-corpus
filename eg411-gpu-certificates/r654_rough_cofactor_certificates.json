@@ -1,0 +1,267 @@
+{
+  "round": "R654_ROUGH_COFACTOR_CERTIFICATES",
+  "binary": "R652 hard candidates are forced by rough cofactor lower bound OR remain not-forced",
+  "input": "UNIVERSAL_LAW\\oracle\\results\\r652_gpu_2m_top512_fastfactor.json",
+  "factor_limit": 100000,
+  "rough_bound": 100000,
+  "hard_candidate_count": 6,
+  "status_counts": {
+    "DEPTH4_FORCED_BY_ROUGH_C2": 6
+  },
+  "not_forced_count": 0,
+  "certificates": [
+    {
+      "input_rank": 1,
+      "source": "base_r646",
+      "support_size": 63,
+      "N_digits": 220,
+      "p_digits": 220,
+      "sympy_isprime_p": true,
+      "C2_digits": 440,
+      "factor_limit": 100000,
+      "factor_count": 45,
+      "prime_factor_count": 44,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.15982739128893172,
+      "rough_unknown_ratio_float": 0.9993702141480141,
+      "phi_C2_lower_ratio_float": 0.15972673425913814,
+      "rough_components": [
+        {
+          "digits": 317,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 63,
+          "ratio_lower_float": 0.9993702141480141
+        }
+      ],
+      "x3_lower_float": 0.9972049394792625,
+      "x3_upper_float": 0.9972914906333734,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07608843839680195,
+        "prime_count": 246,
+        "last_prime": 1559,
+        "next_prime": 1567,
+        "primorial_product_digits": 658
+      },
+      "x4_lower_float": 1.073080706085817,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    },
+    {
+      "input_rank": 89,
+      "source": "gpu_batch_7",
+      "support_size": 59,
+      "N_digits": 249,
+      "p_digits": 249,
+      "sympy_isprime_p": true,
+      "C2_digits": 498,
+      "factor_limit": 100000,
+      "factor_count": 54,
+      "prime_factor_count": 53,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.1534080368261117,
+      "rough_unknown_ratio_float": 0.9993302411382385,
+      "phi_C2_lower_ratio_float": 0.153305290433982,
+      "rough_components": [
+        {
+          "digits": 337,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 67,
+          "ratio_lower_float": 0.9993302411382385
+        }
+      ],
+      "x3_lower_float": 0.9933764152561421,
+      "x3_upper_float": 0.9934649138033532,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.0748558165035261,
+        "prime_count": 273,
+        "last_prime": 1753,
+        "next_prime": 1759,
+        "primorial_product_digits": 745
+      },
+      "x4_lower_float": 1.0677364179154865,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    },
+    {
+      "input_rank": 120,
+      "source": "gpu_batch_8",
+      "support_size": 61,
+      "N_digits": 253,
+      "p_digits": 253,
+      "sympy_isprime_p": true,
+      "C2_digits": 506,
+      "factor_limit": 100000,
+      "factor_count": 53,
+      "prime_factor_count": 52,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.15471170115052618,
+      "rough_unknown_ratio_float": 0.9993202481356173,
+      "phi_C2_lower_ratio_float": 0.1546065355832273,
+      "rough_components": [
+        {
+          "digits": 343,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 68,
+          "ratio_lower_float": 0.9993202481356173
+        }
+      ],
+      "x3_lower_float": 0.9935892933791309,
+      "x3_upper_float": 0.9936797929376212,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07468740588396833,
+        "prime_count": 277,
+        "last_prime": 1787,
+        "next_prime": 1789,
+        "primorial_product_digits": 758
+      },
+      "x4_lower_float": 1.0677979002157034,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    },
+    {
+      "input_rank": 329,
+      "source": "gpu_batch_4",
+      "support_size": 59,
+      "N_digits": 242,
+      "p_digits": 243,
+      "sympy_isprime_p": true,
+      "C2_digits": 485,
+      "factor_limit": 100000,
+      "factor_count": 54,
+      "prime_factor_count": 53,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.1547573434123096,
+      "rough_unknown_ratio_float": 0.9993402342407879,
+      "phi_C2_lower_ratio_float": 0.15465523981613954,
+      "rough_components": [
+        {
+          "digits": 332,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 66,
+          "ratio_lower_float": 0.9993402342407879
+        }
+      ],
+      "x3_lower_float": 0.99448886838594,
+      "x3_upper_float": 0.9945768088259188,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07511501933359417,
+        "prime_count": 267,
+        "last_prime": 1709,
+        "next_prime": 1721,
+        "primorial_product_digits": 725
+      },
+      "x4_lower_float": 1.0691899189617942,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    },
+    {
+      "input_rank": 461,
+      "source": "gpu_batch_2",
+      "support_size": 59,
+      "N_digits": 242,
+      "p_digits": 242,
+      "sympy_isprime_p": true,
+      "C2_digits": 484,
+      "factor_limit": 100000,
+      "factor_count": 51,
+      "prime_factor_count": 50,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.15472608252786177,
+      "rough_unknown_ratio_float": 0.9993402342407879,
+      "phi_C2_lower_ratio_float": 0.15462399955655287,
+      "rough_components": [
+        {
+          "digits": 333,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 66,
+          "ratio_lower_float": 0.9993402342407879
+        }
+      ],
+      "x3_lower_float": 0.9948464073641415,
+      "x3_upper_float": 0.9949343640299467,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07511501933359417,
+        "prime_count": 267,
+        "last_prime": 1709,
+        "next_prime": 1721,
+        "primorial_product_digits": 725
+      },
+      "x4_lower_float": 1.0695743144872556,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    },
+    {
+      "input_rank": 484,
+      "source": "gpu_batch_9",
+      "support_size": 57,
+      "N_digits": 254,
+      "p_digits": 254,
+      "sympy_isprime_p": true,
+      "C2_digits": 508,
+      "factor_limit": 100000,
+      "factor_count": 56,
+      "prime_factor_count": 55,
+      "composite_factor_count": 1,
+      "known_phi_ratio_float": 0.15392982806841193,
+      "rough_unknown_ratio_float": 0.9993502274432663,
+      "phi_C2_lower_ratio_float": 0.15382980869047033,
+      "rough_components": [
+        {
+          "digits": 328,
+          "exponent": 1,
+          "rough_bound": 100000,
+          "rough_q_min": 100003,
+          "no_small_prime_divisor": {
+            "passes": true,
+            "small_divisor": null,
+            "tested_prime_count": 9592
+          },
+          "max_distinct_prime_factors": 65,
+          "ratio_lower_float": 0.9993502274432663
+        }
+      ],
+      "x3_lower_float": 0.9949013541168005,
+      "x3_upper_float": 0.9949875968311095,
+      "r3_lower_for_c3_upper": {
+        "ratio_float": 0.07468740588396833,
+        "prime_count": 277,
+        "last_prime": 1787,
+        "next_prime": 1789,
+        "primorial_product_digits": 758
+      },
+      "x4_lower_float": 1.0692079553662317,
+      "status": "DEPTH4_FORCED_BY_ROUGH_C2"
+    }
+  ],
+  "closed_by_this_pass": true
+}

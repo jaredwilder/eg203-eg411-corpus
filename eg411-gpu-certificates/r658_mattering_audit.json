@@ -1,0 +1,251 @@
+{
+  "round": "R658_MATTERING_AUDIT",
+  "binary": "finite closures support a proof-relevant invariant OR remain bounded finite evidence",
+  "scale": "headline-proof proximity; not a probability of truth",
+  "before_20m_seed657": {
+    "stage": "before_20m",
+    "headline_proof_pct": 63.67,
+    "finite_route_pct_before_cap": 63.67,
+    "cap_until_global_invariant_pct": 65.0,
+    "global_invariant_pct": 0.0,
+    "formal_referee_pct": 0.0,
+    "promoted_to_global_proof": false,
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower beats the primorial threshold",
+    "score_components": {
+      "target_locked": 8.0,
+      "natural_p_upto_100m_audit": 10.0,
+      "adversarial_search_breadth": 14.0,
+      "rough_cofactor_hard_row_closure": 14.0,
+      "finite_theorem_constant": 11.0,
+      "missing_invariant_named": 4.0,
+      "independent_route_diversity": 2.67
+    },
+    "hard_metrics": {
+      "r652_files": [
+        "r652_gpu_10m_top1024_fastfactor.json",
+        "r652_gpu_10m_box_top1024_fastfactor.json"
+      ],
+      "r654_files": [
+        "r654_rough_cofactor_certificates_10m_top1024.json",
+        "r654_rough_cofactor_certificates_10m_box_top1024.json"
+      ],
+      "strict_gpu_candidates_total": 9999328,
+      "r652_survivor_count": 0,
+      "all_r652_closed": true,
+      "hard_candidate_count": 21,
+      "forced_hard_candidate_count": 21,
+      "hard_closure_ratio": 1.0,
+      "natural_primes_tested_p_7_mod_8": 1440406,
+      "natural_range_closed": true,
+      "observed_min_x3_lower": 0.9908274015338756,
+      "observed_min_x4_lower": 1.0642041710859147,
+      "p_digits_covered": 434020,
+      "finite_margin_factor": 4.066406391118937
+    },
+    "verdict": "BOUNDED_FINITE_ROUTE_NEAR_CAP__NOT_HEADLINE_PROOF",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only"
+  },
+  "after_20m_seed657": {
+    "stage": "after_20m",
+    "headline_proof_pct": 65.0,
+    "finite_route_pct_before_cap": 65.0,
+    "cap_until_global_invariant_pct": 65.0,
+    "global_invariant_pct": 0.0,
+    "formal_referee_pct": 0.0,
+    "promoted_to_global_proof": false,
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower beats the primorial threshold",
+    "score_components": {
+      "target_locked": 8.0,
+      "natural_p_upto_100m_audit": 10.0,
+      "adversarial_search_breadth": 14.0,
+      "rough_cofactor_hard_row_closure": 14.0,
+      "finite_theorem_constant": 11.0,
+      "missing_invariant_named": 4.0,
+      "independent_route_diversity": 4.0
+    },
+    "hard_metrics": {
+      "r652_files": [
+        "r652_gpu_10m_top1024_fastfactor.json",
+        "r652_gpu_10m_box_top1024_fastfactor.json",
+        "r652_gpu_20m_box_seed657_top4096_fastfactor.json"
+      ],
+      "r654_files": [
+        "r654_rough_cofactor_certificates_10m_top1024.json",
+        "r654_rough_cofactor_certificates_10m_box_top1024.json",
+        "r654_rough_cofactor_certificates_20m_box_seed657_top4096.json"
+      ],
+      "strict_gpu_candidates_total": 20000639,
+      "r652_survivor_count": 0,
+      "all_r652_closed": true,
+      "hard_candidate_count": 59,
+      "forced_hard_candidate_count": 59,
+      "hard_closure_ratio": 1.0,
+      "natural_primes_tested_p_7_mod_8": 1440406,
+      "natural_range_closed": true,
+      "observed_min_x3_lower": 0.9908274015338756,
+      "observed_min_x4_lower": 1.0642041710859147,
+      "p_digits_covered": 434020,
+      "finite_margin_factor": 4.066406391118937
+    },
+    "verdict": "BOUNDED_FINITE_ROUTE_NEAR_CAP__NOT_HEADLINE_PROOF",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only"
+  },
+  "after_maxexp8_seed659": {
+    "stage": "after_maxexp8",
+    "headline_proof_pct": 63.84,
+    "finite_route_pct_before_cap": 63.84,
+    "cap_until_global_invariant_pct": 65.0,
+    "global_invariant_pct": 0.0,
+    "formal_referee_pct": 0.0,
+    "promoted_to_global_proof": false,
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower beats the primorial threshold",
+    "score_components": {
+      "target_locked": 8.0,
+      "natural_p_upto_100m_audit": 10.0,
+      "adversarial_search_breadth": 14.0,
+      "rough_cofactor_hard_row_closure": 14.0,
+      "finite_theorem_constant": 9.84,
+      "missing_invariant_named": 4.0,
+      "independent_route_diversity": 4.0
+    },
+    "hard_metrics": {
+      "r652_files": [
+        "r652_gpu_10m_top1024_fastfactor.json",
+        "r652_gpu_10m_box_top1024_fastfactor.json",
+        "r652_gpu_20m_box_seed657_top4096_fastfactor.json",
+        "r652_gpu_10m_box_maxexp8_seed659_top2048_fastfactor.json"
+      ],
+      "r654_files": [
+        "r654_rough_cofactor_certificates_10m_top1024.json",
+        "r654_rough_cofactor_certificates_10m_box_top1024.json",
+        "r654_rough_cofactor_certificates_20m_box_seed657_top4096.json",
+        "r654_rough_cofactor_certificates_10m_box_maxexp8_seed659_top2048.json"
+      ],
+      "strict_gpu_candidates_total": 25002797,
+      "r652_survivor_count": 0,
+      "all_r652_closed": true,
+      "hard_candidate_count": 73,
+      "forced_hard_candidate_count": 73,
+      "hard_closure_ratio": 1.0,
+      "natural_primes_tested_p_7_mod_8": 1440406,
+      "natural_range_closed": true,
+      "observed_min_x3_lower": 0.9861316945885408,
+      "observed_min_x4_lower": 1.0520840086233827,
+      "p_digits_covered": 434020,
+      "finite_margin_factor": 2.6768046211029115
+    },
+    "verdict": "BOUNDED_FINITE_ROUTE_NEAR_CAP__NOT_HEADLINE_PROOF",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only"
+  },
+  "after_maxexp12_seed660": {
+    "stage": "after_maxexp12",
+    "headline_proof_pct": 63.68,
+    "finite_route_pct_before_cap": 63.68,
+    "cap_until_global_invariant_pct": 65.0,
+    "global_invariant_pct": 0.0,
+    "formal_referee_pct": 0.0,
+    "promoted_to_global_proof": false,
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower beats the primorial threshold",
+    "score_components": {
+      "target_locked": 8.0,
+      "natural_p_upto_100m_audit": 10.0,
+      "adversarial_search_breadth": 14.0,
+      "rough_cofactor_hard_row_closure": 14.0,
+      "finite_theorem_constant": 9.68,
+      "missing_invariant_named": 4.0,
+      "independent_route_diversity": 4.0
+    },
+    "hard_metrics": {
+      "r652_files": [
+        "r652_gpu_10m_top1024_fastfactor.json",
+        "r652_gpu_10m_box_top1024_fastfactor.json",
+        "r652_gpu_20m_box_seed657_top4096_fastfactor.json",
+        "r652_gpu_10m_box_maxexp8_seed659_top2048_fastfactor.json",
+        "r652_gpu_8m_box_maxexp12_seed660_top2048_fastfactor.json"
+      ],
+      "r654_files": [
+        "r654_rough_cofactor_certificates_10m_top1024.json",
+        "r654_rough_cofactor_certificates_10m_box_top1024.json",
+        "r654_rough_cofactor_certificates_20m_box_seed657_top4096.json",
+        "r654_rough_cofactor_certificates_10m_box_maxexp8_seed659_top2048.json",
+        "r654_rough_cofactor_certificates_8m_box_maxexp12_seed660_top2048.json"
+      ],
+      "strict_gpu_candidates_total": 29003436,
+      "r652_survivor_count": 0,
+      "all_r652_closed": true,
+      "hard_candidate_count": 82,
+      "forced_hard_candidate_count": 82,
+      "hard_closure_ratio": 1.0,
+      "natural_primes_tested_p_7_mod_8": 1440406,
+      "natural_range_closed": true,
+      "observed_min_x3_lower": 0.985369284614279,
+      "observed_min_x4_lower": 1.0486247958755877,
+      "p_digits_covered": 434020,
+      "finite_margin_factor": 2.5353540310784832
+    },
+    "verdict": "BOUNDED_FINITE_ROUTE_NEAR_CAP__NOT_HEADLINE_PROOF",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only"
+  },
+  "after_maxexp16_seed661": {
+    "stage": "after_maxexp16",
+    "headline_proof_pct": 63.61,
+    "finite_route_pct_before_cap": 63.61,
+    "cap_until_global_invariant_pct": 65.0,
+    "global_invariant_pct": 0.0,
+    "formal_referee_pct": 0.0,
+    "promoted_to_global_proof": false,
+    "missing_invariant": "For every strict-underflow Cambie record, prove x3_lower beats the primorial threshold",
+    "score_components": {
+      "target_locked": 8.0,
+      "natural_p_upto_100m_audit": 10.0,
+      "adversarial_search_breadth": 14.0,
+      "rough_cofactor_hard_row_closure": 14.0,
+      "finite_theorem_constant": 9.61,
+      "missing_invariant_named": 4.0,
+      "independent_route_diversity": 4.0
+    },
+    "hard_metrics": {
+      "r652_files": [
+        "r652_gpu_10m_top1024_fastfactor.json",
+        "r652_gpu_10m_box_top1024_fastfactor.json",
+        "r652_gpu_20m_box_seed657_top4096_fastfactor.json",
+        "r652_gpu_10m_box_maxexp8_seed659_top2048_fastfactor.json",
+        "r652_gpu_8m_box_maxexp12_seed660_top2048_fastfactor.json",
+        "r652_gpu_8m_box_maxexp16_seed661_top4096_fastfactor.json"
+      ],
+      "r654_files": [
+        "r654_rough_cofactor_certificates_10m_top1024.json",
+        "r654_rough_cofactor_certificates_10m_box_top1024.json",
+        "r654_rough_cofactor_certificates_20m_box_seed657_top4096.json",
+        "r654_rough_cofactor_certificates_10m_box_maxexp8_seed659_top2048.json",
+        "r654_rough_cofactor_certificates_8m_box_maxexp12_seed660_top2048.json",
+        "r654_rough_cofactor_certificates_8m_box_maxexp16_seed661_top4096.json"
+      ],
+      "strict_gpu_candidates_total": 33005379,
+      "r652_survivor_count": 0,
+      "all_r652_closed": true,
+      "hard_candidate_count": 90,
+      "forced_hard_candidate_count": 90,
+      "hard_closure_ratio": 1.0,
+      "natural_primes_tested_p_7_mod_8": 1440406,
+      "natural_range_closed": true,
+      "observed_min_x3_lower": 0.9849996381393205,
+      "observed_min_x4_lower": 1.0461169979767155,
+      "p_digits_covered": 434020,
+      "finite_margin_factor": 2.471948897128363
+    },
+    "verdict": "BOUNDED_FINITE_ROUTE_NEAR_CAP__NOT_HEADLINE_PROOF",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only"
+  },
+  "delta_pct_20m_vs_before": 1.33,
+  "delta_pct_maxexp8_vs_20m": -1.16,
+  "delta_pct_maxexp12_vs_maxexp8": -0.16,
+  "delta_pct_maxexp16_vs_maxexp12": -0.07,
+  "oracle_step8_verdict": "ESCALATION",
+  "oracle_step9_kbk_packet": {
+    "route": "Cambie-tail rough-cofactor closure plus lower-jump threshold",
+    "next_binary": "prove a uniform lower-jump invariant OR kill this route as finite-only",
+    "missing_variable": "uniform lower bound for x3_lower as p grows",
+    "new_corpus_knowledge": "Max-exp 8, 12, and 16 scale passes all lowered the observed x3 floor while still closing by depth 4; finite search is now evidence against a stable observed lower-jump floor."
+  }
+}
