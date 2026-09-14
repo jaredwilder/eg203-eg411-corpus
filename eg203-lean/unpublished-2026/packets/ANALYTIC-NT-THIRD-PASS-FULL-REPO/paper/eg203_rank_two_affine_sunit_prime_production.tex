@@ -1,0 +1,121 @@
+
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\title{Rank-Two Affine S-Unit Prime Production for Erdős--Graham 203}
+\author{Jared Wilder}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This draft gives the intended analytic proof architecture for the rank-two
+affine S-unit prime-production statement equivalent to Erdős--Graham 203:
+for every \(m\) with \((m,6)=1\), at least one integer \(m2^k3^\ell+1\) is
+prime.  The elementary algebraic reductions are explicit; the analytic package
+is split into six finite components.
+\end{abstract}
+
+\section{Main theorem}
+
+\begin{theorem}[Rank-two affine S-unit prime production]
+For every \(m\ge 1\) with \((m,6)=1\), there exist \(k,\ell\ge0\) such that
+\[
+m2^k3^\ell+1
+\]
+is prime.
+\end{theorem}
+
+\section{Elementary reductions}
+
+\begin{lemma}[Prime-divisor congruence]
+If \(p\mid mA+1\), then \(mA\equiv-1\pmod p\).  If \(p\) is prime, then
+\((p,m)=1\).
+\end{lemma}
+
+\begin{lemma}[Pair-GCD difference]
+If \(d\mid mA+1\), \(d\mid mB+1\), and \((d,m)=1\), then \(d\mid A-B\).
+\end{lemma}
+
+Taking \(A=2^k3^\ell\) and \(B=2^{k'}3^{\ell'}\), all Type-II common-divisor
+terms reduce to divisors of
+\[
+2^k3^\ell-2^{k'}3^{\ell'}.
+\]
+
+\section{Collision identity}
+
+Let \(T_D=\{(k,\ell):k+\ell\le D\}\).  Define
+\[
+C(D,q)=\#\{(x,y)\in T_D^2:2^{x_1}3^{x_2}\equiv2^{y_1}3^{y_2}\pmod q\}.
+\]
+For \(h=(a,b)\ne(0,0)\), define
+\[
+R_{a,b}=\left|2^{a_+}3^{b_+}-2^{a_-}3^{b_-}\right|.
+\]
+Then
+\[
+C(D,q)-|T_D|
+=
+\sum_{(a,b)\ne(0,0)}N_D(a,b)\mathbf 1_{q\mid R_{a,b}},
+\]
+where
+\[
+N_D(a,b)=
+\begin{cases}
+0,&S<0,\\
+(S+1)(S+2)/2,&S\ge0,
+\end{cases}
+\quad
+S=\min(D,D-a-b)-\max(0,-a)-\max(0,-b).
+\]
+
+\section{Six analytic components}
+
+\subsection{Vaughan--Heath-Brown}
+Decompose
+\[
+\sum_{(k,\ell)\in T_D}\Lambda(m2^k3^\ell+1)
+\]
+into Type-I, Type-II, and acceptable remainder terms.
+
+\subsection{Type-I distribution}
+Use the congruence \(m2^k3^\ell\equiv-1\pmod p\) and distribution of the
+rank-two orbit in residue classes.
+
+\subsection{Type-II S-unit difference estimate}
+Bound off-diagonal bilinear terms through the divisor sums over \(R_{a,b}\).
+
+\subsection{Short-relation lattice control}
+Split primes \(q\) for which a short relation vector \((a,b)\) satisfies
+\(q\mid R_{a,b}\).  Use the exact formula for \(N_D(a,b)\).
+
+\subsection{Subgroup concentration}
+For \(H_p=|\langle 2,3\rangle\subset\mathbb F_p^\times|\), prove a uniform
+estimate of the shape
+\[
+\sum_{p\le z}\frac1{H_p}\ll \log\log z+O(1).
+\]
+
+\subsection{Brun--Hooley parity breaking}
+Use the above estimates in a lower-bound sieve to prove
+\[
+\#\{(k,\ell)\in T_D:m2^k3^\ell+1\text{ prime}\}>0.
+\]
+
+\section{Lean correspondence}
+
+The Lean theorem corresponding to the analytic package is:
+\[
+\texttt{EG203.Analytic.FullAnalyticPackage}.
+\]
+The final file \texttt{EG203/Analytic/ProveIt.lean} proves EG203 once this
+package is supplied.
+\end{document}
