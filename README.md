@@ -1,94 +1,94 @@
 # Erdős–Graham #203 / #411 research corpus
 
-A large working corpus for Erdős–Graham #203 and #411, containing Lean formalizations, computational certificates, exhaustive factor-count searches, obstruction theory, and **19 compiled papers**.
+A combined source corpus for two Erdős–Graham problems, containing Lean formalizations, finite searches, exact obstruction calculations, computational certificates, and 19 compiled papers.
 
-Major mathematical contents include an exact `r=2` reduction to the Steinerberger totient equation, the consequence **`ω(N) >= 8`** supported by an exhaustive **272,676-terminal exclusion tree**, the low-`ω` classification `{5,35,1295,1679615}`, the `7/47` cascade theorem, a finite search through **`1.33×10^14`**, a 125-file EG203 Lean corpus with bounded results through one million, and eight additional obstruction-theory results in the `r754` packet.
+The mathematical programs are distinct; they share a repository only because their source material was developed and archived together.
 
-Author: Jared Wilder. First public timestamp: 2026-09-10.
+## Erdős–Graham #411
 
-## Erdős–Graham #411 mathematics
+For the `r=2` equation, the work reduces the problem to
 
-### Exact reduction
+\[
+3\varphi(N)=2N+2.
+\]
 
-The `r=2` case is reduced to the Steinerberger totient equation
+The corpus contains several exact consequences and finite results around this equation.
 
-```text
-3 φ(N) = 2N + 2.
-```
+### Low prime-factor structure
 
-### Distinct-prime-factor bound
+The recorded finite classification for `\omega(N)\le4` is
 
-The corpus establishes the consequence
+\[
+\boxed{N\in\{5,35,1295,1679615\}}.
+\]
 
-```text
-ω(N) >= 8,
-```
+An exhaustive exclusion tree with **272,676 terminal cases** rules out the next low-`\omega` range used in the program and yields the recorded lower bound
 
-where `ω(N)` counts distinct prime factors.
+\[
+\omega(N)\ge8
+\]
 
-`eg411-lean/omega7_tree.json` (67 MB) and `eg411-lean/omega7-kill-tree.zip` retain the historical filenames for the exhaustive `ω<=7` computation: **272,676 terminal cases, all empty**.
+for any further solution covered by that reduction.
 
-The `ω(N)<=4` solutions are completely classified as
+The source objects are `eg411-lean/omega7_tree.json` and `eg411-lean/omega7-kill-tree.zip`.
 
-```text
-{5,35,1295,1679615}.
-```
-
-### Cascade theorem
+### Cascade family
 
 For
 
-```text
-n_j = 6^(2^j) - 1,
-```
+\[
+n_j=6^{2^j}-1,
+\]
 
-the equation is satisfied exactly when every `6^(2^k)+1` for `k<j` is prime. The cascade terminates at `j=3`, producing the primes 7 and 47.
+the totient equation holds exactly when all preceding numbers
+
+\[
+6^{2^k}+1
+\]
+
+are prime. The cascade terminates at `j=3`, with the prime steps 7 and 47.
 
 ### Finite search
 
-No exceptional prime was found below **`1.33×10^14`** in the recorded search.
+The corpus records a search through approximately
 
-`eg411-gpu-certificates/` (107 MB) contains 59 computational certificates across different seeds and search boxes. The certificates record finite exclusions together with the remaining invariant needed to extend that computational approach beyond its stated boundary.
+\[
+1.33\times10^{14},
+\]
 
-## Historical correction record
+with 59 associated finite-search certificate files under `eg411-gpu-certificates/`.
 
-An earlier target-level closure claim in this research program was later retracted by its author. The retraction, the reason the argument was vacuous, and the withdrawn packets are preserved in `jaredwilder/erdos411-retraction-record`.
+A historical proof route based on a semantically insufficient formal check was later withdrawn; that source history is isolated in [`erdos411-retraction-record`](https://github.com/jaredwilder/erdos411-retraction-record). The surviving reduction, factor-count, cascade, and finite-search mathematics belongs in the main #411 program rather than in the retraction record.
 
-That historical correction is separate from the reduction, factor-count exclusion, low-`ω` classification, cascade theorem, and finite search recorded above.
+## Erdős–Graham #203
 
-## Erdős–Graham #203 mathematics
+`eg203-lean/` contains **125 Lean files**, including bounded statements with explicit prime witnesses through `m<=1,000,000`.
 
-`eg203-lean/` contains **125 Lean files**, including bounded results for `m<=1,000,000` with explicit prime witnesses across several magnitude ranges.
+The accompanying computation tests roughly **1.08 billion values through `3×10^9`** with no failures in the finite condition being checked.
 
-The computational work also checks roughly **1.08 billion values of `m` through `3×10^9`** with zero failures in the tested condition.
+A Sierpiński-style covering route is also excluded in the tested formulation: the Sylow-2/Lagrange obstruction leaves a persistent `1/128` uncovered sublattice.
 
-The remaining analytic dependency identified by this line of work is a sufficiently strong quantitative distribution theorem of Bombieri–Vinogradov / Bateman–Horn type.
+The remaining analytic route is expressed in terms of a quantitative distribution theorem for the relevant prime/Kummer data. The exact finite prime-fibre approach has a focused home in [`erdos203`](https://github.com/jaredwilder/erdos203), while the subgroup/Kummer obstruction theory is in [`erdos203-obstruction-calculus`](https://github.com/jaredwilder/erdos203-obstruction-calculus).
 
-A Sierpiński-style covering-system approach is also ruled out in its tested form: a Sylow-2/Lagrange obstruction leaves a persistent `1/128` uncovered sublattice.
+## Additional obstruction structure
 
-## `r754` obstruction theory
+The `r754-packet/` develops eight further algebraic/combinatorial coordinates:
 
-`r754-packet/` contains eight additional mathematical results with verification scripts:
-
-- CRT full independence rather than mere orthogonality;
-- local obstruction counts as an exact Poisson-binomial law;
+- CRT full independence;
+- exact Poisson-binomial local obstruction counts;
 - Kummer logarithm rows as a representable matroid;
 - synchronization defect as matroid nullity;
 - vertical lifting defect as a generalized Wieferich relation;
 - SSDP as a congruence-lattice shortest-vector problem;
-- collision excess as Fourier energy over a rank-`r` Kummer Galois group;
+- collision excess as Fourier energy on a rank-`r` Kummer Galois group;
 - a finite-linear Tate-module formulation.
 
 ## Papers
 
-`papers-pdf/` contains **19 compiled PDFs**, corresponding to the numbered paper series whose LaTeX sources are in `jaredwilder/eg203-kummer-papers`.
+`papers-pdf/` contains **19 compiled PDFs**. The corresponding LaTeX sources and paper-by-paper index are maintained in [`eg203-kummer-papers`](https://github.com/jaredwilder/eg203-kummer-papers).
 
-The series includes theorem papers, structural/algebraic papers, conditional analytic criteria, and a separate analysis of approaches that fail at the required strength.
+## Reading map
 
-## Reading the corpus
+Use this repository for the combined source corpus and historical computation files. For the current mathematical presentation, prefer the focused #203 and #411 repositories linked above.
 
-This repository contains several kinds of mathematics: exact theorems, formalized bounded results, finite computational searches, conditional analytic criteria, and historical correction records. Each should be read according to its own statement and evidence rather than collapsed into one overall status label.
-
-## License
-
-Apache-2.0.
+Author: Jared Wilder. License: Apache-2.0.
